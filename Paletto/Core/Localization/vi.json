@@ -1,0 +1,382 @@
+{
+  "common": {
+    "button": {
+      "save": "Lưu",
+      "cancel": "Hủy",
+      "delete": "Xóa",
+      "done": "Xong"
+    },
+    "label": {
+      "copied": "Đã sao chép!",
+      "none": "Không",
+      "color": "Màu"
+    },
+    "error": {
+      "tryagain": "Vui lòng thử lại."
+    }
+  },
+  "tabs": {
+    "extract": "Trích xuất",
+    "camera": "Camera",
+    "library": "Thư viện",
+    "settings": "Cài đặt"
+  },
+  "extraction": {
+    "title": "Trích xuất",
+    "toolbar": {
+      "choosephoto": "Chọn ảnh"
+    },
+    "empty": {
+      "title": "Chọn ảnh để trích xuất màu",
+      "button": "Chọn ảnh",
+      "button.accessibility": "Chọn ảnh để trích xuất màu"
+    },
+    "image": {
+      "accessibility": "Ảnh đã chọn. Nhấn giữ để chọn màu."
+    },
+    "palette": {
+      "title": "Màu đã trích xuất",
+      "colorcount": "{count} màu"
+    },
+    "button": {
+      "savepalette": "Lưu bảng màu",
+      "savepalette.accessibility": "Lưu bảng màu này"
+    },
+    "save": {
+      "title": "Lưu bảng màu",
+      "placeholder": "Tên bảng màu",
+      "default": "Bảng màu chưa đặt tên"
+    }
+  },
+  "camera": {
+    "title": "Camera",
+    "button": {
+      "add.accessibility": "Thêm màu này vào bảng",
+      "savepalette": "Lưu bảng màu"
+    },
+    "save": {
+      "title": "Lưu bảng màu",
+      "placeholder": "Tên bảng màu",
+      "default": "Bảng màu Camera"
+    },
+    "permission": {
+      "title": "Cần quyền truy cập Camera",
+      "message": "Bật quyền truy cập Camera trong Cài đặt để chọn màu từ môi trường xung quanh.",
+      "button": "Mở Cài đặt"
+    },
+    "unavailable": {
+      "title": "Camera không khả dụng",
+      "message": "Tính năng Camera yêu cầu thiết bị thật."
+    },
+    "picked": {
+      "title": "Màu đã chọn"
+    }
+  },
+  "library": {
+    "title": "Thư viện",
+    "search": {
+      "prompt": "Tìm bảng màu",
+      "noresults": "Không có kết quả cho \"{query}\""
+    },
+    "empty": {
+      "title": "Chưa có bảng màu",
+      "subtitle": "Trích xuất màu từ ảnh để tạo bảng màu đầu tiên"
+    },
+    "row": {
+      "colorcount": "{count} màu",
+      "accessibility": "{name}, {count} màu, tạo ngày {date}"
+    }
+  },
+  "detail": {
+    "title": "Bảng màu",
+    "toolbar": {
+      "autoassign": "Tự động gán vai trò màu",
+      "export": "Xuất bảng màu"
+    },
+    "name": {
+      "placeholder": "Tên bảng màu",
+      "edit.accessibility": "Sửa tên bảng màu"
+    },
+    "section": {
+      "colors": "Màu sắc",
+      "contrast": "Ma trận tương phản",
+      "preview": "Xem trước"
+    },
+    "contrast": {
+      "samecolor": "Cùng màu",
+      "accessibility": "Tương phản {ratio}, {level}",
+      "legend": {
+        "aaa": "AAA (≥7.0)",
+        "aa": "AA (≥4.5)",
+        "large": "Chỉ chữ lớn (≥3.0)",
+        "fail": "Không đạt (<3.0)"
+      },
+      "hint": "Chạm ô đỏ để tự động sửa màu",
+      "info": {
+        "title": "Về tỷ lệ tương phản",
+        "body": "Tỷ lệ tương phản đo mức độ dễ đọc của chữ trên nền màu, dựa theo tiêu chuẩn WCAG về khả năng tiếp cận.\n\n• AAA (≥7.0) — Dễ đọc nhất, phù hợp mọi cỡ chữ\n• AA (≥4.5) — Đủ dễ đọc cho chữ thường\n• Chỉ chữ lớn (≥3.0) — Chỉ phù hợp chữ từ 18pt hoặc 14pt đậm\n• Không đạt (<3.0) — Chữ sẽ khó đọc\n\nChạm vào ô đỏ trong ma trận để tự động điều chỉnh màu cho tương phản tốt hơn.",
+        "button": "Về tỷ lệ tương phản"
+      },
+      "tooltip": {
+        "foreground": "Chữ",
+        "background": "Nền",
+        "ratio": "Tỷ lệ: {ratio}",
+        "normal": "Chữ thường: {level}",
+        "large": "Chữ lớn: {level}",
+        "fix": "Chạm ô để tự động sửa"
+      }
+    },
+    "empty": {
+      "colors": "Bảng màu chưa có màu nào"
+    }
+  },
+  "colordetail": {
+    "role": {
+      "accessibility": "Vai trò màu: {role}"
+    }
+  },
+  "swatch": {
+    "accessibility": {
+      "label": "Màu {hex}",
+      "hint": "Nhấn để sao chép mã hex. Nhấn giữ để xem thêm."
+    },
+    "context": {
+      "copyhex": "Sao chép HEX",
+      "copyrgb": "Sao chép RGB",
+      "remove": "Xóa"
+    }
+  },
+  "magnifier": {
+    "accessibility": "Kính lúp chọn màu đang hiển thị {hex}"
+  },
+  "export": {
+    "title": "Xuất",
+    "format": {
+      "label": "Định dạng",
+      "image": "Hình ảnh",
+      "swiftui": "Mã SwiftUI",
+      "css": "Biến CSS",
+      "hexlist": "Danh sách HEX",
+      "jsontokens": "JSON Tokens"
+    },
+    "button": {
+      "copy": "Sao chép",
+      "share": "Chia sẻ",
+      "done": "Xong"
+    }
+  },
+  "role": {
+    "background": "Nền",
+    "background.short": "Nền",
+    "primary": "Chính",
+    "primary.short": "Chính",
+    "secondary": "Phụ",
+    "secondary.short": "Phụ",
+    "accent": "Nhấn",
+    "accent.short": "Nhấn",
+    "text": "Chữ",
+    "text.short": "Chữ"
+  },
+  "preview": {
+    "title": "Xem trước ứng dụng",
+    "button": "Nút chính",
+    "body": "Đây là văn bản trên màu nền. Kiểm tra khả năng đọc và tương phản.",
+    "tag1": "Thẻ 1",
+    "tag2": "Thẻ 2",
+    "tag3": "Thẻ 3",
+    "accessibility": "Thẻ xem trước hiển thị màu bảng trong bố cục mẫu",
+    "rolehint": "Gán vai trò cho từng màu ở mục Màu sắc phía trên để xem trước chính xác hơn.",
+    "autoassign": "Tự động gán",
+    "style": {
+      "app": "Ứng dụng",
+      "dashboard": "Bảng điều khiển",
+      "blog": "Bài viết"
+    },
+    "dashboard": {
+      "users": "Người dùng",
+      "revenue": "Doanh thu",
+      "growth": "Tăng trưởng",
+      "progress": "Tiến độ",
+      "chart": "Biểu đồ"
+    },
+    "blog": {
+      "title": "Bắt đầu với lý thuyết màu sắc",
+      "excerpt": "Tìm hiểu cách tạo bảng màu hài hòa giúp nâng cao thiết kế và cải thiện trải nghiệm người dùng.",
+      "author": "Nhóm Thiết kế",
+      "readmore": "Đọc thêm →",
+      "date": "04/03/2026"
+    }
+  },
+  "error": {
+    "imageprocessing": "Xử lý ảnh thất bại: {detail}",
+    "colorextraction": "Trích xuất màu thất bại: {detail}",
+    "fileio": "Lỗi tệp: {detail}",
+    "invaliddata": "Dữ liệu không hợp lệ: {detail}",
+    "camera.unavailable": "Camera không khả dụng trên thiết bị này",
+    "camera.denied": "Quyền truy cập Camera bị từ chối. Vui lòng bật trong Cài đặt.",
+    "unknown": "Đã xảy ra lỗi không mong muốn: {detail}"
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "section": {
+      "appearance": "Giao diện",
+      "language": "Ngôn ngữ",
+      "general": "Chung",
+      "about": "Giới thiệu"
+    },
+    "theme": {
+      "label": "Chủ đề",
+      "light": "Sáng",
+      "dark": "Tối",
+      "system": "Hệ thống"
+    },
+    "language": {
+      "label": "Ngôn ngữ"
+    },
+    "haptic": {
+      "label": "Phản hồi rung"
+    },
+    "colorcount": {
+      "label": "Số màu mặc định"
+    },
+    "export": {
+      "label": "Định dạng xuất mặc định"
+    },
+    "version": "Phiên bản"
+  },
+  "wcag": {
+    "aa": "AA",
+    "aaa": "AAA",
+    "fail": "Không đạt"
+  },
+  "harmony": {
+    "title": "Hòa sắc",
+    "source": "Màu gốc",
+    "type": {
+      "complementary": "Bổ sung",
+      "analogous": "Tương đồng",
+      "triadic": "Bộ ba",
+      "splitcomplementary": "Bổ sung tách",
+      "tetradic": "Bộ bốn"
+    },
+    "desc": {
+      "complementary": "Đối diện trên vòng màu — tương phản cao",
+      "analogous": "Màu liền kề — hài hòa và tự nhiên",
+      "triadic": "Ba màu cách đều — sống động và cân bằng",
+      "splitcomplementary": "Bổ sung tách đôi — tương phản nhẹ hơn",
+      "tetradic": "Bốn màu hình chữ nhật — phong phú và đa dạng"
+    },
+    "button": {
+      "save": "Lưu thành bảng màu",
+      "generate": "Tạo hòa sắc"
+    },
+    "save": {
+      "title": "Lưu bảng hòa sắc",
+      "placeholder": "Tên bảng màu",
+      "default": "Bảng hòa sắc"
+    },
+    "accessibility": "Trình tạo hòa sắc hiển thị các màu hài hòa",
+    "color": {
+      "accessibility": "Ô màu {hex}"
+    }
+  },
+  "comparison": {
+    "title": "So sánh bảng màu",
+    "select": {
+      "first": "Bảng màu thứ nhất",
+      "second": "Bảng màu thứ hai"
+    },
+    "vs": "so với",
+    "summary": "Tổng kết",
+    "avg": {
+      "deltae": "ΔE trung bình: {value}"
+    },
+    "deltae": "ΔE {value}",
+    "badge": {
+      "identical": "Giống hệt",
+      "similar": "Tương tự",
+      "different": "Khác biệt",
+      "verydifferent": "Rất khác"
+    },
+    "unmatched": "Không khớp",
+    "accessibility": "So sánh bảng màu hiển thị sự khác biệt giữa hai bảng",
+    "pair": {
+      "accessibility": "{hex1} so với {hex2}, delta E {value}, {badge}"
+    },
+    "button": {
+      "compare": "So sánh"
+    }
+  },
+  "blindness": {
+    "title": "Mô phỏng mù màu",
+    "type": {
+      "normal": "Thị lực bình thường",
+      "protanopia": "Mù đỏ",
+      "deuteranopia": "Mù xanh lá",
+      "tritanopia": "Mù xanh dương"
+    },
+    "desc": {
+      "normal": "Nhìn đầy đủ màu sắc",
+      "protanopia": "Thiếu tế bào nón L (đỏ)",
+      "deuteranopia": "Thiếu tế bào nón M (xanh lá)",
+      "tritanopia": "Thiếu tế bào nón S (xanh dương)"
+    },
+    "label": {
+      "original": "Gốc",
+      "simulated": "Mô phỏng"
+    },
+    "deltae": "ΔE {value}",
+    "warning": "{count}/{total} cặp màu có thể gây nhầm lẫn cho người {type}",
+    "noissues": "Tất cả màu đều phân biệt được với người {type}",
+    "confusable": "Cặp dễ nhầm",
+    "accessibility": "Mô phỏng mù màu cho thấy bảng màu hiển thị với người mù màu",
+    "pair": {
+      "accessibility": "{hex} gốc so với {simHex} mô phỏng, delta E {value}"
+    },
+    "button": {
+      "simulate": "Mô phỏng"
+    }
+  },
+  "analysis": {
+    "title": "Phân tích ảnh",
+    "dominant": "Màu chủ đạo",
+    "warmcool": "Tỷ lệ nóng / lạnh",
+    "warm": "Nóng",
+    "cool": "Lạnh",
+    "saturation": "Phân bố độ bão hòa",
+    "brightness": "Phân bố độ sáng",
+    "low": "Thấp",
+    "medium": "Trung bình",
+    "high": "Cao",
+    "dark": "Tối",
+    "mid": "Trung",
+    "light": "Sáng",
+    "mood_label": "Tâm trạng màu",
+    "mood": {
+      "warm_vibrant": "Ấm & Rực rỡ",
+      "warm_muted": "Ấm & Trầm",
+      "cool_vibrant": "Lạnh & Rực rỡ",
+      "cool_muted": "Lạnh & Trầm",
+      "neutral_balanced": "Trung tính & Cân bằng",
+      "dark_moody": "Tối & U ám",
+      "light_airy": "Sáng & Nhẹ nhàng",
+      "colorful": "Đa sắc & Phong phú"
+    },
+    "coverage": "{value}%",
+    "accessibility": "Phân tích màu ảnh hiển thị màu chủ đạo, tỷ lệ nóng lạnh và tâm trạng màu",
+    "button": {
+      "analyze": "Phân tích ảnh"
+    }
+  },
+  "share": {
+    "title": "Chia sẻ bảng màu",
+    "link": "Liên kết chia sẻ",
+    "qrcode": "Mã QR",
+    "copy": "Sao chép liên kết",
+    "button": "Chia sẻ",
+    "accessibility": "Chia sẻ bảng màu qua liên kết hoặc mã QR",
+    "imported": "Đã nhập bảng màu thành công!",
+    "invalid_link": "Liên kết bảng màu không hợp lệ"
+  }
+}
+

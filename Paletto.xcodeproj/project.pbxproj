@@ -1,0 +1,743 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		015DF937F92549AEACD95397 /* ColorSwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771928A5DBEF4660A1295571 /* ColorSwatchView.swift */; };
+		01D775A6627047C0B4D003A5 /* PalettoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC586F0D6745F59BA8A4E9 /* PalettoApp.swift */; };
+		1142158C5CF04766AE29956D /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9D0F4E8AF547109E6F1C90 /* ExportService.swift */; };
+		15344E2CCED64ABB92A76FA9 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417BF25FFE2446B387ACC44B /* CameraPreviewView.swift */; };
+		2C387B2C628949C4885E9557 /* CameraColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FC1BBF240C466FB9E5BAB7 /* CameraColorPickerView.swift */; };
+		2C3B0BE6C2EC48A38663F15F /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE85D7E6F73477FBBC38DAF /* ColorPalette.swift */; };
+		30B36E2EA694419785397721 /* ColorDetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31F85C7E7AE4A428C3503B4 /* ColorDetailRow.swift */; };
+		31AC3B242F56BF9B00AA7472 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B1D2F56BF9B00AA7472 /* AppLanguage.swift */; };
+		31AC3B252F56BF9B00AA7472 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B202F56BF9B00AA7472 /* LocalizationManager.swift */; };
+		31AC3B262F56BF9B00AA7472 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B212F56BF9B00AA7472 /* String+Localized.swift */; };
+		31AC3B272F56BF9B00AA7472 /* LocalizationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B1F2F56BF9B00AA7472 /* LocalizationKeys.swift */; };
+		31AC3B282F56BF9B00AA7472 /* en.json in Resources */ = {isa = PBXBuildFile; fileRef = 31AC3B1E2F56BF9B00AA7472 /* en.json */; };
+		31AC3B292F56BF9B00AA7472 /* vi.json in Resources */ = {isa = PBXBuildFile; fileRef = 31AC3B222F56BF9B00AA7472 /* vi.json */; };
+		31AC3B2E2F56BFA800AA7472 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2C2F56BFA800AA7472 /* ThemeManager.swift */; };
+		31AC3B2F2F56BFA800AA7472 /* SemanticColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */; };
+		31AC3B302F56BFA800AA7472 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */; };
+		CD56EF01AB1234560FEDCBA9 /* ScaleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD56EF01AB1234560FEDCBA0 /* ScaleButtonStyle.swift */; };
+		360DD708474C4118A45DD0E5 /* CameraColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */; };
+		3BC3385CC34147B89778CD5E /* PaletteExtractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05982726EB83401D81064FAF /* PaletteExtractionView.swift */; };
+		3CB0E451D06248EEB90FCB42 /* ColorExtractionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD64A69E2394EBBA94E014D /* ColorExtractionServiceProtocol.swift */; };
+		44B3CDCC584748739767F996 /* PaletteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A0C2C5F9944EF09F784558 /* PaletteListViewModel.swift */; };
+		451BD3666C9147E19BE42E77 /* PaletteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5B596F062D429582AEEFF5 /* PaletteListView.swift */; };
+		47C195DB3CF94B8C9156771D /* ContrastCheckerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9459CAECB520424BAA2252FF /* ContrastCheckerServiceProtocol.swift */; };
+		4931410CC66F47F1832BA36E /* ExportFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E0123D84194584A96AA97F /* ExportFormat.swift */; };
+		4F448288DD99417D87208A19 /* ContrastMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A92CB4B5E3418A93FD87FF /* ContrastMatrixView.swift */; };
+		4FC891B65A0340C9BD025035 /* PaletteStorageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610C4D7B4F2A4E9DACCB5465 /* PaletteStorageServiceProtocol.swift */; };
+		62386FEE2FAC48168FFFB923 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A62FB930A14D83856D577E /* PhotoPickerView.swift */; };
+		67E610A1259D797218D86F64 /* Pods_Paletto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A0064394A2D254C311C5E0 /* Pods_Paletto.framework */; };
+		6C300D98784249C19108987F /* PaletteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265392EB11B94C98A1190CC0 /* PaletteDetailView.swift */; };
+		7AFBA1C6D17946E69ADA75EB /* PaletteExtractionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693D29ECDD7844DEB665D56B /* PaletteExtractionViewModel.swift */; };
+		968A35420708441AAF3677BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF98BA01CC84686AB3C71B8 /* Constants.swift */; };
+		9FA5C7B194A64AB3AB07ED2F /* ContrastCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417024EA71DB4822850C7BCB /* ContrastCheckerService.swift */; };
+		A05A8E051543417B88B15634 /* Color+CIELAB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8EB4D0F31D46FC890934FF /* Color+CIELAB.swift */; };
+		A0FA8F8105AB49EF818DE48F /* ColorRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62231F65894A968C90CA1D /* ColorRole.swift */; };
+		A13A4111DCF5428E80BC1391 /* Color+Luminance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5594B012EB4C04BE1F0A29 /* Color+Luminance.swift */; };
+		A22D0F5F26184A6799D47721 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C832F8016C714291BE361A82 /* ExportView.swift */; };
+		A9A3FDFB26A84E4F8E415AE6 /* PreviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27064BA2BE3D497F98909EF7 /* PreviewCardView.swift */; };
+		B82F0CF6811E42389929C4F5 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1AB97964A44470B358A722 /* Color+Hex.swift */; };
+		C03F084CAFF54C3A9ADD536D /* MagnifierOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C219AB7AFDF7430A86EC07A6 /* MagnifierOverlay.swift */; };
+		C14730BBA69849FCAADDF283 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5197500EDB164CBFA5FC73AC /* UIImage+Resize.swift */; };
+		C34EC4A50D8643FBA24EB98D /* ColorExtractionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924FDFE7D30846E3A68FF9EF /* ColorExtractionService.swift */; };
+		CE2181169A214A56A60361CA /* PaletteStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26DC581595E4404963FAE0C /* PaletteStorageService.swift */; };
+		D9ADB09357DC4ACA95921D86 /* PaletteColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BC350975DF42A392FEF983 /* PaletteColor.swift */; };
+		DA46E28676B54BB5A942DF42 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEBEEF609084DF7A05501C4 /* ContentView.swift */; };
+		DF3D8EF0E63646F4B97D4E20 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44F79474684ADFBD077B7F /* SettingsManager.swift */; };
+		AB12CD34EF5647890ABCDEF0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB12CD34EF5647890ABCDEF1 /* SettingsView.swift */; };
+		E765E0BB3E7F4D42A89E9C97 /* PaletteDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54CEA725EC4BB297B51D51 /* PaletteDetailViewModel.swift */; };
+		F71F86BEE26D4C3591E64999 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC9C95389B485C81EF9996 /* AppError.swift */; };
+		AA11BB22CC334455DD001112 /* HarmonyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD001111 /* HarmonyType.swift */; };
+		AA11BB22CC334455DD002222 /* ColorHarmonyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD002221 /* ColorHarmonyService.swift */; };
+		AA11BB22CC334455DD003332 /* ColorHarmonyServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD003331 /* ColorHarmonyServiceProtocol.swift */; };
+		AA11BB22CC334455DD004442 /* ColorHarmonyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD004441 /* ColorHarmonyView.swift */; };
+		AA11BB22CC334455DD005552 /* ColorHarmonyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD005551 /* ColorHarmonyViewModel.swift */; };
+		AA11BB22CC334455DD006662 /* PaletteComparisonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD006661 /* PaletteComparisonService.swift */; };
+		AA11BB22CC334455DD007772 /* PaletteComparisonServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD007771 /* PaletteComparisonServiceProtocol.swift */; };
+		AA11BB22CC334455DD008882 /* PaletteComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD008881 /* PaletteComparisonView.swift */; };
+		AA11BB22CC334455DD009992 /* PaletteComparisonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD009991 /* PaletteComparisonViewModel.swift */; };
+		BB11CC22DD334455EE001112 /* ColorBlindnessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE001111 /* ColorBlindnessType.swift */; };
+		BB11CC22DD334455EE002222 /* ColorBlindnessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE002221 /* ColorBlindnessService.swift */; };
+		BB11CC22DD334455EE003332 /* ColorBlindnessServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE003331 /* ColorBlindnessServiceProtocol.swift */; };
+		BB11CC22DD334455EE004442 /* ColorBlindnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE004441 /* ColorBlindnessView.swift */; };
+		BB11CC22DD334455EE005552 /* ColorBlindnessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE005551 /* ColorBlindnessViewModel.swift */; };
+		CC11DD22EE334455FF001112 /* ImageAnalysisServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC11DD22EE334455FF001111 /* ImageAnalysisServiceProtocol.swift */; };
+		CC11DD22EE334455FF002222 /* ImageAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC11DD22EE334455FF002221 /* ImageAnalysisService.swift */; };
+		CC11DD22EE334455FF003332 /* ImageAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC11DD22EE334455FF003331 /* ImageAnalysisView.swift */; };
+		DD11EE22FF334455AA001112 /* PaletteSharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11EE22FF334455AA001111 /* PaletteSharingService.swift */; };
+		DD11EE22FF334455AA002222 /* SharePaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11EE22FF334455AA002221 /* SharePaletteView.swift */; };
+		DD11EE22FF334455AA003332 /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11EE22FF334455AA003331 /* QRCodeGenerator.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		05982726EB83401D81064FAF /* PaletteExtractionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteExtractionView.swift; sourceTree = "<group>"; };
+		0C0975CF05EFABBEDB3761E8 /* Pods-Paletto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paletto.debug.xcconfig"; path = "Target Support Files/Pods-Paletto/Pods-Paletto.debug.xcconfig"; sourceTree = "<group>"; };
+		0DEBEEF609084DF7A05501C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0FD64A69E2394EBBA94E014D /* ColorExtractionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtractionServiceProtocol.swift; sourceTree = "<group>"; };
+		11E0123D84194584A96AA97F /* ExportFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportFormat.swift; sourceTree = "<group>"; };
+		14A0C2C5F9944EF09F784558 /* PaletteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteListViewModel.swift; sourceTree = "<group>"; };
+		16FC1BBF240C466FB9E5BAB7 /* CameraColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraColorPickerView.swift; sourceTree = "<group>"; };
+		18A0064394A2D254C311C5E0 /* Pods_Paletto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Paletto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		265392EB11B94C98A1190CC0 /* PaletteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDetailView.swift; sourceTree = "<group>"; };
+		27064BA2BE3D497F98909EF7 /* PreviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCardView.swift; sourceTree = "<group>"; };
+		2C8EB4D0F31D46FC890934FF /* Color+CIELAB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CIELAB.swift"; sourceTree = "<group>"; };
+		2EAC9C95389B485C81EF9996 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		31AC3B1D2F56BF9B00AA7472 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
+		31AC3B1E2F56BF9B00AA7472 /* en.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = en.json; sourceTree = "<group>"; };
+		31AC3B1F2F56BF9B00AA7472 /* LocalizationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationKeys.swift; sourceTree = "<group>"; };
+		31AC3B202F56BF9B00AA7472 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		31AC3B212F56BF9B00AA7472 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
+		31AC3B222F56BF9B00AA7472 /* vi.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vi.json; sourceTree = "<group>"; };
+		31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticColors.swift; sourceTree = "<group>"; };
+		31AC3B2C2F56BFA800AA7472 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		CD56EF01AB1234560FEDCBA0 /* ScaleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleButtonStyle.swift; sourceTree = "<group>"; };
+		417024EA71DB4822850C7BCB /* ContrastCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastCheckerService.swift; sourceTree = "<group>"; };
+		417BF25FFE2446B387ACC44B /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		4E5B596F062D429582AEEFF5 /* PaletteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteListView.swift; sourceTree = "<group>"; };
+		4EF98BA01CC84686AB3C71B8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5197500EDB164CBFA5FC73AC /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		6035D005A09E47519B51D49D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		610C4D7B4F2A4E9DACCB5465 /* PaletteStorageServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteStorageServiceProtocol.swift; sourceTree = "<group>"; };
+		693D29ECDD7844DEB665D56B /* PaletteExtractionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteExtractionViewModel.swift; sourceTree = "<group>"; };
+		771928A5DBEF4660A1295571 /* ColorSwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSwatchView.swift; sourceTree = "<group>"; };
+		78BC350975DF42A392FEF983 /* PaletteColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColor.swift; sourceTree = "<group>"; };
+		7B9D0F4E8AF547109E6F1C90 /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
+		7C54CEA725EC4BB297B51D51 /* PaletteDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDetailViewModel.swift; sourceTree = "<group>"; };
+		8377131B06554E3280015AB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8579E9002CA346AD9B7546FA /* Pods-Paletto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paletto.release.xcconfig"; path = "Target Support Files/Pods-Paletto/Pods-Paletto.release.xcconfig"; sourceTree = "<group>"; };
+		8B44F79474684ADFBD077B7F /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		AB12CD34EF5647890ABCDEF1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		924FDFE7D30846E3A68FF9EF /* ColorExtractionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtractionService.swift; sourceTree = "<group>"; };
+		9459CAECB520424BAA2252FF /* ContrastCheckerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastCheckerServiceProtocol.swift; sourceTree = "<group>"; };
+		A3A92CB4B5E3418A93FD87FF /* ContrastMatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastMatrixView.swift; sourceTree = "<group>"; };
+		AA62231F65894A968C90CA1D /* ColorRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRole.swift; sourceTree = "<group>"; };
+		B26DC581595E4404963FAE0C /* PaletteStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteStorageService.swift; sourceTree = "<group>"; };
+		C219AB7AFDF7430A86EC07A6 /* MagnifierOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnifierOverlay.swift; sourceTree = "<group>"; };
+		C832F8016C714291BE361A82 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
+		CE1AB97964A44470B358A722 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		DBE85D7E6F73477FBBC38DAF /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraColorPickerViewModel.swift; sourceTree = "<group>"; };
+		EDCC586F0D6745F59BA8A4E9 /* PalettoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoApp.swift; sourceTree = "<group>"; };
+		EE5594B012EB4C04BE1F0A29 /* Color+Luminance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Luminance.swift"; sourceTree = "<group>"; };
+		F31F85C7E7AE4A428C3503B4 /* ColorDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDetailRow.swift; sourceTree = "<group>"; };
+		F4A62FB930A14D83856D577E /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
+		F91DF12A70544C41BA7F8109 /* Paletto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paletto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA11BB22CC334455DD001111 /* HarmonyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonyType.swift; sourceTree = "<group>"; };
+		AA11BB22CC334455DD002221 /* ColorHarmonyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHarmonyService.swift; sourceTree = "<group>"; };
+		AA11BB22CC334455DD003331 /* ColorHarmonyServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHarmonyServiceProtocol.swift; sourceTree = "<group>"; };
+		AA11BB22CC334455DD004441 /* ColorHarmonyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHarmonyView.swift; sourceTree = "<group>"; };
+		AA11BB22CC334455DD005551 /* ColorHarmonyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHarmonyViewModel.swift; sourceTree = "<group>"; };
+		AA11BB22CC334455DD006661 /* PaletteComparisonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteComparisonService.swift; sourceTree = "<group>"; };
+		AA11BB22CC334455DD007771 /* PaletteComparisonServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteComparisonServiceProtocol.swift; sourceTree = "<group>"; };
+		AA11BB22CC334455DD008881 /* PaletteComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteComparisonView.swift; sourceTree = "<group>"; };
+		AA11BB22CC334455DD009991 /* PaletteComparisonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteComparisonViewModel.swift; sourceTree = "<group>"; };
+		BB11CC22DD334455EE001111 /* ColorBlindnessType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBlindnessType.swift; sourceTree = "<group>"; };
+		BB11CC22DD334455EE002221 /* ColorBlindnessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBlindnessService.swift; sourceTree = "<group>"; };
+		BB11CC22DD334455EE003331 /* ColorBlindnessServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBlindnessServiceProtocol.swift; sourceTree = "<group>"; };
+		BB11CC22DD334455EE004441 /* ColorBlindnessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBlindnessView.swift; sourceTree = "<group>"; };
+		BB11CC22DD334455EE005551 /* ColorBlindnessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBlindnessViewModel.swift; sourceTree = "<group>"; };
+		CC11DD22EE334455FF001111 /* ImageAnalysisServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnalysisServiceProtocol.swift; sourceTree = "<group>"; };
+		CC11DD22EE334455FF002221 /* ImageAnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnalysisService.swift; sourceTree = "<group>"; };
+		CC11DD22EE334455FF003331 /* ImageAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnalysisView.swift; sourceTree = "<group>"; };
+		DD11EE22FF334455AA001111 /* PaletteSharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteSharingService.swift; sourceTree = "<group>"; };
+		DD11EE22FF334455AA002221 /* SharePaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePaletteView.swift; sourceTree = "<group>"; };
+		DD11EE22FF334455AA003331 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0418CA94AB5549D7B55C62ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67E610A1259D797218D86F64 /* Pods_Paletto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0AB8543F75ED4805B0DC293F = {
+			isa = PBXGroup;
+			children = (
+				BE8403CF78C44C62BDBA331D /* Paletto */,
+				1753CF80A7D84843B60B8951 /* Products */,
+				3C574BC42870709B54BFBFE6 /* Pods */,
+				6D58E597868DF4FD6D507EC6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1753CF80A7D84843B60B8951 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F91DF12A70544C41BA7F8109 /* Paletto.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C033AD707C048C7A3301CCD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2EAC9C95389B485C81EF9996 /* AppError.swift */,
+				4EF98BA01CC84686AB3C71B8 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2E34B03176044A33A9844163 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DBE85D7E6F73477FBBC38DAF /* ColorPalette.swift */,
+				AA62231F65894A968C90CA1D /* ColorRole.swift */,
+				11E0123D84194584A96AA97F /* ExportFormat.swift */,
+				78BC350975DF42A392FEF983 /* PaletteColor.swift */,
+				AA11BB22CC334455DD001111 /* HarmonyType.swift */,
+				BB11CC22DD334455EE001111 /* ColorBlindnessType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		31AC3B232F56BF9B00AA7472 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				31AC3B1D2F56BF9B00AA7472 /* AppLanguage.swift */,
+				31AC3B1E2F56BF9B00AA7472 /* en.json */,
+				31AC3B1F2F56BF9B00AA7472 /* LocalizationKeys.swift */,
+				31AC3B202F56BF9B00AA7472 /* LocalizationManager.swift */,
+				31AC3B212F56BF9B00AA7472 /* String+Localized.swift */,
+				31AC3B222F56BF9B00AA7472 /* vi.json */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		31AC3B2D2F56BFA800AA7472 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */,
+				31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */,
+				31AC3B2C2F56BFA800AA7472 /* ThemeManager.swift */,
+					CD56EF01AB1234560FEDCBA0 /* ScaleButtonStyle.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		3C574BC42870709B54BFBFE6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0C0975CF05EFABBEDB3761E8 /* Pods-Paletto.debug.xcconfig */,
+				8579E9002CA346AD9B7546FA /* Pods-Paletto.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		3EFCDB71610540B5967CB03D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0DEBEEF609084DF7A05501C4 /* ContentView.swift */,
+				EDCC586F0D6745F59BA8A4E9 /* PalettoApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		41F198F1EFE648AFABCDB45B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2C8EB4D0F31D46FC890934FF /* Color+CIELAB.swift */,
+				CE1AB97964A44470B358A722 /* Color+Hex.swift */,
+				EE5594B012EB4C04BE1F0A29 /* Color+Luminance.swift */,
+				5197500EDB164CBFA5FC73AC /* UIImage+Resize.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		615F8FB3E24D44CD9FCBCEE5 /* PaletteList */ = {
+			isa = PBXGroup;
+			children = (
+				4E5B596F062D429582AEEFF5 /* PaletteListView.swift */,
+				14A0C2C5F9944EF09F784558 /* PaletteListViewModel.swift */,
+			);
+			path = PaletteList;
+			sourceTree = "<group>";
+		};
+		6D58E597868DF4FD6D507EC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18A0064394A2D254C311C5E0 /* Pods_Paletto.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6EB0669B2B48497093536D6E /* PaletteDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F31F85C7E7AE4A428C3503B4 /* ColorDetailRow.swift */,
+				A3A92CB4B5E3418A93FD87FF /* ContrastMatrixView.swift */,
+				265392EB11B94C98A1190CC0 /* PaletteDetailView.swift */,
+				7C54CEA725EC4BB297B51D51 /* PaletteDetailViewModel.swift */,
+				27064BA2BE3D497F98909EF7 /* PreviewCardView.swift */,
+			);
+			path = PaletteDetail;
+			sourceTree = "<group>";
+		};
+		7DDE42EFB3904EC38CECEF20 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AB12CD34EF5647890ABCDEF1 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8A116E4AFA834A799C2ED334 /* PaletteExtraction */ = {
+			isa = PBXGroup;
+			children = (
+				771928A5DBEF4660A1295571 /* ColorSwatchView.swift */,
+				C219AB7AFDF7430A86EC07A6 /* MagnifierOverlay.swift */,
+				05982726EB83401D81064FAF /* PaletteExtractionView.swift */,
+				693D29ECDD7844DEB665D56B /* PaletteExtractionViewModel.swift */,
+				CC11DD22EE334455FF003331 /* ImageAnalysisView.swift */,
+				F4A62FB930A14D83856D577E /* PhotoPickerView.swift */,
+			);
+			path = PaletteExtraction;
+			sourceTree = "<group>";
+		};
+		91D9FD3946FA4EB385ABACFE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0FD64A69E2394EBBA94E014D /* ColorExtractionServiceProtocol.swift */,
+				9459CAECB520424BAA2252FF /* ContrastCheckerServiceProtocol.swift */,
+				610C4D7B4F2A4E9DACCB5465 /* PaletteStorageServiceProtocol.swift */,
+				AA11BB22CC334455DD003331 /* ColorHarmonyServiceProtocol.swift */,
+				AA11BB22CC334455DD007771 /* PaletteComparisonServiceProtocol.swift */,
+				BB11CC22DD334455EE003331 /* ColorBlindnessServiceProtocol.swift */,
+				CC11DD22EE334455FF001111 /* ImageAnalysisServiceProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		BE8403CF78C44C62BDBA331D /* Paletto */ = {
+			isa = PBXGroup;
+			children = (
+				3EFCDB71610540B5967CB03D /* App */,
+				F078076593DC4EA8B7D544EC /* Core */,
+				D0A40FF702214DC2979FFF4F /* Features */,
+				C03C72E7A3354E739E9D6BDF /* Resources */,
+			);
+			path = Paletto;
+			sourceTree = "<group>";
+		};
+		C03C72E7A3354E739E9D6BDF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6035D005A09E47519B51D49D /* Assets.xcassets */,
+				8377131B06554E3280015AB0 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C7DAD99F63DD44FBA953B397 /* Export */ = {
+			isa = PBXGroup;
+			children = (
+				C832F8016C714291BE361A82 /* ExportView.swift */,
+			);
+			path = Export;
+			sourceTree = "<group>";
+		};
+		D0A40FF702214DC2979FFF4F /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				8A116E4AFA834A799C2ED334 /* PaletteExtraction */,
+				6EB0669B2B48497093536D6E /* PaletteDetail */,
+				615F8FB3E24D44CD9FCBCEE5 /* PaletteList */,
+				D546460FD6594D31B3376426 /* ColorPicker */,
+				FC8AE45F53B944D584830ABF /* ContrastChecker */,
+				C7DAD99F63DD44FBA953B397 /* Export */,
+				7DDE42EFB3904EC38CECEF20 /* Settings */,
+				AA11BB22CC334455DDAAA001 /* ColorHarmony */,
+				AA11BB22CC334455DDBBB001 /* PaletteComparison */,
+				BB11CC22DD334455EEAAA001 /* ColorBlindness */,
+				DD11EE22FF334455AA009999 /* Sharing */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		D546460FD6594D31B3376426 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				16FC1BBF240C466FB9E5BAB7 /* CameraColorPickerView.swift */,
+				E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */,
+				417BF25FFE2446B387ACC44B /* CameraPreviewView.swift */,
+			);
+			path = ColorPicker;
+			sourceTree = "<group>";
+		};
+		D797A84606984F63BA345D3A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				924FDFE7D30846E3A68FF9EF /* ColorExtractionService.swift */,
+				417024EA71DB4822850C7BCB /* ContrastCheckerService.swift */,
+				7B9D0F4E8AF547109E6F1C90 /* ExportService.swift */,
+				B26DC581595E4404963FAE0C /* PaletteStorageService.swift */,
+				8B44F79474684ADFBD077B7F /* SettingsManager.swift */,
+				AA11BB22CC334455DD002221 /* ColorHarmonyService.swift */,
+				AA11BB22CC334455DD006661 /* PaletteComparisonService.swift */,
+				BB11CC22DD334455EE002221 /* ColorBlindnessService.swift */,
+				CC11DD22EE334455FF002221 /* ImageAnalysisService.swift */,
+				DD11EE22FF334455AA001111 /* PaletteSharingService.swift */,
+				91D9FD3946FA4EB385ABACFE /* Protocols */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F078076593DC4EA8B7D544EC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				31AC3B2D2F56BFA800AA7472 /* Theme */,
+				31AC3B232F56BF9B00AA7472 /* Localization */,
+				2E34B03176044A33A9844163 /* Models */,
+				D797A84606984F63BA345D3A /* Services */,
+				41F198F1EFE648AFABCDB45B /* Extensions */,
+				2C033AD707C048C7A3301CCD /* Utilities */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		FC8AE45F53B944D584830ABF /* ContrastChecker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ContrastChecker;
+			sourceTree = "<group>";
+		};
+		AA11BB22CC334455DDAAA001 /* ColorHarmony */ = {
+			isa = PBXGroup;
+			children = (
+				AA11BB22CC334455DD004441 /* ColorHarmonyView.swift */,
+				AA11BB22CC334455DD005551 /* ColorHarmonyViewModel.swift */,
+			);
+			path = ColorHarmony;
+			sourceTree = "<group>";
+		};
+		AA11BB22CC334455DDBBB001 /* PaletteComparison */ = {
+			isa = PBXGroup;
+			children = (
+				AA11BB22CC334455DD008881 /* PaletteComparisonView.swift */,
+				AA11BB22CC334455DD009991 /* PaletteComparisonViewModel.swift */,
+			);
+			path = PaletteComparison;
+			sourceTree = "<group>";
+		};
+		BB11CC22DD334455EEAAA001 /* ColorBlindness */ = {
+			isa = PBXGroup;
+			children = (
+				BB11CC22DD334455EE004441 /* ColorBlindnessView.swift */,
+				BB11CC22DD334455EE005551 /* ColorBlindnessViewModel.swift */,
+			);
+			path = ColorBlindness;
+			sourceTree = "<group>";
+		};
+		DD11EE22FF334455AA009999 /* Sharing */ = {
+			isa = PBXGroup;
+			children = (
+				DD11EE22FF334455AA002221 /* SharePaletteView.swift */,
+				DD11EE22FF334455AA003331 /* QRCodeGenerator.swift */,
+			);
+			path = Sharing;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		93F758F6251945628A74806A /* Paletto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC067FFF28B3434B969FECF9 /* Build configuration list for PBXNativeTarget "Paletto" */;
+			buildPhases = (
+				6B5CA676C4D4D3D28E3268C7 /* [CP] Check Pods Manifest.lock */,
+				29844B6ED2D544B48A957B26 /* Sources */,
+				0418CA94AB5549D7B55C62ED /* Frameworks */,
+				2152A89388FB46C59D35F99A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Paletto;
+			productName = Paletto;
+			productReference = F91DF12A70544C41BA7F8109 /* Paletto.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9B06CA71CEAF4008A6C6ACA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = FEBC34AF931340319D1D5A7F /* Build configuration list for PBXProject "Paletto" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0AB8543F75ED4805B0DC293F;
+			productRefGroup = 1753CF80A7D84843B60B8951 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				93F758F6251945628A74806A /* Paletto */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2152A89388FB46C59D35F99A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31AC3B282F56BF9B00AA7472 /* en.json in Resources */,
+				31AC3B292F56BF9B00AA7472 /* vi.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6B5CA676C4D4D3D28E3268C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Paletto-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		29844B6ED2D544B48A957B26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA46E28676B54BB5A942DF42 /* ContentView.swift in Sources */,
+				01D775A6627047C0B4D003A5 /* PalettoApp.swift in Sources */,
+				A05A8E051543417B88B15634 /* Color+CIELAB.swift in Sources */,
+				B82F0CF6811E42389929C4F5 /* Color+Hex.swift in Sources */,
+				A13A4111DCF5428E80BC1391 /* Color+Luminance.swift in Sources */,
+				C14730BBA69849FCAADDF283 /* UIImage+Resize.swift in Sources */,
+				2C3B0BE6C2EC48A38663F15F /* ColorPalette.swift in Sources */,
+				A0FA8F8105AB49EF818DE48F /* ColorRole.swift in Sources */,
+				4931410CC66F47F1832BA36E /* ExportFormat.swift in Sources */,
+				D9ADB09357DC4ACA95921D86 /* PaletteColor.swift in Sources */,
+				C34EC4A50D8643FBA24EB98D /* ColorExtractionService.swift in Sources */,
+				9FA5C7B194A64AB3AB07ED2F /* ContrastCheckerService.swift in Sources */,
+				31AC3B2E2F56BFA800AA7472 /* ThemeManager.swift in Sources */,
+				31AC3B2F2F56BFA800AA7472 /* SemanticColors.swift in Sources */,
+				31AC3B302F56BFA800AA7472 /* AppTheme.swift in Sources */,
+					CD56EF01AB1234560FEDCBA9 /* ScaleButtonStyle.swift in Sources */,
+				1142158C5CF04766AE29956D /* ExportService.swift in Sources */,
+				CE2181169A214A56A60361CA /* PaletteStorageService.swift in Sources */,
+				3CB0E451D06248EEB90FCB42 /* ColorExtractionServiceProtocol.swift in Sources */,
+				47C195DB3CF94B8C9156771D /* ContrastCheckerServiceProtocol.swift in Sources */,
+				4FC891B65A0340C9BD025035 /* PaletteStorageServiceProtocol.swift in Sources */,
+				DF3D8EF0E63646F4B97D4E20 /* SettingsManager.swift in Sources */,
+				F71F86BEE26D4C3591E64999 /* AppError.swift in Sources */,
+				968A35420708441AAF3677BF /* Constants.swift in Sources */,
+				2C387B2C628949C4885E9557 /* CameraColorPickerView.swift in Sources */,
+				360DD708474C4118A45DD0E5 /* CameraColorPickerViewModel.swift in Sources */,
+				31AC3B242F56BF9B00AA7472 /* AppLanguage.swift in Sources */,
+				31AC3B252F56BF9B00AA7472 /* LocalizationManager.swift in Sources */,
+				31AC3B262F56BF9B00AA7472 /* String+Localized.swift in Sources */,
+				31AC3B272F56BF9B00AA7472 /* LocalizationKeys.swift in Sources */,
+				15344E2CCED64ABB92A76FA9 /* CameraPreviewView.swift in Sources */,
+				A22D0F5F26184A6799D47721 /* ExportView.swift in Sources */,
+				30B36E2EA694419785397721 /* ColorDetailRow.swift in Sources */,
+				4F448288DD99417D87208A19 /* ContrastMatrixView.swift in Sources */,
+				6C300D98784249C19108987F /* PaletteDetailView.swift in Sources */,
+				E765E0BB3E7F4D42A89E9C97 /* PaletteDetailViewModel.swift in Sources */,
+				A9A3FDFB26A84E4F8E415AE6 /* PreviewCardView.swift in Sources */,
+				015DF937F92549AEACD95397 /* ColorSwatchView.swift in Sources */,
+				C03F084CAFF54C3A9ADD536D /* MagnifierOverlay.swift in Sources */,
+				3BC3385CC34147B89778CD5E /* PaletteExtractionView.swift in Sources */,
+				7AFBA1C6D17946E69ADA75EB /* PaletteExtractionViewModel.swift in Sources */,
+				62386FEE2FAC48168FFFB923 /* PhotoPickerView.swift in Sources */,
+				451BD3666C9147E19BE42E77 /* PaletteListView.swift in Sources */,
+				44B3CDCC584748739767F996 /* PaletteListViewModel.swift in Sources */,
+				AB12CD34EF5647890ABCDEF0 /* SettingsView.swift in Sources */,
+				AA11BB22CC334455DD001112 /* HarmonyType.swift in Sources */,
+				AA11BB22CC334455DD002222 /* ColorHarmonyService.swift in Sources */,
+				AA11BB22CC334455DD003332 /* ColorHarmonyServiceProtocol.swift in Sources */,
+				AA11BB22CC334455DD004442 /* ColorHarmonyView.swift in Sources */,
+				AA11BB22CC334455DD005552 /* ColorHarmonyViewModel.swift in Sources */,
+				AA11BB22CC334455DD006662 /* PaletteComparisonService.swift in Sources */,
+				AA11BB22CC334455DD007772 /* PaletteComparisonServiceProtocol.swift in Sources */,
+				AA11BB22CC334455DD008882 /* PaletteComparisonView.swift in Sources */,
+				AA11BB22CC334455DD009992 /* PaletteComparisonViewModel.swift in Sources */,
+				BB11CC22DD334455EE001112 /* ColorBlindnessType.swift in Sources */,
+				BB11CC22DD334455EE002222 /* ColorBlindnessService.swift in Sources */,
+				BB11CC22DD334455EE003332 /* ColorBlindnessServiceProtocol.swift in Sources */,
+				BB11CC22DD334455EE004442 /* ColorBlindnessView.swift in Sources */,
+				BB11CC22DD334455EE005552 /* ColorBlindnessViewModel.swift in Sources */,
+				CC11DD22EE334455FF001112 /* ImageAnalysisServiceProtocol.swift in Sources */,
+				CC11DD22EE334455FF002222 /* ImageAnalysisService.swift in Sources */,
+				CC11DD22EE334455FF003332 /* ImageAnalysisView.swift in Sources */,
+				DD11EE22FF334455AA001112 /* PaletteSharingService.swift in Sources */,
+				DD11EE22FF334455AA002222 /* SharePaletteView.swift in Sources */,
+				DD11EE22FF334455AA003332 /* QRCodeGenerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		55E89EC0655143848D645FA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C0975CF05EFABBEDB3761E8 /* Pods-Paletto.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Paletto/Resources/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paletto.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A57C97C5A03D4B06A81BC1F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BDD69ED25D9F4CEAA67F0E19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8579E9002CA346AD9B7546FA /* Pods-Paletto.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Paletto/Resources/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paletto.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		D517B2E819194C81BFF0085D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AC067FFF28B3434B969FECF9 /* Build configuration list for PBXNativeTarget "Paletto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55E89EC0655143848D645FA8 /* Debug */,
+				BDD69ED25D9F4CEAA67F0E19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FEBC34AF931340319D1D5A7F /* Build configuration list for PBXProject "Paletto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A57C97C5A03D4B06A81BC1F6 /* Debug */,
+				D517B2E819194C81BFF0085D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9B06CA71CEAF4008A6C6ACA1 /* Project object */;
+}

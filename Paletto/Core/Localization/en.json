@@ -1,0 +1,382 @@
+{
+  "common": {
+    "button": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "done": "Done"
+    },
+    "label": {
+      "copied": "Copied!",
+      "none": "None",
+      "color": "Color"
+    },
+    "error": {
+      "tryagain": "Please try again."
+    }
+  },
+  "tabs": {
+    "extract": "Extract",
+    "camera": "Camera",
+    "library": "Library",
+    "settings": "Settings"
+  },
+  "extraction": {
+    "title": "Extract",
+    "toolbar": {
+      "choosephoto": "Choose photo"
+    },
+    "empty": {
+      "title": "Choose a photo to extract colors",
+      "button": "Select Photo",
+      "button.accessibility": "Select a photo to extract colors from"
+    },
+    "image": {
+      "accessibility": "Selected image. Tap and hold to pick a color."
+    },
+    "palette": {
+      "title": "Extracted Colors",
+      "colorcount": "{count} colors"
+    },
+    "button": {
+      "savepalette": "Save Palette",
+      "savepalette.accessibility": "Save this palette"
+    },
+    "save": {
+      "title": "Save Palette",
+      "placeholder": "Palette name",
+      "default": "Untitled Palette"
+    }
+  },
+  "camera": {
+    "title": "Camera",
+    "button": {
+      "add.accessibility": "Add this color to palette",
+      "savepalette": "Save Palette"
+    },
+    "save": {
+      "title": "Save Palette",
+      "placeholder": "Palette name",
+      "default": "Camera Palette"
+    },
+    "permission": {
+      "title": "Camera Access Required",
+      "message": "Enable camera access in Settings to pick colors from your surroundings.",
+      "button": "Open Settings"
+    },
+    "unavailable": {
+      "title": "Camera not available",
+      "message": "Camera features require a physical device."
+    },
+    "picked": {
+      "title": "Picked Colors"
+    }
+  },
+  "library": {
+    "title": "Library",
+    "search": {
+      "prompt": "Search palettes",
+      "noresults": "No results for \"{query}\""
+    },
+    "empty": {
+      "title": "No palettes yet",
+      "subtitle": "Extract colors from a photo to create your first palette"
+    },
+    "row": {
+      "colorcount": "{count} colors",
+      "accessibility": "{name}, {count} colors, created {date}"
+    }
+  },
+  "detail": {
+    "title": "Palette",
+    "toolbar": {
+      "autoassign": "Auto-assign color roles",
+      "export": "Export palette"
+    },
+    "name": {
+      "placeholder": "Palette name",
+      "edit.accessibility": "Edit palette name"
+    },
+    "section": {
+      "colors": "Colors",
+      "contrast": "Contrast Matrix",
+      "preview": "Preview"
+    },
+    "contrast": {
+      "samecolor": "Same color",
+      "accessibility": "Contrast {ratio}, {level}",
+      "legend": {
+        "aaa": "AAA (≥7.0)",
+        "aa": "AA (≥4.5)",
+        "large": "Large text only (≥3.0)",
+        "fail": "Fail (<3.0)"
+      },
+      "hint": "Tap a red cell to auto-fix the color",
+      "info": {
+        "title": "About Contrast Ratio",
+        "body": "Contrast ratio measures how readable text is against a background color, based on the WCAG accessibility standard.\n\n• AAA (≥7.0) — Best readability, suitable for all text sizes\n• AA (≥4.5) — Good readability for normal text\n• Large text only (≥3.0) — Only suitable for text 18pt+ or 14pt bold\n• Fail (<3.0) — Text will be hard to read\n\nTap any red cell in the matrix to automatically adjust the color for better contrast.",
+        "button": "About contrast ratio"
+      },
+      "tooltip": {
+        "foreground": "Foreground",
+        "background": "Background",
+        "ratio": "Ratio: {ratio}",
+        "normal": "Normal text: {level}",
+        "large": "Large text: {level}",
+        "fix": "Tap cell to auto-fix"
+      }
+    },
+    "empty": {
+      "colors": "No colors in this palette"
+    }
+  },
+  "colordetail": {
+    "role": {
+      "accessibility": "Color role: {role}"
+    }
+  },
+  "swatch": {
+    "accessibility": {
+      "label": "Color {hex}",
+      "hint": "Tap to copy hex code. Long press for more options."
+    },
+    "context": {
+      "copyhex": "Copy HEX",
+      "copyrgb": "Copy RGB",
+      "remove": "Remove"
+    }
+  },
+  "magnifier": {
+    "accessibility": "Color picker magnifier showing {hex}"
+  },
+  "export": {
+    "title": "Export",
+    "format": {
+      "label": "Format",
+      "image": "Image",
+      "swiftui": "SwiftUI Code",
+      "css": "CSS Variables",
+      "hexlist": "HEX List",
+      "jsontokens": "JSON Tokens"
+    },
+    "button": {
+      "copy": "Copy",
+      "share": "Share",
+      "done": "Done"
+    }
+  },
+  "role": {
+    "background": "Background",
+    "background.short": "BG",
+    "primary": "Primary",
+    "primary.short": "Pri",
+    "secondary": "Secondary",
+    "secondary.short": "Sec",
+    "accent": "Accent",
+    "accent.short": "Acc",
+    "text": "Text",
+    "text.short": "Txt"
+  },
+  "preview": {
+    "title": "App Preview",
+    "button": "Primary Button",
+    "body": "This is body text on the background color. Check readability and contrast.",
+    "tag1": "Tag 1",
+    "tag2": "Tag 2",
+    "tag3": "Tag 3",
+    "accessibility": "Preview card showing palette colors in a sample layout",
+    "rolehint": "Assign roles to each color in the Colors section above for a more accurate preview.",
+    "autoassign": "Auto-assign roles",
+    "style": {
+      "app": "App Card",
+      "dashboard": "Dashboard",
+      "blog": "Blog Post"
+    },
+    "dashboard": {
+      "users": "Users",
+      "revenue": "Revenue",
+      "growth": "Growth",
+      "progress": "Progress",
+      "chart": "Chart"
+    },
+    "blog": {
+      "title": "Getting Started with Color Theory",
+      "excerpt": "Learn how to create harmonious color palettes that enhance your designs and improve user experience.",
+      "author": "Design Team",
+      "readmore": "Read more →",
+      "date": "Mar 4, 2026"
+    }
+  },
+  "error": {
+    "imageprocessing": "Image processing failed: {detail}",
+    "colorextraction": "Color extraction failed: {detail}",
+    "fileio": "File error: {detail}",
+    "invaliddata": "Invalid data: {detail}",
+    "camera.unavailable": "Camera is not available on this device",
+    "camera.denied": "Camera access was denied. Please enable it in Settings.",
+    "unknown": "An unexpected error occurred: {detail}"
+  },
+  "settings": {
+    "title": "Settings",
+    "section": {
+      "appearance": "Appearance",
+      "language": "Language",
+      "general": "General",
+      "about": "About"
+    },
+    "theme": {
+      "label": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "language": {
+      "label": "Language"
+    },
+    "haptic": {
+      "label": "Haptic Feedback"
+    },
+    "colorcount": {
+      "label": "Default Color Count"
+    },
+    "export": {
+      "label": "Default Export Format"
+    },
+    "version": "Version"
+  },
+  "wcag": {
+    "aa": "AA",
+    "aaa": "AAA",
+    "fail": "Fail"
+  },
+  "harmony": {
+    "title": "Color Harmony",
+    "source": "Source Color",
+    "type": {
+      "complementary": "Complementary",
+      "analogous": "Analogous",
+      "triadic": "Triadic",
+      "splitcomplementary": "Split-Comp.",
+      "tetradic": "Tetradic"
+    },
+    "desc": {
+      "complementary": "Opposite on the color wheel — high contrast",
+      "analogous": "Adjacent colors — harmonious and natural",
+      "triadic": "Three evenly spaced — vibrant and balanced",
+      "splitcomplementary": "Complement split into two — softer contrast",
+      "tetradic": "Four colors in rectangle — rich and diverse"
+    },
+    "button": {
+      "save": "Save as Palette",
+      "generate": "Generate Harmony"
+    },
+    "save": {
+      "title": "Save Harmony Palette",
+      "placeholder": "Palette name",
+      "default": "Harmony Palette"
+    },
+    "accessibility": "Color harmony generator showing harmonious colors",
+    "color": {
+      "accessibility": "{hex} color swatch"
+    }
+  },
+  "comparison": {
+    "title": "Compare Palettes",
+    "select": {
+      "first": "First Palette",
+      "second": "Second Palette"
+    },
+    "vs": "vs",
+    "summary": "Summary",
+    "avg": {
+      "deltae": "Average ΔE: {value}"
+    },
+    "deltae": "ΔE {value}",
+    "badge": {
+      "identical": "Identical",
+      "similar": "Similar",
+      "different": "Different",
+      "verydifferent": "Very Different"
+    },
+    "unmatched": "Unmatched",
+    "accessibility": "Palette comparison showing differences between two palettes",
+    "pair": {
+      "accessibility": "{hex1} compared to {hex2}, delta E {value}, {badge}"
+    },
+    "button": {
+      "compare": "Compare"
+    }
+  },
+  "blindness": {
+    "title": "Color Blindness Simulator",
+    "type": {
+      "normal": "Normal Vision",
+      "protanopia": "Protanopia",
+      "deuteranopia": "Deuteranopia",
+      "tritanopia": "Tritanopia"
+    },
+    "desc": {
+      "normal": "Full color vision",
+      "protanopia": "Red-blind (missing L-cones)",
+      "deuteranopia": "Green-blind (missing M-cones)",
+      "tritanopia": "Blue-blind (missing S-cones)"
+    },
+    "label": {
+      "original": "Original",
+      "simulated": "Simulated"
+    },
+    "deltae": "ΔE {value}",
+    "warning": "{count}/{total} color pairs may be confusing for {type} users",
+    "noissues": "All colors are distinguishable for {type} users",
+    "confusable": "Confusable Pairs",
+    "accessibility": "Color blindness simulation showing how palette appears to color blind users",
+    "pair": {
+      "accessibility": "{hex} original compared to {simHex} simulated, delta E {value}"
+    },
+    "button": {
+      "simulate": "Simulate"
+    }
+  },
+  "analysis": {
+    "title": "Image Analysis",
+    "dominant": "Dominant Colors",
+    "warmcool": "Warm / Cool Ratio",
+    "warm": "Warm",
+    "cool": "Cool",
+    "saturation": "Saturation Distribution",
+    "brightness": "Brightness Distribution",
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "dark": "Dark",
+    "mid": "Mid",
+    "light": "Light",
+    "mood_label": "Color Mood",
+    "mood": {
+      "warm_vibrant": "Warm & Vibrant",
+      "warm_muted": "Warm & Muted",
+      "cool_vibrant": "Cool & Vibrant",
+      "cool_muted": "Cool & Muted",
+      "neutral_balanced": "Neutral & Balanced",
+      "dark_moody": "Dark & Moody",
+      "light_airy": "Light & Airy",
+      "colorful": "Colorful & Diverse"
+    },
+    "coverage": "{value}%",
+    "accessibility": "Image color analysis showing dominant colors, warm cool ratio, and color mood",
+    "button": {
+      "analyze": "Analyze Image"
+    }
+  },
+  "share": {
+    "title": "Share Palette",
+    "link": "Shareable Link",
+    "qrcode": "QR Code",
+    "copy": "Copy link",
+    "button": "Share",
+    "accessibility": "Share palette via link or QR code",
+    "imported": "Palette imported successfully!",
+    "invalid_link": "Invalid palette link"
+  }
+}
+
