@@ -38,7 +38,7 @@ struct PaletteExtractionView: View {
                 }
             }
             .sheet(isPresented: $viewModel.showPhotoPicker) {
-                PhotoPickerView { image in
+                PhotoPickerView(isPresented: $viewModel.showPhotoPicker) { image in
                     viewModel.onImageSelected(image)
                 }
             }
@@ -65,10 +65,13 @@ struct PaletteExtractionView: View {
     @ViewBuilder
     private var imageSection: some View {
         if let image = viewModel.selectedImage {
+            let maxImageHeight = UIScreen.main.bounds.height * 0.65
+
             ZStack {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .frame(maxHeight: maxImageHeight)
                     .cornerRadius(Constants.UI.cornerRadiusLarge)
                     .overlay(
                         MagnifierOverlay(

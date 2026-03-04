@@ -1,6 +1,20 @@
 import UIKit
 
 extension UIImage {
+    /// Downsample image so the longest side fits within maxDimension, preserving aspect ratio.
+    /// Returns the original image unchanged if already within bounds.
+    func downsampledToFit(maxDimension: CGFloat) -> UIImage {
+        let maxSide = max(size.width, size.height)
+        guard maxSide > maxDimension else { return self }
+
+        let scale = maxDimension / maxSide
+        let newSize = CGSize(
+            width: (size.width * scale).rounded(.down),
+            height: (size.height * scale).rounded(.down)
+        )
+        return resized(to: newSize) ?? self
+    }
+
     /// Resize image to target size using high-quality interpolation
     func resized(to targetSize: CGSize) -> UIImage? {
         let format = UIGraphicsImageRendererFormat()

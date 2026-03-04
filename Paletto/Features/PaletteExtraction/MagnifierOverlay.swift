@@ -17,9 +17,12 @@ struct MagnifierOverlay: View {
             Color.clear
                 .contentShape(Rectangle())
                 .gesture(
-                    DragGesture(minimumDistance: 0)
+                    LongPressGesture(minimumDuration: 0.3)
+                        .sequenced(before: DragGesture(minimumDistance: 0))
                         .onChanged { value in
-                            let location = value.location
+                            // Only activate magnifier after long press succeeds
+                            guard case .second(true, let drag?) = value else { return }
+                            let location = drag.location
 
                             // Clamp to view bounds
                             guard location.x >= 0, location.x <= viewSize.width,

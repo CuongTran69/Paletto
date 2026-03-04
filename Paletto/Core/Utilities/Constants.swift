@@ -11,6 +11,8 @@ enum Constants {
     enum Image {
         /// Downsample size for k-means clustering (width & height)
         static let downsampleSize: CGFloat = 100
+        /// Max dimension (width or height) for display — images larger than this are downsampled on selection
+        static let maxDisplayDimension: CGFloat = 1600
         /// Maximum iterations for k-means
         static let kMeansMaxIterations = 20
         /// Number of k-means runs to pick best result

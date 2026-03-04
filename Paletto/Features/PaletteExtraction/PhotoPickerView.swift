@@ -3,6 +3,7 @@ import PhotosUI
 
 /// PHPicker wrapper — no permission required
 struct PhotoPickerView: UIViewControllerRepresentable {
+    @Binding var isPresented: Bool
     let onImageSelected: (UIImage) -> Void
 
     func makeUIViewController(context: Context) -> PHPickerViewController {
@@ -17,18 +18,21 @@ struct PhotoPickerView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {}
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(onImageSelected: onImageSelected)
+        Coordinator(isPresented: $isPresented, onImageSelected: onImageSelected)
     }
 
     final class Coordinator: NSObject, PHPickerViewControllerDelegate {
+        @Binding var isPresented: Bool
         let onImageSelected: (UIImage) -> Void
 
-        init(onImageSelected: @escaping (UIImage) -> Void) {
+        init(isPresented: Binding<Bool>, onImageSelected: @escaping (UIImage) -> Void) {
+            self._isPresented = isPresented
             self.onImageSelected = onImageSelected
         }
 
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-            picker.dismiss(animated: true)
+            // Dismiss via SwiftUI binding — NOT picker.dismiss() — to keep state in sync
+            isPresented = false
 
             guard let provider = results.first?.itemProvider,
                   provider.canLoadObject(ofClass: UIImage.self) else {

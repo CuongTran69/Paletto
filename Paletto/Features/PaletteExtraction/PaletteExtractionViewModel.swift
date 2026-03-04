@@ -37,8 +37,9 @@ final class PaletteExtractionViewModel: ObservableObject {
     // MARK: - Actions
 
     func onImageSelected(_ image: UIImage) {
-        selectedImage = image
-        cachePixelData(for: image)
+        let downsized = image.downsampledToFit(maxDimension: Constants.Image.maxDisplayDimension)
+        selectedImage = downsized
+        cachePixelData(for: downsized)
         extractColors()
     }
 
