@@ -376,7 +376,13 @@
     "button": "Share",
     "accessibility": "Share palette via link or QR code",
     "imported": "Palette imported successfully!",
-    "invalid_link": "Invalid palette link"
+    "invalid_link": "Invalid palette link",
+    "not_found": "This palette was not found. It may have been deleted."
+  },
+  "widget": {
+    "set_as": "Set as Widget",
+    "set_confirm": "Palette set as widget! Add the Paletto widget from your Home Screen.",
+    "accessibility": "Set this palette as the Home Screen widget"
   }
 }
 

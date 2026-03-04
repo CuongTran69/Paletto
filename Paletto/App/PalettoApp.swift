@@ -5,6 +5,7 @@ import Combine
 struct PalettoApp: App {
     @StateObject private var themeManager = ThemeManager.shared
     @StateObject private var localizationManager = LocalizationManager.shared
+    @State private var selectedTab = 0
     @State private var importedPalette: ColorPalette?
     @State private var showImportedPalette = false
     @State private var showImportError = false
@@ -13,7 +14,7 @@ struct PalettoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(selectedTab: $selectedTab)
                 .preferredColorScheme(themeManager.colorScheme)
                 .environmentObject(themeManager)
                 .environmentObject(localizationManager)
@@ -41,24 +42,31 @@ struct PalettoApp: App {
     }
 
     private func handleIncomingURL(_ url: URL) {
-        guard let palette = sharingService.decode(url: url) else {
-            showImportError = true
+        // Widget deep link: paletto://palette/{UUID} → switch to Library tab
+        if url.scheme == PaletteSharingService.scheme,
+           url.host == PaletteSharingService.host,
+           !url.pathComponents.filter({ $0 != "/" }).isEmpty {
+            selectedTab = 2
             return
         }
 
-        // Save the imported palette (fire-and-forget via Task)
-        let storage = PaletteStorageService()
-        importedPalette = palette
+        // Sharing link: paletto://palette?n=NAME&c=HEX1,HEX2,...
+        if let palette = sharingService.decode(url: url) {
+            importedPalette = palette
+            var cancellable: AnyCancellable?
+            cancellable = PaletteStorageService().save(palette)
+                .receive(on: DispatchQueue.main)
+                .sink(
+                    receiveCompletion: { _ in cancellable?.cancel() },
+                    receiveValue: { [self] in
+                        showImportedPalette = true
+                    }
+                )
+            return
+        }
 
-        var cancellable: AnyCancellable?
-        cancellable = storage.save(palette)
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { _ in cancellable?.cancel() },
-                receiveValue: { [self] in
-                    showImportedPalette = true
-                }
-            )
+        // Invalid URL
+        showImportError = true
     }
 }
 

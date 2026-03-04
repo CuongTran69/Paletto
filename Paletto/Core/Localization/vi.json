@@ -376,7 +376,13 @@
     "button": "Chia sẻ",
     "accessibility": "Chia sẻ bảng màu qua liên kết hoặc mã QR",
     "imported": "Đã nhập bảng màu thành công!",
-    "invalid_link": "Liên kết bảng màu không hợp lệ"
+    "invalid_link": "Liên kết bảng màu không hợp lệ",
+    "not_found": "Không tìm thấy bảng màu này. Có thể nó đã bị xóa."
+  },
+  "widget": {
+    "set_as": "Đặt làm Widget",
+    "set_confirm": "Đã đặt bảng màu làm widget! Thêm widget Paletto từ Màn hình chính.",
+    "accessibility": "Đặt bảng màu này làm widget Màn hình chính"
   }
 }
 

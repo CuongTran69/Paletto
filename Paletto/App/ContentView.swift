@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedTab = 0
+    @Binding var selectedTab: Int
     @ObservedObject private var loc = LocalizationManager.shared
 
     var body: some View {

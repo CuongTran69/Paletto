@@ -12,7 +12,6 @@ struct SettingsView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: Constants.UI.padding) {
-                    headerSection
                     appearanceSection
                     languageSection
                     generalSection
@@ -25,36 +24,6 @@ struct SettingsView: View {
             .background(SemanticColors.appBackground)
             .navigationTitle(L10n.settingsTitle.localized)
         }
-    }
-
-    // MARK: - Header
-
-    private var headerSection: some View {
-        HStack(spacing: 14) {
-            ZStack {
-                Circle()
-                    .fill(SemanticColors.gradientStart.opacity(0.12))
-                    .frame(width: 56, height: 56)
-                Image(systemName: "paintpalette.fill")
-                    .font(.system(size: 24, weight: .medium))
-                    .foregroundStyle(SemanticColors.brandGradient)
-            }
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Paletto")
-                    .font(.title3.weight(.bold))
-                Text(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0")
-                    .font(.caption)
-                    .foregroundColor(SemanticColors.secondaryText)
-            }
-            Spacer()
-        }
-        .padding(Constants.UI.padding)
-        .background(.ultraThinMaterial)
-        .cornerRadius(Constants.UI.cornerRadiusLarge)
-        .overlay(
-            RoundedRectangle(cornerRadius: Constants.UI.cornerRadiusLarge)
-                .strokeBorder(SemanticColors.glassBorder, lineWidth: 0.5)
-        )
     }
 
     // MARK: - Sections
@@ -99,8 +68,6 @@ struct SettingsView: View {
                         }
                 }
 
-                Divider().padding(.leading, 44)
-
                 settingsRow(icon: "number.circle.fill", title: L10n.settingsColorCount.localized) {
                     Stepper("\(defaultColorCount)", value: $defaultColorCount,
                             in: Constants.Palette.minColorCount...Constants.Palette.maxColorCount)
@@ -108,8 +75,6 @@ struct SettingsView: View {
                             SettingsManager.shared.defaultColorCount = newValue
                         }
                 }
-
-                Divider().padding(.leading, 44)
 
                 settingsRow(icon: "square.and.arrow.up.fill", title: L10n.settingsExportFormat.localized) {
                     Picker("", selection: $defaultExportFormat) {

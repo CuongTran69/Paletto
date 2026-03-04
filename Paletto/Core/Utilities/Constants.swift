@@ -41,6 +41,8 @@ enum Constants {
         static let settingsDefaultColorCountKey = "defaultColorCount"
         static let settingsLanguageKey = "appLanguage"
         static let settingsThemeKey = "appTheme"
+        static let appGroupIdentifier = "group.com.paletto.shared"
+        static let widgetPaletteKey = "widgetPalette"
     }
 
     enum UI {

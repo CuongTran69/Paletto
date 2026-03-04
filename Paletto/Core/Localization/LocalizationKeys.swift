@@ -235,5 +235,11 @@ enum L10n {
     static let shareA11y = "share.accessibility"
     static let shareImported = "share.imported"
     static let shareInvalidLink = "share.invalid_link"
+    static let shareNotFound = "share.not_found"
+
+    // MARK: - Widget
+    static let widgetSetAs = "widget.set_as"
+    static let widgetSetConfirm = "widget.set_confirm"
+    static let widgetA11y = "widget.accessibility"
 }
 

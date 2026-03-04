@@ -7,6 +7,7 @@ struct PaletteDetailView: View {
     @State private var showContrastInfo = false
     @State private var selectedPreviewStyle: PreviewStyle = .appCard
     @State private var showBlindness = false
+    @FocusState private var isNameFieldFocused: Bool
 
     init(palette: ColorPalette) {
         _viewModel = StateObject(wrappedValue: PaletteDetailViewModel(palette: palette))
@@ -54,10 +55,19 @@ struct PaletteDetailView: View {
                     }
                     .accessibilityLabel(L10n.shareTitle.localized)
 
-                    Button {
-                        viewModel.showExport = true
+                    Menu {
+                        Button {
+                            viewModel.setAsWidget()
+                        } label: {
+                            Label(L10n.widgetSetAs.localized, systemImage: "rectangle.on.rectangle")
+                        }
+                        Button {
+                            viewModel.showExport = true
+                        } label: {
+                            Label(L10n.detailExport.localized, systemImage: "square.and.arrow.up")
+                        }
                     } label: {
-                        Image(systemName: "square.and.arrow.up")
+                        Image(systemName: "ellipsis.circle")
                             .foregroundStyle(SemanticColors.brandGradient)
                     }
                     .accessibilityLabel(L10n.detailExport.localized)
@@ -78,6 +88,9 @@ struct PaletteDetailView: View {
         .sheet(isPresented: $viewModel.showShare) {
             SharePaletteView(palette: viewModel.palette)
         }
+        .alert(L10n.widgetSetConfirm.localized, isPresented: $viewModel.showWidgetConfirmation) {
+            Button(L10n.done.localized, role: .cancel) {}
+        }
     }
 
     // MARK: - Sections
@@ -88,7 +101,9 @@ struct PaletteDetailView: View {
             HStack(spacing: 10) {
                 TextField(L10n.detailNamePlaceholder.localized, text: $viewModel.palette.name)
                     .font(.title2.weight(.semibold))
+                    .focused($isNameFieldFocused)
                 Button {
+                    isNameFieldFocused = false
                     editingName = false
                 } label: {
                     Image(systemName: "checkmark.circle.fill")
@@ -103,7 +118,15 @@ struct PaletteDetailView: View {
                 RoundedRectangle(cornerRadius: Constants.UI.cornerRadiusLarge)
                     .strokeBorder(SemanticColors.gradientStart.opacity(0.4), lineWidth: 1.5)
             )
-            .onSubmit { editingName = false }
+            .onSubmit {
+                isNameFieldFocused = false
+                editingName = false
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    isNameFieldFocused = true
+                }
+            }
         } else {
             HStack {
                 Text(viewModel.palette.name)

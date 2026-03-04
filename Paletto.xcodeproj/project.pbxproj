@@ -75,7 +75,38 @@
 		DD11EE22FF334455AA001112 /* PaletteSharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11EE22FF334455AA001111 /* PaletteSharingService.swift */; };
 		DD11EE22FF334455AA002222 /* SharePaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11EE22FF334455AA002221 /* SharePaletteView.swift */; };
 		DD11EE22FF334455AA003332 /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11EE22FF334455AA003331 /* QRCodeGenerator.swift */; };
+		EE11FF22AA334455BB001112 /* PalettoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB001111 /* PalettoWidget.swift */; };
+		EE11FF22AA334455BB002222 /* PalettoWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB002221 /* PalettoWidgetEntryView.swift */; };
+		EE11FF22AA334455BB003332 /* PalettoWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB003331 /* PalettoWidgetBundle.swift */; };
+		EE11FF22AA334455BB005552 /* SharedDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB005551 /* SharedDataService.swift */; };
+		EE11FF22AA334455BB01000D /* PalettoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EE11FF22AA334455BB006662 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB006661 /* WidgetKit.framework */; };
+		EE11FF22AA334455BB006664 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB006663 /* SwiftUI.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EE11FF22AA334455BB01000B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B06CA71CEAF4008A6C6ACA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE11FF22AA334455BB010001;
+			remoteInfo = PalettoWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EE11FF22AA334455BB01000C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EE11FF22AA334455BB01000D /* PalettoWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		05982726EB83401D81064FAF /* PaletteExtractionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteExtractionView.swift; sourceTree = "<group>"; };
@@ -151,6 +182,16 @@
 		DD11EE22FF334455AA001111 /* PaletteSharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteSharingService.swift; sourceTree = "<group>"; };
 		DD11EE22FF334455AA002221 /* SharePaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePaletteView.swift; sourceTree = "<group>"; };
 		DD11EE22FF334455AA003331 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
+		EE11FF22AA334455BB001111 /* PalettoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoWidget.swift; sourceTree = "<group>"; };
+		EE11FF22AA334455BB002221 /* PalettoWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoWidgetEntryView.swift; sourceTree = "<group>"; };
+		EE11FF22AA334455BB003331 /* PalettoWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoWidgetBundle.swift; sourceTree = "<group>"; };
+		EE11FF22AA334455BB004441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF22AA33BB445566CC001111 /* Paletto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Paletto.entitlements; sourceTree = "<group>"; };
+		FF22AA33BB445566CC002221 /* PalettoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PalettoWidgetExtension.entitlements; sourceTree = "<group>"; };
+		EE11FF22AA334455BB005551 /* SharedDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataService.swift; sourceTree = "<group>"; };
+		EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PalettoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE11FF22AA334455BB006661 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		EE11FF22AA334455BB006663 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +203,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EE11FF22AA334455BB010003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE11FF22AA334455BB006662 /* WidgetKit.framework in Frameworks */,
+				EE11FF22AA334455BB006664 /* SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -170,6 +220,7 @@
 			children = (
 				BE8403CF78C44C62BDBA331D /* Paletto */,
 				1753CF80A7D84843B60B8951 /* Products */,
+				EE11FF22AA334455BB010006 /* PalettoWidget */,
 				3C574BC42870709B54BFBFE6 /* Pods */,
 				6D58E597868DF4FD6D507EC6 /* Frameworks */,
 			);
@@ -179,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				F91DF12A70544C41BA7F8109 /* Paletto.app */,
+				EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -325,6 +377,7 @@
 		BE8403CF78C44C62BDBA331D /* Paletto */ = {
 			isa = PBXGroup;
 			children = (
+				FF22AA33BB445566CC001111 /* Paletto.entitlements */,
 				3EFCDB71610540B5967CB03D /* App */,
 				F078076593DC4EA8B7D544EC /* Core */,
 				D0A40FF702214DC2979FFF4F /* Features */,
@@ -391,6 +444,7 @@
 				BB11CC22DD334455EE002221 /* ColorBlindnessService.swift */,
 				CC11DD22EE334455FF002221 /* ImageAnalysisService.swift */,
 				DD11EE22FF334455AA001111 /* PaletteSharingService.swift */,
+				EE11FF22AA334455BB005551 /* SharedDataService.swift */,
 				91D9FD3946FA4EB385ABACFE /* Protocols */,
 			);
 			path = Services;
@@ -452,7 +506,27 @@
 			path = Sharing;
 			sourceTree = "<group>";
 		};
+		EE11FF22AA334455BB010006 /* PalettoWidget */ = {
+			isa = PBXGroup;
+			children = (
+				FF22AA33BB445566CC002221 /* PalettoWidgetExtension.entitlements */,
+				EE11FF22AA334455BB001111 /* PalettoWidget.swift */,
+				EE11FF22AA334455BB002221 /* PalettoWidgetEntryView.swift */,
+				EE11FF22AA334455BB003331 /* PalettoWidgetBundle.swift */,
+				EE11FF22AA334455BB004441 /* Info.plist */,
+			);
+			path = PalettoWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXTargetDependency section */
+		EE11FF22AA334455BB01000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE11FF22AA334455BB010001 /* PalettoWidgetExtension */;
+			targetProxy = EE11FF22AA334455BB01000B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXNativeTarget section */
 		93F758F6251945628A74806A /* Paletto */ = {
@@ -463,15 +537,34 @@
 				29844B6ED2D544B48A957B26 /* Sources */,
 				0418CA94AB5549D7B55C62ED /* Frameworks */,
 				2152A89388FB46C59D35F99A /* Resources */,
+				EE11FF22AA334455BB01000C /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EE11FF22AA334455BB01000A /* PBXTargetDependency */,
 			);
 			name = Paletto;
 			productName = Paletto;
 			productReference = F91DF12A70544C41BA7F8109 /* Paletto.app */;
 			productType = "com.apple.product-type.application";
+		};
+		EE11FF22AA334455BB010001 /* PalettoWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE11FF22AA334455BB010007 /* Build configuration list for PBXNativeTarget "PalettoWidgetExtension" */;
+			buildPhases = (
+				EE11FF22AA334455BB010002 /* Sources */,
+				EE11FF22AA334455BB010003 /* Frameworks */,
+				EE11FF22AA334455BB010004 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PalettoWidgetExtension;
+			productName = PalettoWidgetExtension;
+			productReference = EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -497,6 +590,7 @@
 			projectRoot = "";
 			targets = (
 				93F758F6251945628A74806A /* Paletto */,
+				EE11FF22AA334455BB010001 /* PalettoWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -508,6 +602,13 @@
 			files = (
 				31AC3B282F56BF9B00AA7472 /* en.json in Resources */,
 				31AC3B292F56BF9B00AA7472 /* vi.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE11FF22AA334455BB010004 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +709,17 @@
 				DD11EE22FF334455AA001112 /* PaletteSharingService.swift in Sources */,
 				DD11EE22FF334455AA002222 /* SharePaletteView.swift in Sources */,
 				DD11EE22FF334455AA003332 /* QRCodeGenerator.swift in Sources */,
+				EE11FF22AA334455BB005552 /* SharedDataService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE11FF22AA334455BB010002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE11FF22AA334455BB001112 /* PalettoWidget.swift in Sources */,
+				EE11FF22AA334455BB002222 /* PalettoWidgetEntryView.swift in Sources */,
+				EE11FF22AA334455BB003332 /* PalettoWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +732,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Paletto/Paletto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -674,6 +787,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Paletto/Paletto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -716,6 +830,56 @@
 			};
 			name = Release;
 		};
+		EE11FF22AA334455BB010008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PalettoWidget/PalettoWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PalettoWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paletto.app.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		EE11FF22AA334455BB010009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PalettoWidget/PalettoWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PalettoWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paletto.app.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -733,6 +897,15 @@
 			buildConfigurations = (
 				A57C97C5A03D4B06A81BC1F6 /* Debug */,
 				D517B2E819194C81BFF0085D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE11FF22AA334455BB010007 /* Build configuration list for PBXNativeTarget "PalettoWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE11FF22AA334455BB010008 /* Debug */,
+				EE11FF22AA334455BB010009 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -10,6 +10,7 @@ final class PaletteDetailViewModel: ObservableObject {
     @Published var showExport = false
     @Published var showHarmony = false
     @Published var showShare = false
+    @Published var showWidgetConfirmation = false
     @Published var harmonySourceColor: PaletteColor?
 
     private let contrastService: ContrastCheckerServiceProtocol
@@ -75,6 +76,14 @@ final class PaletteDetailViewModel: ObservableObject {
     func openHarmony(for color: PaletteColor) {
         harmonySourceColor = color
         showHarmony = true
+    }
+
+    func setAsWidget() {
+        SharedDataService.shared.setWidgetPalette(palette)
+        showWidgetConfirmation = true
+        if SettingsManager.shared.hapticFeedbackEnabled {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+        }
     }
 
     // MARK: - Private
