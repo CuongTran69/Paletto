@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 /// Camera screen for picking colors from the real world
 struct CameraColorPickerView: View {
@@ -7,6 +8,8 @@ struct CameraColorPickerView: View {
     @State private var savedPalette: ColorPalette?
     @State private var showSaveDialog = false
     @State private var paletteName = ""
+    @State private var saveCancellable: AnyCancellable?
+    @State private var isCameraActive = false
 
     var body: some View {
         NavigationStack {
@@ -37,7 +40,13 @@ struct CameraColorPickerView: View {
                     PaletteDetailView(palette: palette)
                 }
             }
-            .onAppear { viewModel.checkPermission() }
+            .onAppear {
+                viewModel.checkPermission()
+                isCameraActive = true
+            }
+            .onDisappear {
+                isCameraActive = false
+            }
         }
     }
 
@@ -45,9 +54,9 @@ struct CameraColorPickerView: View {
 
     private var cameraContent: some View {
         ZStack {
-            CameraPreviewView { r, g, b in
+            CameraPreviewView(onColorSampled: { r, g, b in
                 viewModel.updateColor(r: r, g: g, b: b)
-            }
+            }, isActive: isCameraActive)
             .ignoresSafeArea()
 
             // Crosshair
@@ -214,8 +223,8 @@ struct CameraColorPickerView: View {
             colors: viewModel.pickedColors
         )
         let storage = PaletteStorageService()
-        var cancellables = Set<AnyCancellable>()
-        storage.save(palette)
+        saveCancellable = storage.save(palette)
+            .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { [self] in
@@ -224,7 +233,6 @@ struct CameraColorPickerView: View {
                     paletteName = ""
                 }
             )
-            .store(in: &cancellables)
     }
 }
 

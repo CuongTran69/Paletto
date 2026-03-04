@@ -23,7 +23,6 @@
 		31AC3B2E2F56BFA800AA7472 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2C2F56BFA800AA7472 /* ThemeManager.swift */; };
 		31AC3B2F2F56BFA800AA7472 /* SemanticColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */; };
 		31AC3B302F56BFA800AA7472 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */; };
-		CD56EF01AB1234560FEDCBA9 /* ScaleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD56EF01AB1234560FEDCBA0 /* ScaleButtonStyle.swift */; };
 		360DD708474C4118A45DD0E5 /* CameraColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */; };
 		3BC3385CC34147B89778CD5E /* PaletteExtractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05982726EB83401D81064FAF /* PaletteExtractionView.swift */; };
 		3CB0E451D06248EEB90FCB42 /* ColorExtractionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD64A69E2394EBBA94E014D /* ColorExtractionServiceProtocol.swift */; };
@@ -44,17 +43,6 @@
 		A13A4111DCF5428E80BC1391 /* Color+Luminance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5594B012EB4C04BE1F0A29 /* Color+Luminance.swift */; };
 		A22D0F5F26184A6799D47721 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C832F8016C714291BE361A82 /* ExportView.swift */; };
 		A9A3FDFB26A84E4F8E415AE6 /* PreviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27064BA2BE3D497F98909EF7 /* PreviewCardView.swift */; };
-		B82F0CF6811E42389929C4F5 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1AB97964A44470B358A722 /* Color+Hex.swift */; };
-		C03F084CAFF54C3A9ADD536D /* MagnifierOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C219AB7AFDF7430A86EC07A6 /* MagnifierOverlay.swift */; };
-		C14730BBA69849FCAADDF283 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5197500EDB164CBFA5FC73AC /* UIImage+Resize.swift */; };
-		C34EC4A50D8643FBA24EB98D /* ColorExtractionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924FDFE7D30846E3A68FF9EF /* ColorExtractionService.swift */; };
-		CE2181169A214A56A60361CA /* PaletteStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26DC581595E4404963FAE0C /* PaletteStorageService.swift */; };
-		D9ADB09357DC4ACA95921D86 /* PaletteColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BC350975DF42A392FEF983 /* PaletteColor.swift */; };
-		DA46E28676B54BB5A942DF42 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEBEEF609084DF7A05501C4 /* ContentView.swift */; };
-		DF3D8EF0E63646F4B97D4E20 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44F79474684ADFBD077B7F /* SettingsManager.swift */; };
-		AB12CD34EF5647890ABCDEF0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB12CD34EF5647890ABCDEF1 /* SettingsView.swift */; };
-		E765E0BB3E7F4D42A89E9C97 /* PaletteDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54CEA725EC4BB297B51D51 /* PaletteDetailViewModel.swift */; };
-		F71F86BEE26D4C3591E64999 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC9C95389B485C81EF9996 /* AppError.swift */; };
 		AA11BB22CC334455DD001112 /* HarmonyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD001111 /* HarmonyType.swift */; };
 		AA11BB22CC334455DD002222 /* ColorHarmonyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD002221 /* ColorHarmonyService.swift */; };
 		AA11BB22CC334455DD003332 /* ColorHarmonyServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD003331 /* ColorHarmonyServiceProtocol.swift */; };
@@ -64,24 +52,36 @@
 		AA11BB22CC334455DD007772 /* PaletteComparisonServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD007771 /* PaletteComparisonServiceProtocol.swift */; };
 		AA11BB22CC334455DD008882 /* PaletteComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD008881 /* PaletteComparisonView.swift */; };
 		AA11BB22CC334455DD009992 /* PaletteComparisonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD009991 /* PaletteComparisonViewModel.swift */; };
+		AB12CD34EF5647890ABCDEF0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB12CD34EF5647890ABCDEF1 /* SettingsView.swift */; };
+		B82F0CF6811E42389929C4F5 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1AB97964A44470B358A722 /* Color+Hex.swift */; };
 		BB11CC22DD334455EE001112 /* ColorBlindnessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE001111 /* ColorBlindnessType.swift */; };
 		BB11CC22DD334455EE002222 /* ColorBlindnessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE002221 /* ColorBlindnessService.swift */; };
 		BB11CC22DD334455EE003332 /* ColorBlindnessServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE003331 /* ColorBlindnessServiceProtocol.swift */; };
 		BB11CC22DD334455EE004442 /* ColorBlindnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE004441 /* ColorBlindnessView.swift */; };
 		BB11CC22DD334455EE005552 /* ColorBlindnessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE005551 /* ColorBlindnessViewModel.swift */; };
+		C03F084CAFF54C3A9ADD536D /* MagnifierOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C219AB7AFDF7430A86EC07A6 /* MagnifierOverlay.swift */; };
+		C14730BBA69849FCAADDF283 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5197500EDB164CBFA5FC73AC /* UIImage+Resize.swift */; };
+		C34EC4A50D8643FBA24EB98D /* ColorExtractionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924FDFE7D30846E3A68FF9EF /* ColorExtractionService.swift */; };
 		CC11DD22EE334455FF001112 /* ImageAnalysisServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC11DD22EE334455FF001111 /* ImageAnalysisServiceProtocol.swift */; };
 		CC11DD22EE334455FF002222 /* ImageAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC11DD22EE334455FF002221 /* ImageAnalysisService.swift */; };
 		CC11DD22EE334455FF003332 /* ImageAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC11DD22EE334455FF003331 /* ImageAnalysisView.swift */; };
+		CD56EF01AB1234560FEDCBA9 /* ScaleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD56EF01AB1234560FEDCBA0 /* ScaleButtonStyle.swift */; };
+		CE2181169A214A56A60361CA /* PaletteStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26DC581595E4404963FAE0C /* PaletteStorageService.swift */; };
+		D9ADB09357DC4ACA95921D86 /* PaletteColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BC350975DF42A392FEF983 /* PaletteColor.swift */; };
+		DA46E28676B54BB5A942DF42 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEBEEF609084DF7A05501C4 /* ContentView.swift */; };
 		DD11EE22FF334455AA001112 /* PaletteSharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11EE22FF334455AA001111 /* PaletteSharingService.swift */; };
 		DD11EE22FF334455AA002222 /* SharePaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11EE22FF334455AA002221 /* SharePaletteView.swift */; };
 		DD11EE22FF334455AA003332 /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11EE22FF334455AA003331 /* QRCodeGenerator.swift */; };
+		DF3D8EF0E63646F4B97D4E20 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44F79474684ADFBD077B7F /* SettingsManager.swift */; };
+		E765E0BB3E7F4D42A89E9C97 /* PaletteDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54CEA725EC4BB297B51D51 /* PaletteDetailViewModel.swift */; };
 		EE11FF22AA334455BB001112 /* PalettoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB001111 /* PalettoWidget.swift */; };
 		EE11FF22AA334455BB002222 /* PalettoWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB002221 /* PalettoWidgetEntryView.swift */; };
 		EE11FF22AA334455BB003332 /* PalettoWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB003331 /* PalettoWidgetBundle.swift */; };
 		EE11FF22AA334455BB005552 /* SharedDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB005551 /* SharedDataService.swift */; };
-		EE11FF22AA334455BB01000D /* PalettoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EE11FF22AA334455BB006662 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB006661 /* WidgetKit.framework */; };
 		EE11FF22AA334455BB006664 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB006663 /* SwiftUI.framework */; };
+		EE11FF22AA334455BB01000D /* PalettoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F71F86BEE26D4C3591E64999 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC9C95389B485C81EF9996 /* AppError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,7 +130,6 @@
 		31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticColors.swift; sourceTree = "<group>"; };
 		31AC3B2C2F56BFA800AA7472 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
-		CD56EF01AB1234560FEDCBA0 /* ScaleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleButtonStyle.swift; sourceTree = "<group>"; };
 		417024EA71DB4822850C7BCB /* ContrastCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastCheckerService.swift; sourceTree = "<group>"; };
 		417BF25FFE2446B387ACC44B /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		4E5B596F062D429582AEEFF5 /* PaletteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteListView.swift; sourceTree = "<group>"; };
@@ -146,22 +145,9 @@
 		8377131B06554E3280015AB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8579E9002CA346AD9B7546FA /* Pods-Paletto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paletto.release.xcconfig"; path = "Target Support Files/Pods-Paletto/Pods-Paletto.release.xcconfig"; sourceTree = "<group>"; };
 		8B44F79474684ADFBD077B7F /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
-		AB12CD34EF5647890ABCDEF1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		924FDFE7D30846E3A68FF9EF /* ColorExtractionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtractionService.swift; sourceTree = "<group>"; };
 		9459CAECB520424BAA2252FF /* ContrastCheckerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastCheckerServiceProtocol.swift; sourceTree = "<group>"; };
 		A3A92CB4B5E3418A93FD87FF /* ContrastMatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastMatrixView.swift; sourceTree = "<group>"; };
-		AA62231F65894A968C90CA1D /* ColorRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRole.swift; sourceTree = "<group>"; };
-		B26DC581595E4404963FAE0C /* PaletteStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteStorageService.swift; sourceTree = "<group>"; };
-		C219AB7AFDF7430A86EC07A6 /* MagnifierOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnifierOverlay.swift; sourceTree = "<group>"; };
-		C832F8016C714291BE361A82 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
-		CE1AB97964A44470B358A722 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
-		DBE85D7E6F73477FBBC38DAF /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
-		E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraColorPickerViewModel.swift; sourceTree = "<group>"; };
-		EDCC586F0D6745F59BA8A4E9 /* PalettoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoApp.swift; sourceTree = "<group>"; };
-		EE5594B012EB4C04BE1F0A29 /* Color+Luminance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Luminance.swift"; sourceTree = "<group>"; };
-		F31F85C7E7AE4A428C3503B4 /* ColorDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDetailRow.swift; sourceTree = "<group>"; };
-		F4A62FB930A14D83856D577E /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
-		F91DF12A70544C41BA7F8109 /* Paletto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paletto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA11BB22CC334455DD001111 /* HarmonyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonyType.swift; sourceTree = "<group>"; };
 		AA11BB22CC334455DD002221 /* ColorHarmonyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHarmonyService.swift; sourceTree = "<group>"; };
 		AA11BB22CC334455DD003331 /* ColorHarmonyServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHarmonyServiceProtocol.swift; sourceTree = "<group>"; };
@@ -171,27 +157,41 @@
 		AA11BB22CC334455DD007771 /* PaletteComparisonServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteComparisonServiceProtocol.swift; sourceTree = "<group>"; };
 		AA11BB22CC334455DD008881 /* PaletteComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteComparisonView.swift; sourceTree = "<group>"; };
 		AA11BB22CC334455DD009991 /* PaletteComparisonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteComparisonViewModel.swift; sourceTree = "<group>"; };
+		AA62231F65894A968C90CA1D /* ColorRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRole.swift; sourceTree = "<group>"; };
+		AB12CD34EF5647890ABCDEF1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B26DC581595E4404963FAE0C /* PaletteStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteStorageService.swift; sourceTree = "<group>"; };
 		BB11CC22DD334455EE001111 /* ColorBlindnessType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBlindnessType.swift; sourceTree = "<group>"; };
 		BB11CC22DD334455EE002221 /* ColorBlindnessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBlindnessService.swift; sourceTree = "<group>"; };
 		BB11CC22DD334455EE003331 /* ColorBlindnessServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBlindnessServiceProtocol.swift; sourceTree = "<group>"; };
 		BB11CC22DD334455EE004441 /* ColorBlindnessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBlindnessView.swift; sourceTree = "<group>"; };
 		BB11CC22DD334455EE005551 /* ColorBlindnessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBlindnessViewModel.swift; sourceTree = "<group>"; };
+		C219AB7AFDF7430A86EC07A6 /* MagnifierOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnifierOverlay.swift; sourceTree = "<group>"; };
+		C832F8016C714291BE361A82 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
 		CC11DD22EE334455FF001111 /* ImageAnalysisServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnalysisServiceProtocol.swift; sourceTree = "<group>"; };
 		CC11DD22EE334455FF002221 /* ImageAnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnalysisService.swift; sourceTree = "<group>"; };
 		CC11DD22EE334455FF003331 /* ImageAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnalysisView.swift; sourceTree = "<group>"; };
+		CD56EF01AB1234560FEDCBA0 /* ScaleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleButtonStyle.swift; sourceTree = "<group>"; };
+		CE1AB97964A44470B358A722 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		DBE85D7E6F73477FBBC38DAF /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		DD11EE22FF334455AA001111 /* PaletteSharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteSharingService.swift; sourceTree = "<group>"; };
 		DD11EE22FF334455AA002221 /* SharePaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePaletteView.swift; sourceTree = "<group>"; };
 		DD11EE22FF334455AA003331 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
+		E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraColorPickerViewModel.swift; sourceTree = "<group>"; };
+		EDCC586F0D6745F59BA8A4E9 /* PalettoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoApp.swift; sourceTree = "<group>"; };
 		EE11FF22AA334455BB001111 /* PalettoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoWidget.swift; sourceTree = "<group>"; };
 		EE11FF22AA334455BB002221 /* PalettoWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoWidgetEntryView.swift; sourceTree = "<group>"; };
 		EE11FF22AA334455BB003331 /* PalettoWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoWidgetBundle.swift; sourceTree = "<group>"; };
 		EE11FF22AA334455BB004441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FF22AA33BB445566CC001111 /* Paletto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Paletto.entitlements; sourceTree = "<group>"; };
-		FF22AA33BB445566CC002221 /* PalettoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PalettoWidgetExtension.entitlements; sourceTree = "<group>"; };
 		EE11FF22AA334455BB005551 /* SharedDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataService.swift; sourceTree = "<group>"; };
-		EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PalettoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE11FF22AA334455BB006661 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		EE11FF22AA334455BB006663 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PalettoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE5594B012EB4C04BE1F0A29 /* Color+Luminance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Luminance.swift"; sourceTree = "<group>"; };
+		F31F85C7E7AE4A428C3503B4 /* ColorDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDetailRow.swift; sourceTree = "<group>"; };
+		F4A62FB930A14D83856D577E /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
+		F91DF12A70544C41BA7F8109 /* Paletto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paletto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF22AA33BB445566CC001111 /* Paletto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Paletto.entitlements; sourceTree = "<group>"; };
+		FF22AA33BB445566CC002221 /* PalettoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PalettoWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +223,7 @@
 				EE11FF22AA334455BB010006 /* PalettoWidget */,
 				3C574BC42870709B54BFBFE6 /* Pods */,
 				6D58E597868DF4FD6D507EC6 /* Frameworks */,
+				31AC3B3B2F58224300AA7472 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -276,9 +277,18 @@
 				31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */,
 				31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */,
 				31AC3B2C2F56BFA800AA7472 /* ThemeManager.swift */,
-					CD56EF01AB1234560FEDCBA0 /* ScaleButtonStyle.swift */,
+				CD56EF01AB1234560FEDCBA0 /* ScaleButtonStyle.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		31AC3B3B2F58224300AA7472 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				EE11FF22AA334455BB006661 /* WidgetKit.framework */,
+				EE11FF22AA334455BB006663 /* SwiftUI.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		3C574BC42870709B54BFBFE6 /* Pods */ = {
@@ -374,6 +384,33 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		AA11BB22CC334455DDAAA001 /* ColorHarmony */ = {
+			isa = PBXGroup;
+			children = (
+				AA11BB22CC334455DD004441 /* ColorHarmonyView.swift */,
+				AA11BB22CC334455DD005551 /* ColorHarmonyViewModel.swift */,
+			);
+			path = ColorHarmony;
+			sourceTree = "<group>";
+		};
+		AA11BB22CC334455DDBBB001 /* PaletteComparison */ = {
+			isa = PBXGroup;
+			children = (
+				AA11BB22CC334455DD008881 /* PaletteComparisonView.swift */,
+				AA11BB22CC334455DD009991 /* PaletteComparisonViewModel.swift */,
+			);
+			path = PaletteComparison;
+			sourceTree = "<group>";
+		};
+		BB11CC22DD334455EEAAA001 /* ColorBlindness */ = {
+			isa = PBXGroup;
+			children = (
+				BB11CC22DD334455EE004441 /* ColorBlindnessView.swift */,
+				BB11CC22DD334455EE005551 /* ColorBlindnessViewModel.swift */,
+			);
+			path = ColorBlindness;
+			sourceTree = "<group>";
+		};
 		BE8403CF78C44C62BDBA331D /* Paletto */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,53 +487,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		F078076593DC4EA8B7D544EC /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				31AC3B2D2F56BFA800AA7472 /* Theme */,
-				31AC3B232F56BF9B00AA7472 /* Localization */,
-				2E34B03176044A33A9844163 /* Models */,
-				D797A84606984F63BA345D3A /* Services */,
-				41F198F1EFE648AFABCDB45B /* Extensions */,
-				2C033AD707C048C7A3301CCD /* Utilities */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		FC8AE45F53B944D584830ABF /* ContrastChecker */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ContrastChecker;
-			sourceTree = "<group>";
-		};
-		AA11BB22CC334455DDAAA001 /* ColorHarmony */ = {
-			isa = PBXGroup;
-			children = (
-				AA11BB22CC334455DD004441 /* ColorHarmonyView.swift */,
-				AA11BB22CC334455DD005551 /* ColorHarmonyViewModel.swift */,
-			);
-			path = ColorHarmony;
-			sourceTree = "<group>";
-		};
-		AA11BB22CC334455DDBBB001 /* PaletteComparison */ = {
-			isa = PBXGroup;
-			children = (
-				AA11BB22CC334455DD008881 /* PaletteComparisonView.swift */,
-				AA11BB22CC334455DD009991 /* PaletteComparisonViewModel.swift */,
-			);
-			path = PaletteComparison;
-			sourceTree = "<group>";
-		};
-		BB11CC22DD334455EEAAA001 /* ColorBlindness */ = {
-			isa = PBXGroup;
-			children = (
-				BB11CC22DD334455EE004441 /* ColorBlindnessView.swift */,
-				BB11CC22DD334455EE005551 /* ColorBlindnessViewModel.swift */,
-			);
-			path = ColorBlindness;
-			sourceTree = "<group>";
-		};
 		DD11EE22FF334455AA009999 /* Sharing */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,15 +508,27 @@
 			path = PalettoWidget;
 			sourceTree = "<group>";
 		};
-/* End PBXGroup section */
-
-/* Begin PBXTargetDependency section */
-		EE11FF22AA334455BB01000A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EE11FF22AA334455BB010001 /* PalettoWidgetExtension */;
-			targetProxy = EE11FF22AA334455BB01000B /* PBXContainerItemProxy */;
+		F078076593DC4EA8B7D544EC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				31AC3B2D2F56BFA800AA7472 /* Theme */,
+				31AC3B232F56BF9B00AA7472 /* Localization */,
+				2E34B03176044A33A9844163 /* Models */,
+				D797A84606984F63BA345D3A /* Services */,
+				41F198F1EFE648AFABCDB45B /* Extensions */,
+				2C033AD707C048C7A3301CCD /* Utilities */,
+			);
+			path = Core;
+			sourceTree = "<group>";
 		};
-/* End PBXTargetDependency section */
+		FC8AE45F53B944D584830ABF /* ContrastChecker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ContrastChecker;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
 		93F758F6251945628A74806A /* Paletto */ = {
@@ -659,7 +661,7 @@
 				31AC3B2E2F56BFA800AA7472 /* ThemeManager.swift in Sources */,
 				31AC3B2F2F56BFA800AA7472 /* SemanticColors.swift in Sources */,
 				31AC3B302F56BFA800AA7472 /* AppTheme.swift in Sources */,
-					CD56EF01AB1234560FEDCBA9 /* ScaleButtonStyle.swift in Sources */,
+				CD56EF01AB1234560FEDCBA9 /* ScaleButtonStyle.swift in Sources */,
 				1142158C5CF04766AE29956D /* ExportService.swift in Sources */,
 				CE2181169A214A56A60361CA /* PaletteStorageService.swift in Sources */,
 				3CB0E451D06248EEB90FCB42 /* ColorExtractionServiceProtocol.swift in Sources */,
@@ -725,6 +727,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		EE11FF22AA334455BB01000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE11FF22AA334455BB010001 /* PalettoWidgetExtension */;
+			targetProxy = EE11FF22AA334455BB01000B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		55E89EC0655143848D645FA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -735,6 +745,7 @@
 				CODE_SIGN_ENTITLEMENTS = Paletto/Paletto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Paletto/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -790,6 +801,7 @@
 				CODE_SIGN_ENTITLEMENTS = Paletto/Paletto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Paletto/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -838,6 +850,7 @@
 				CODE_SIGN_ENTITLEMENTS = PalettoWidget/PalettoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PalettoWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -863,6 +876,7 @@
 				CODE_SIGN_ENTITLEMENTS = PalettoWidget/PalettoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PalettoWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -892,20 +906,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FEBC34AF931340319D1D5A7F /* Build configuration list for PBXProject "Paletto" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A57C97C5A03D4B06A81BC1F6 /* Debug */,
-				D517B2E819194C81BFF0085D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		EE11FF22AA334455BB010007 /* Build configuration list for PBXNativeTarget "PalettoWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE11FF22AA334455BB010008 /* Debug */,
 				EE11FF22AA334455BB010009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FEBC34AF931340319D1D5A7F /* Build configuration list for PBXProject "Paletto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A57C97C5A03D4B06A81BC1F6 /* Debug */,
+				D517B2E819194C81BFF0085D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

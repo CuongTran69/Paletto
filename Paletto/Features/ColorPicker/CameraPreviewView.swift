@@ -4,6 +4,7 @@ import AVFoundation
 /// Camera preview that samples the center pixel color each frame
 struct CameraPreviewView: UIViewRepresentable {
     let onColorSampled: (CGFloat, CGFloat, CGFloat) -> Void
+    var isActive: Bool
 
     func makeUIView(context: Context) -> CameraUIView {
         let view = CameraUIView()
@@ -11,7 +12,13 @@ struct CameraPreviewView: UIViewRepresentable {
         return view
     }
 
-    func updateUIView(_ uiView: CameraUIView, context: Context) {}
+    func updateUIView(_ uiView: CameraUIView, context: Context) {
+        if isActive {
+            uiView.startSession()
+        } else {
+            uiView.stopSession()
+        }
+    }
 
     static func dismantleUIView(_ uiView: CameraUIView, coordinator: ()) {
         uiView.stopSession()
@@ -45,7 +52,15 @@ final class CameraUIView: UIView {
 
     func stopSession() {
         sessionQueue.async { [weak self] in
-            self?.captureSession?.stopRunning()
+            guard let session = self?.captureSession, session.isRunning else { return }
+            session.stopRunning()
+        }
+    }
+
+    func startSession() {
+        sessionQueue.async { [weak self] in
+            guard let session = self?.captureSession, !session.isRunning else { return }
+            session.startRunning()
         }
     }
 
@@ -92,16 +107,22 @@ final class CameraUIView: UIView {
 /// Delegate that reads the center pixel from each video frame
 private final class SampleDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     var onColorSampled: ((CGFloat, CGFloat, CGFloat) -> Void)?
-    private var frameCount = 0
+    private var frameCount: Int = 0
+    private let sampleInterval = 5
+    private let colorThreshold: CGFloat = 0.01 // ~2.5/255 — skip if delta < this
+    private var lastR: CGFloat = -1
+    private var lastG: CGFloat = -1
+    private var lastB: CGFloat = -1
 
     func captureOutput(
         _ output: AVCaptureOutput,
         didOutput sampleBuffer: CMSampleBuffer,
         from connection: AVCaptureConnection
     ) {
-        // Sample every 5th frame for performance
+        // Sample every Nth frame for performance
         frameCount += 1
-        guard frameCount % 5 == 0 else { return }
+        guard frameCount >= sampleInterval else { return }
+        frameCount = 0
 
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
 
@@ -122,6 +143,15 @@ private final class SampleDelegate: NSObject, AVCaptureVideoDataOutputSampleBuff
         let b = CGFloat(pointer[offset]) / 255.0
         let g = CGFloat(pointer[offset + 1]) / 255.0
         let r = CGFloat(pointer[offset + 2]) / 255.0
+
+        // Skip if color hasn't changed significantly — avoids unnecessary main thread dispatches
+        guard abs(r - lastR) > colorThreshold ||
+              abs(g - lastG) > colorThreshold ||
+              abs(b - lastB) > colorThreshold else { return }
+
+        lastR = r
+        lastG = g
+        lastB = b
 
         onColorSampled?(r, g, b)
     }
