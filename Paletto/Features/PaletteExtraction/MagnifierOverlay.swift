@@ -67,6 +67,12 @@ struct MagnifierOverlay: View {
                         magnifierView(at: pos, color: color, in: viewSize)
                     }
                 }
+                .accessibilityLabel("Color picker overlay. Use actions to pick colors.")
+                .accessibilityHint("Activate to pick the color at the center of the image")
+                .accessibilityAction(named: "Pick color at center") {
+                    onPick(CGPoint(x: 0.5, y: 0.5))
+                    onRelease()
+                }
         }
     }
 
