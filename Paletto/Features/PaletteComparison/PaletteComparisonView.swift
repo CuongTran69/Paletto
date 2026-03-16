@@ -37,6 +37,7 @@ struct PaletteComparisonView: View {
                             Image(systemName: "arrow.left.arrow.right")
                                 .foregroundStyle(SemanticColors.brandGradient)
                         }
+                        .accessibilityLabel("Swap palettes")
                     }
                 }
             }
@@ -108,6 +109,7 @@ struct PaletteComparisonView: View {
                                     .frame(width: 20, height: 20)
                             }
                         }
+                        .accessibilityHidden(true)
                         Text(selected.name)
                             .font(.body.weight(.medium))
                             .foregroundColor(SemanticColors.primaryText)
