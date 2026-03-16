@@ -241,5 +241,18 @@ enum L10n {
     static let widgetSetAs = "widget.set_as"
     static let widgetSetConfirm = "widget.set_confirm"
     static let widgetA11y = "widget.accessibility"
+
+    // MARK: - Errors
+    static let error = "error"
+    static let errorImageProcessing = "error.image_processing"
+    static let errorColorExtraction = "error.color_extraction"
+    static let errorFileIO = "error.file_io"
+    static let errorInvalidData = "error.invalid_data"
+    static let errorCameraUnavailable = "error.camera_unavailable"
+    static let errorCameraPermissionDenied = "error.camera_permission_denied"
+    static let errorUnknown = "error.unknown"
+    static let errorRecoveryCameraPermission = "error.recovery.camera_permission"
+    static let errorRecoveryCameraUnavailable = "error.recovery.camera_unavailable"
+    static let errorRecoveryDefault = "error.recovery.default"
 }
 
