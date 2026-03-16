@@ -86,6 +86,7 @@
 		EE11FF22AA334455BB006664 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB006663 /* SwiftUI.framework */; };
 		EE11FF22AA334455BB01000D /* PalettoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F71F86BEE26D4C3591E64999 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC9C95389B485C81EF9996 /* AppError.swift */; };
+		31AC3B342F56C00000AA7472 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +152,7 @@
 		7B9D0F4E8AF547109E6F1C90 /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		7C54CEA725EC4BB297B51D51 /* PaletteDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDetailViewModel.swift; sourceTree = "<group>"; };
 		8377131B06554E3280015AB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8579E9002CA346AD9B7546FA /* Pods-Paletto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paletto.release.xcconfig"; path = "Target Support Files/Pods-Paletto/Pods-Paletto.release.xcconfig"; sourceTree = "<group>"; };
 		8B44F79474684ADFBD077B7F /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		924FDFE7D30846E3A68FF9EF /* ColorExtractionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtractionService.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 			children = (
 				6035D005A09E47519B51D49D /* Assets.xcassets */,
 				8377131B06554E3280015AB0 /* Info.plist */,
+				31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 			files = (
 				31AC3B282F56BF9B00AA7472 /* en.json in Resources */,
 				31AC3B292F56BF9B00AA7472 /* vi.json in Resources */,
+				31AC3B342F56C00000AA7472 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
