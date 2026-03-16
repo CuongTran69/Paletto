@@ -1,5 +1,4 @@
 import Foundation
-import Combine
 
 /// Persists palettes as JSON files in Application Support directory
 final class PaletteStorageService: PaletteStorageServiceProtocol {
@@ -31,16 +30,16 @@ final class PaletteStorageService: PaletteStorageServiceProtocol {
 
     // MARK: - Public API
 
-    func save(_ palette: ColorPalette) -> AnyPublisher<Void, AppError> {
-        performFileOperation { [self] in
-            let data = try encoder.encode(palette)
-            let url = fileURL(for: palette.id)
+    func save(_ palette: ColorPalette) async throws {
+        try await performFileOperation {
+            let data = try self.encoder.encode(palette)
+            let url = self.fileURL(for: palette.id)
             try data.write(to: url, options: .atomic)
         }
     }
 
-    func loadAll() -> AnyPublisher<[ColorPalette], AppError> {
-        Future<[ColorPalette], AppError> { [self] promise in
+    func loadAll() async throws -> [ColorPalette] {
+        try await withCheckedThrowingContinuation { continuation in
             fileQueue.async { [self] in
                 do {
                     let files = try FileManager.default.contentsOfDirectory(
@@ -50,56 +49,51 @@ final class PaletteStorageService: PaletteStorageServiceProtocol {
 
                     let palettes = files.compactMap { url -> ColorPalette? in
                         guard let data = try? Data(contentsOf: url) else { return nil }
-                        return try? decoder.decode(ColorPalette.self, from: data)
+                        guard let palette = try? decoder.decode(ColorPalette.self, from: data) else { return nil }
+                        return PaletteMigration.migrateIfNeeded(palette)
                     }
                     .sorted { $0.createdAt > $1.createdAt }
 
-                    DispatchQueue.main.async { promise(.success(palettes)) }
+                    continuation.resume(returning: palettes)
                 } catch {
-                    DispatchQueue.main.async {
-                        promise(.failure(.fileIOError(error.localizedDescription)))
-                    }
+                    continuation.resume(throwing: AppError.fileIOError(error.localizedDescription))
                 }
             }
         }
-        .eraseToAnyPublisher()
     }
 
-    func load(id: UUID) -> AnyPublisher<ColorPalette?, AppError> {
-        Future<ColorPalette?, AppError> { [self] promise in
+    func load(id: UUID) async throws -> ColorPalette? {
+        try await withCheckedThrowingContinuation { continuation in
             fileQueue.async { [self] in
                 let url = fileURL(for: id)
                 guard FileManager.default.fileExists(atPath: url.path) else {
-                    DispatchQueue.main.async { promise(.success(nil)) }
+                    continuation.resume(returning: nil)
                     return
                 }
                 do {
                     let data = try Data(contentsOf: url)
                     let palette = try decoder.decode(ColorPalette.self, from: data)
-                    DispatchQueue.main.async { promise(.success(palette)) }
+                    continuation.resume(returning: PaletteMigration.migrateIfNeeded(palette))
                 } catch {
-                    DispatchQueue.main.async {
-                        promise(.failure(.fileIOError(error.localizedDescription)))
-                    }
+                    continuation.resume(throwing: AppError.fileIOError(error.localizedDescription))
                 }
             }
         }
-        .eraseToAnyPublisher()
     }
 
-    func delete(id: UUID) -> AnyPublisher<Void, AppError> {
-        performFileOperation { [self] in
-            let url = fileURL(for: id)
+    func delete(id: UUID) async throws {
+        try await performFileOperation {
+            let url = self.fileURL(for: id)
             if FileManager.default.fileExists(atPath: url.path) {
                 try FileManager.default.removeItem(at: url)
             }
         }
     }
 
-    func update(_ palette: ColorPalette) -> AnyPublisher<Void, AppError> {
+    func update(_ palette: ColorPalette) async throws {
         var updated = palette
         updated.updatedAt = Date()
-        return save(updated)
+        try await save(updated)
     }
 
     // MARK: - Private
@@ -117,20 +111,17 @@ final class PaletteStorageService: PaletteStorageServiceProtocol {
 
     private func performFileOperation(
         _ operation: @escaping () throws -> Void
-    ) -> AnyPublisher<Void, AppError> {
-        Future<Void, AppError> { [self] promise in
+    ) async throws {
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             fileQueue.async {
                 do {
                     try operation()
-                    DispatchQueue.main.async { promise(.success(())) }
+                    continuation.resume()
                 } catch {
-                    DispatchQueue.main.async {
-                        promise(.failure(.fileIOError(error.localizedDescription)))
-                    }
+                    continuation.resume(throwing: AppError.fileIOError(error.localizedDescription))
                 }
             }
         }
-        .eraseToAnyPublisher()
     }
 }
 

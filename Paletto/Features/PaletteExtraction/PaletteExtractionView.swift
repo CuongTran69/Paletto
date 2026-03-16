@@ -1,6 +1,5 @@
 import SwiftUI
 import PhotosUI
-import Combine
 
 /// Main extraction screen: pick photo → extract palette → tap-to-pick
 struct PaletteExtractionView: View {
@@ -9,6 +8,8 @@ struct PaletteExtractionView: View {
     @State private var paletteName = ""
     @State private var savedPalette: ColorPalette?
     @State private var navigateToDetail = false
+    @State private var showSaveError = false
+    @State private var saveErrorMessage = ""
 
     var body: some View {
         NavigationStack {
@@ -57,6 +58,11 @@ struct PaletteExtractionView: View {
                     ImageAnalysisView(result: result)
                 }
             }
+            .alert(L10n.error.localized, isPresented: $showSaveError) {
+                Button(L10n.done.localized, role: .cancel) {}
+            } message: {
+                Text(saveErrorMessage)
+            }
         }
     }
 
@@ -65,7 +71,7 @@ struct PaletteExtractionView: View {
     @ViewBuilder
     private var imageSection: some View {
         if let image = viewModel.selectedImage {
-            let maxImageHeight = UIScreen.main.bounds.height * 0.65
+            let maxImageHeight: CGFloat = 500
 
             ZStack {
                 Image(uiImage: image)
@@ -216,18 +222,17 @@ struct PaletteExtractionView: View {
     // MARK: - Actions
 
     private func performSave() {
-        viewModel.savePalette(name: paletteName)
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { palette in
-                    savedPalette = palette
-                    navigateToDetail = true
-                    paletteName = ""
-                }
-            )
-            .store(in: &saveCancellables)
+        Task { @MainActor in
+            do {
+                let palette = try await viewModel.savePalette(name: paletteName)
+                savedPalette = palette
+                navigateToDetail = true
+                paletteName = ""
+            } catch {
+                saveErrorMessage = error.localizedDescription
+                showSaveError = true
+            }
+        }
     }
-
-    @State private var saveCancellables = Set<AnyCancellable>()
 }
 

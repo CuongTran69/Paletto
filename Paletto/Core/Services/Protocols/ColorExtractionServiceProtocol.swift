@@ -1,5 +1,4 @@
 import UIKit
-import Combine
 
 /// Protocol for extracting dominant colors from images
 protocol ColorExtractionServiceProtocol {
@@ -7,8 +6,8 @@ protocol ColorExtractionServiceProtocol {
     /// - Parameters:
     ///   - image: Source image
     ///   - count: Number of colors to extract (default 5)
-    /// - Returns: Publisher emitting array of PaletteColor
-    func extractColors(from image: UIImage, count: Int) -> AnyPublisher<[PaletteColor], AppError>
+    /// - Returns: Array of extracted PaletteColor
+    func extractColors(from image: UIImage, count: Int) async throws -> [PaletteColor]
 
     /// Get the exact color at a specific point in the image
     /// - Parameters:

@@ -1,5 +1,4 @@
 import SwiftUI
-import Combine
 
 /// Camera screen for picking colors from the real world
 struct CameraColorPickerView: View {
@@ -8,8 +7,9 @@ struct CameraColorPickerView: View {
     @State private var savedPalette: ColorPalette?
     @State private var showSaveDialog = false
     @State private var paletteName = ""
-    @State private var saveCancellable: AnyCancellable?
     @State private var isCameraActive = false
+    @State private var showSaveError = false
+    @State private var saveErrorMessage = ""
 
     var body: some View {
         NavigationStack {
@@ -46,6 +46,11 @@ struct CameraColorPickerView: View {
             }
             .onDisappear {
                 isCameraActive = false
+            }
+            .alert(L10n.error.localized, isPresented: $showSaveError) {
+                Button(L10n.done.localized, role: .cancel) {}
+            } message: {
+                Text(saveErrorMessage)
             }
         }
     }
@@ -218,23 +223,16 @@ struct CameraColorPickerView: View {
     // MARK: - Actions
 
     private func savePalette() {
-        let palette = ColorPalette(
-            name: paletteName.isEmpty ? L10n.cameraSaveDefault.localized : paletteName,
-            colors: viewModel.pickedColors
-        )
-        let storage = PaletteStorageService()
-        saveCancellable = storage.save(palette)
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { [self] in
-                    savedPalette = palette
-                    navigateToDetail = true
-                    paletteName = ""
-                }
-            )
+        Task {
+            do {
+                let palette = try await viewModel.savePalette(name: paletteName)
+                savedPalette = palette
+                navigateToDetail = true
+            } catch {
+                saveErrorMessage = error.localizedDescription
+                showSaveError = true
+            }
+        }
     }
 }
-
-import Combine
 

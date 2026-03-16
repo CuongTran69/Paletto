@@ -39,5 +39,8 @@ protocol ContrastCheckerServiceProtocol {
         against background: PaletteColor,
         targetLevel: WCAGLevel
     ) -> PaletteColor?
+
+    /// Update contrast matrix for a single changed color (O(n) instead of O(n²))
+    func updateContrastMatrix(_ matrix: [[ContrastResult]], forColorAt index: Int, in colors: [PaletteColor]) -> [[ContrastResult]]
 }
 

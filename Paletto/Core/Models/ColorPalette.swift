@@ -8,6 +8,11 @@ struct ColorPalette: Codable, Identifiable, Equatable {
     let createdAt: Date
     var updatedAt: Date
     var sourceImageData: Data?
+    var version: Int
+
+    private enum CodingKeys: String, CodingKey {
+        case id, name, colors, createdAt, updatedAt, sourceImageData, version
+    }
 
     init(
         id: UUID = UUID(),
@@ -15,7 +20,8 @@ struct ColorPalette: Codable, Identifiable, Equatable {
         colors: [PaletteColor] = [],
         createdAt: Date = Date(),
         updatedAt: Date = Date(),
-        sourceImageData: Data? = nil
+        sourceImageData: Data? = nil,
+        version: Int = 1
     ) {
         self.id = id
         self.name = name
@@ -23,6 +29,18 @@ struct ColorPalette: Codable, Identifiable, Equatable {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.sourceImageData = sourceImageData
+        self.version = version
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        colors = try container.decode([PaletteColor].self, forKey: .colors)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+        sourceImageData = try container.decodeIfPresent(Data.self, forKey: .sourceImageData)
+        version = try container.decodeIfPresent(Int.self, forKey: .version) ?? 1
     }
 
     /// Returns colors filtered by a specific role
@@ -45,12 +63,16 @@ struct ColorPalette: Codable, Identifiable, Equatable {
         colors.allSatisfy { $0.role != nil }
     }
 
-    /// Formatted creation date
-    var formattedDate: String {
+    private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        return formatter.string(from: createdAt)
+        return formatter
+    }()
+
+    /// Formatted creation date
+    var formattedDate: String {
+        Self.dateFormatter.string(from: createdAt)
     }
 }
 

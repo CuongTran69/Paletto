@@ -1,5 +1,4 @@
 import SwiftUI
-import Combine
 
 /// Color harmony generator view — shows harmonious colors from a source color
 struct ColorHarmonyView: View {
@@ -9,6 +8,8 @@ struct ColorHarmonyView: View {
     @State private var paletteName = ""
     @State private var showCopiedIndex: Int?
     @State private var isSaving = false
+    @State private var showSaveError = false
+    @State private var saveErrorMessage = ""
 
     init(sourceColor: PaletteColor) {
         _viewModel = StateObject(wrappedValue: ColorHarmonyViewModel(sourceColor: sourceColor))
@@ -41,6 +42,11 @@ struct ColorHarmonyView: View {
                 TextField(L10n.harmonySavePlaceholder.localized, text: $paletteName)
                 Button(L10n.save.localized) { savePalette() }
                 Button(L10n.cancel.localized, role: .cancel) { }
+            }
+            .alert("Error", isPresented: $showSaveError) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(saveErrorMessage)
             }
             .accessibilityElement(children: .contain)
             .accessibilityLabel(L10n.harmonyA11y.localized)
@@ -200,20 +206,18 @@ struct ColorHarmonyView: View {
 
     private func savePalette() {
         isSaving = true
-        var cancellable: AnyCancellable?
-        cancellable = viewModel.savePalette(name: paletteName)
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { _ in
-                    isSaving = false
-                    cancellable?.cancel()
-                },
-                receiveValue: { _ in
-                    if SettingsManager.shared.hapticFeedbackEnabled {
-                        UINotificationFeedbackGenerator().notificationOccurred(.success)
-                    }
-                    dismiss()
+        Task { @MainActor in
+            do {
+                _ = try await viewModel.savePalette(name: paletteName)
+                if SettingsManager.shared.hapticFeedbackEnabled {
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
                 }
-            )
+                dismiss()
+            } catch {
+                saveErrorMessage = error.localizedDescription
+                showSaveError = true
+            }
+            isSaving = false
+        }
     }
 }

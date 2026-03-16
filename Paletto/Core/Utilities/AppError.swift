@@ -13,30 +13,30 @@ enum AppError: LocalizedError, Equatable {
     var errorDescription: String? {
         switch self {
         case .imageProcessingFailed(let detail):
-            return "Image processing failed: \(detail)"
+            return L10n.errorImageProcessing.localized(args: ["detail": detail])
         case .colorExtractionFailed(let detail):
-            return "Color extraction failed: \(detail)"
+            return L10n.errorColorExtraction.localized(args: ["detail": detail])
         case .fileIOError(let detail):
-            return "File error: \(detail)"
+            return L10n.errorFileIO.localized(args: ["detail": detail])
         case .invalidData(let detail):
-            return "Invalid data: \(detail)"
+            return L10n.errorInvalidData.localized(args: ["detail": detail])
         case .cameraUnavailable:
-            return "Camera is not available on this device"
+            return L10n.errorCameraUnavailable.localized
         case .cameraPermissionDenied:
-            return "Camera access was denied. Please enable it in Settings."
+            return L10n.errorCameraPermissionDenied.localized
         case .unknown(let detail):
-            return "An unexpected error occurred: \(detail)"
+            return L10n.errorUnknown.localized(args: ["detail": detail])
         }
     }
 
     var recoverySuggestion: String? {
         switch self {
         case .cameraPermissionDenied:
-            return "Go to Settings > Paletto > Camera to enable access."
+            return L10n.errorRecoveryCameraPermission.localized
         case .cameraUnavailable:
-            return "Try using the photo picker instead."
+            return L10n.errorRecoveryCameraUnavailable.localized
         default:
-            return "Please try again."
+            return L10n.errorRecoveryDefault.localized
         }
     }
 }

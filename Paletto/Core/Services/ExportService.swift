@@ -1,7 +1,7 @@
 import UIKit
 
 /// Generates export content in various formats
-final class ExportService {
+final class ExportService: ExportServiceProtocol {
 
     // MARK: - Export as Image
 

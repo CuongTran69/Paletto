@@ -1,5 +1,4 @@
 import SwiftUI
-import Combine
 
 /// ViewModel for palette comparison screen
 final class PaletteComparisonViewModel: ObservableObject {
@@ -12,7 +11,6 @@ final class PaletteComparisonViewModel: ObservableObject {
 
     private let comparisonService: PaletteComparisonServiceProtocol
     private let storageService: PaletteStorageServiceProtocol
-    private var cancellables = Set<AnyCancellable>()
 
     init(
         comparisonService: PaletteComparisonServiceProtocol = PaletteComparisonService(),
@@ -24,17 +22,14 @@ final class PaletteComparisonViewModel: ObservableObject {
 
     func loadPalettes() {
         isLoading = true
-        storageService.loadAll()
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { [weak self] _ in
-                    self?.isLoading = false
-                },
-                receiveValue: { [weak self] palettes in
-                    self?.palettes = palettes
-                }
-            )
-            .store(in: &cancellables)
+        Task { @MainActor in
+            do {
+                palettes = try await storageService.loadAll()
+            } catch {
+                // Silently fail — empty list is shown
+            }
+            isLoading = false
+        }
     }
 
     func selectPalette1(_ palette: ColorPalette) {

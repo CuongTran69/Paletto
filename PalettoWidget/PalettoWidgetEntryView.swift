@@ -82,6 +82,7 @@ struct PalettoWidgetEntryView: View {
             Image(systemName: "paintpalette")
                 .font(.title2)
                 .foregroundColor(.secondary)
+            // Widget extension cannot share the app's JSON localization bundle
             Text("Set a palette\nin Paletto")
                 .font(.caption2)
                 .foregroundColor(.secondary)

@@ -15,10 +15,9 @@ struct ContrastMatrixView: View {
         var id: String { "\(row)-\(col)" }
     }
 
+    @ViewBuilder
     var body: some View {
-        if colors.isEmpty || matrix.isEmpty { return AnyView(EmptyView()) }
-
-        return AnyView(
+        if !colors.isEmpty && !matrix.isEmpty {
             VStack(spacing: 10) {
                 // Matrix grid
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -86,7 +85,7 @@ struct ContrastMatrixView: View {
                     .foregroundColor(SemanticColors.secondaryText)
                     .frame(maxWidth: .infinity, alignment: .center)
             }
-        )
+        }
     }
 
     private func contrastCell(result: ContrastResult, row: Int, col: Int) -> some View {
