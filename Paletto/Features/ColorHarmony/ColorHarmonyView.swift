@@ -43,8 +43,8 @@ struct ColorHarmonyView: View {
                 Button(L10n.save.localized) { savePalette() }
                 Button(L10n.cancel.localized, role: .cancel) { }
             }
-            .alert("Error", isPresented: $showSaveError) {
-                Button("OK", role: .cancel) {}
+            .alert(L10n.error.localized, isPresented: $showSaveError) {
+                Button(L10n.done.localized, role: .cancel) {}
             } message: {
                 Text(saveErrorMessage)
             }
