@@ -95,6 +95,7 @@ struct CameraColorPickerView: View {
                 .frame(width: 5, height: 5)
                 .shadow(color: .black.opacity(0.3), radius: 1)
         }
+        .accessibilityHidden(true)
     }
 
     private var bottomPanel: some View {
@@ -133,6 +134,7 @@ struct CameraColorPickerView: View {
                     .buttonStyle(.scale)
                     .accessibilityLabel(L10n.cameraAddA11y.localized)
                 }
+                .accessibilityElement(children: .combine)
             }
 
             // Picked colors strip
@@ -147,6 +149,7 @@ struct CameraColorPickerView: View {
                                 RoundedRectangle(cornerRadius: Constants.UI.smallCornerRadius)
                                     .strokeBorder(SemanticColors.glassBorder, lineWidth: 0.5)
                             )
+                            .accessibilityLabel("Picked color \(color.hex)")
                     }
                     Spacer()
                     if viewModel.pickedColors.count >= 2 {
@@ -181,6 +184,7 @@ struct CameraColorPickerView: View {
                     .font(.system(size: 36, weight: .medium))
                     .foregroundStyle(SemanticColors.brandGradient)
             }
+            .accessibilityHidden(true)
             Text(L10n.cameraPermissionTitle.localized)
                 .font(.title3.weight(.semibold))
             Text(L10n.cameraPermissionMessage.localized)
@@ -211,6 +215,7 @@ struct CameraColorPickerView: View {
                     .font(.system(size: 36, weight: .medium))
                     .foregroundStyle(SemanticColors.brandGradient)
             }
+            .accessibilityHidden(true)
             Text(L10n.cameraUnavailableTitle.localized)
                 .font(.title3.weight(.semibold))
             Text(L10n.cameraUnavailableMessage.localized)
