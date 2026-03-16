@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		015DF937F92549AEACD95397 /* ColorSwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771928A5DBEF4660A1295571 /* ColorSwatchView.swift */; };
 		01D775A6627047C0B4D003A5 /* PalettoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC586F0D6745F59BA8A4E9 /* PalettoApp.swift */; };
+		0B79A22645AD0882954D74D9 /* Pods_Paletto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5DEEC4EEC14A98D05047D7B /* Pods_Paletto.framework */; };
 		1142158C5CF04766AE29956D /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9D0F4E8AF547109E6F1C90 /* ExportService.swift */; };
 		11FF22AA33445566DD001112 /* SettingsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FF22AA33445566DD001111 /* SettingsManagerProtocol.swift */; };
 		11FF22AA33445566DD002222 /* ThemeManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FF22AA33445566DD002221 /* ThemeManagerProtocol.swift */; };
@@ -26,6 +27,7 @@
 		31AC3B2E2F56BFA800AA7472 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2C2F56BFA800AA7472 /* ThemeManager.swift */; };
 		31AC3B2F2F56BFA800AA7472 /* SemanticColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */; };
 		31AC3B302F56BFA800AA7472 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */; };
+		31AC3B342F56C00000AA7472 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */; };
 		360DD708474C4118A45DD0E5 /* CameraColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */; };
 		3BC3385CC34147B89778CD5E /* PaletteExtractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05982726EB83401D81064FAF /* PaletteExtractionView.swift */; };
 		3CB0E451D06248EEB90FCB42 /* ColorExtractionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD64A69E2394EBBA94E014D /* ColorExtractionServiceProtocol.swift */; };
@@ -36,7 +38,6 @@
 		4F448288DD99417D87208A19 /* ContrastMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A92CB4B5E3418A93FD87FF /* ContrastMatrixView.swift */; };
 		4FC891B65A0340C9BD025035 /* PaletteStorageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610C4D7B4F2A4E9DACCB5465 /* PaletteStorageServiceProtocol.swift */; };
 		62386FEE2FAC48168FFFB923 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A62FB930A14D83856D577E /* PhotoPickerView.swift */; };
-		67E610A1259D797218D86F64 /* Pods_Paletto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A0064394A2D254C311C5E0 /* Pods_Paletto.framework */; };
 		6C300D98784249C19108987F /* PaletteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265392EB11B94C98A1190CC0 /* PaletteDetailView.swift */; };
 		7AFBA1C6D17946E69ADA75EB /* PaletteExtractionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693D29ECDD7844DEB665D56B /* PaletteExtractionViewModel.swift */; };
 		968A35420708441AAF3677BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF98BA01CC84686AB3C71B8 /* Constants.swift */; };
@@ -114,7 +115,6 @@
 
 /* Begin PBXFileReference section */
 		05982726EB83401D81064FAF /* PaletteExtractionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteExtractionView.swift; sourceTree = "<group>"; };
-		0C0975CF05EFABBEDB3761E8 /* Pods-Paletto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paletto.debug.xcconfig"; path = "Target Support Files/Pods-Paletto/Pods-Paletto.debug.xcconfig"; sourceTree = "<group>"; };
 		0DEBEEF609084DF7A05501C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0FD64A69E2394EBBA94E014D /* ColorExtractionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtractionServiceProtocol.swift; sourceTree = "<group>"; };
 		11E0123D84194584A96AA97F /* ExportFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportFormat.swift; sourceTree = "<group>"; };
@@ -122,10 +122,10 @@
 		11FF22AA33445566DD002221 /* ThemeManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManagerProtocol.swift; sourceTree = "<group>"; };
 		14A0C2C5F9944EF09F784558 /* PaletteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteListViewModel.swift; sourceTree = "<group>"; };
 		16FC1BBF240C466FB9E5BAB7 /* CameraColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraColorPickerView.swift; sourceTree = "<group>"; };
-		18A0064394A2D254C311C5E0 /* Pods_Paletto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Paletto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		265392EB11B94C98A1190CC0 /* PaletteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDetailView.swift; sourceTree = "<group>"; };
 		27064BA2BE3D497F98909EF7 /* PreviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCardView.swift; sourceTree = "<group>"; };
 		2C8EB4D0F31D46FC890934FF /* Color+CIELAB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CIELAB.swift"; sourceTree = "<group>"; };
+		2CF480A1E7B6DF3D91925C9E /* Pods-Paletto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paletto.release.xcconfig"; path = "Target Support Files/Pods-Paletto/Pods-Paletto.release.xcconfig"; sourceTree = "<group>"; };
 		2EAC9C95389B485C81EF9996 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		316D8F882F6792B30077117D /* ExportServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportServiceProtocol.swift; sourceTree = "<group>"; };
 		31AC3B1D2F56BF9B00AA7472 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
@@ -137,6 +137,8 @@
 		31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticColors.swift; sourceTree = "<group>"; };
 		31AC3B2C2F56BFA800AA7472 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		37F97B2B5A4296B730952981 /* Pods-Paletto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paletto.debug.xcconfig"; path = "Target Support Files/Pods-Paletto/Pods-Paletto.debug.xcconfig"; sourceTree = "<group>"; };
 		417024EA71DB4822850C7BCB /* ContrastCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastCheckerService.swift; sourceTree = "<group>"; };
 		417BF25FFE2446B387ACC44B /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		4E5B596F062D429582AEEFF5 /* PaletteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteListView.swift; sourceTree = "<group>"; };
@@ -151,7 +153,6 @@
 		7B9D0F4E8AF547109E6F1C90 /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		7C54CEA725EC4BB297B51D51 /* PaletteDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDetailViewModel.swift; sourceTree = "<group>"; };
 		8377131B06554E3280015AB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8579E9002CA346AD9B7546FA /* Pods-Paletto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paletto.release.xcconfig"; path = "Target Support Files/Pods-Paletto/Pods-Paletto.release.xcconfig"; sourceTree = "<group>"; };
 		8B44F79474684ADFBD077B7F /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		924FDFE7D30846E3A68FF9EF /* ColorExtractionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtractionService.swift; sourceTree = "<group>"; };
 		9459CAECB520424BAA2252FF /* ContrastCheckerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastCheckerServiceProtocol.swift; sourceTree = "<group>"; };
@@ -185,6 +186,7 @@
 		DD11EE22FF334455AA002221 /* SharePaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePaletteView.swift; sourceTree = "<group>"; };
 		DD11EE22FF334455AA003331 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
 		E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraColorPickerViewModel.swift; sourceTree = "<group>"; };
+		E5DEEC4EEC14A98D05047D7B /* Pods_Paletto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Paletto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDCC586F0D6745F59BA8A4E9 /* PalettoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoApp.swift; sourceTree = "<group>"; };
 		EE11FF22AA334455BB001111 /* PalettoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoWidget.swift; sourceTree = "<group>"; };
 		EE11FF22AA334455BB002221 /* PalettoWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoWidgetEntryView.swift; sourceTree = "<group>"; };
@@ -207,7 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67E610A1259D797218D86F64 /* Pods_Paletto.framework in Frameworks */,
+				0B79A22645AD0882954D74D9 /* Pods_Paletto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,9 +231,9 @@
 				BE8403CF78C44C62BDBA331D /* Paletto */,
 				1753CF80A7D84843B60B8951 /* Products */,
 				EE11FF22AA334455BB010006 /* PalettoWidget */,
-				3C574BC42870709B54BFBFE6 /* Pods */,
 				6D58E597868DF4FD6D507EC6 /* Frameworks */,
 				31AC3B3B2F58224300AA7472 /* Recovered References */,
+				ED35C5E82B37DAFFAD30032F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -300,15 +302,6 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		3C574BC42870709B54BFBFE6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0C0975CF05EFABBEDB3761E8 /* Pods-Paletto.debug.xcconfig */,
-				8579E9002CA346AD9B7546FA /* Pods-Paletto.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		3EFCDB71610540B5967CB03D /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,7 +334,7 @@
 		6D58E597868DF4FD6D507EC6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				18A0064394A2D254C311C5E0 /* Pods_Paletto.framework */,
+				E5DEEC4EEC14A98D05047D7B /* Pods_Paletto.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -439,6 +432,7 @@
 			children = (
 				6035D005A09E47519B51D49D /* Assets.xcassets */,
 				8377131B06554E3280015AB0 /* Info.plist */,
+				31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -508,6 +502,16 @@
 			path = Sharing;
 			sourceTree = "<group>";
 		};
+		ED35C5E82B37DAFFAD30032F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				37F97B2B5A4296B730952981 /* Pods-Paletto.debug.xcconfig */,
+				2CF480A1E7B6DF3D91925C9E /* Pods-Paletto.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EE11FF22AA334455BB010006 /* PalettoWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -547,7 +551,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC067FFF28B3434B969FECF9 /* Build configuration list for PBXNativeTarget "Paletto" */;
 			buildPhases = (
-				6B5CA676C4D4D3D28E3268C7 /* [CP] Check Pods Manifest.lock */,
+				F92BE0E92586BD8632D683D1 /* [CP] Check Pods Manifest.lock */,
 				29844B6ED2D544B48A957B26 /* Sources */,
 				0418CA94AB5549D7B55C62ED /* Frameworks */,
 				2152A89388FB46C59D35F99A /* Resources */,
@@ -616,6 +620,7 @@
 			files = (
 				31AC3B282F56BF9B00AA7472 /* en.json in Resources */,
 				31AC3B292F56BF9B00AA7472 /* vi.json in Resources */,
+				31AC3B342F56C00000AA7472 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +634,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6B5CA676C4D4D3D28E3268C7 /* [CP] Check Pods Manifest.lock */ = {
+		F92BE0E92586BD8632D683D1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -754,7 +759,7 @@
 /* Begin XCBuildConfiguration section */
 		55E89EC0655143848D645FA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C0975CF05EFABBEDB3761E8 /* Pods-Paletto.debug.xcconfig */;
+			baseConfigurationReference = 37F97B2B5A4296B730952981 /* Pods-Paletto.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -810,7 +815,7 @@
 		};
 		BDD69ED25D9F4CEAA67F0E19 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8579E9002CA346AD9B7546FA /* Pods-Paletto.release.xcconfig */;
+			baseConfigurationReference = 2CF480A1E7B6DF3D91925C9E /* Pods-Paletto.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

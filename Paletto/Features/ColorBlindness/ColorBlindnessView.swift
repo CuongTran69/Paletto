@@ -236,6 +236,7 @@ struct ColorBlindnessView: View {
                         RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
                             .strokeBorder(SemanticColors.warning.opacity(0.3), lineWidth: 0.5)
                     )
+                    .accessibilityElement(children: .combine)
                 }
             }
         }

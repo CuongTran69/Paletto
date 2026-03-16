@@ -34,6 +34,7 @@ struct ContrastMatrixView: View {
                                         RoundedRectangle(cornerRadius: Constants.UI.smallCornerRadius)
                                             .strokeBorder(SemanticColors.glassBorder, lineWidth: 0.5)
                                     )
+                                    .accessibilityLabel(color.hex)
                             }
                         }
 
@@ -48,6 +49,7 @@ struct ContrastMatrixView: View {
                                         RoundedRectangle(cornerRadius: Constants.UI.smallCornerRadius)
                                             .strokeBorder(SemanticColors.glassBorder, lineWidth: 0.5)
                                     )
+                                    .accessibilityLabel(rowColor.hex)
 
                                 ForEach(Array(colors.enumerated()), id: \.element.id) { j, _ in
                                     if i < matrix.count, j < matrix[i].count {
@@ -122,6 +124,7 @@ struct ContrastMatrixView: View {
                     }
                 }
         )
+        .accessibilityHint("Long press for detailed contrast information")
         .popover(isPresented: isShowingTooltip, arrowEdge: .top) {
             tooltipContent(result: result, row: row, col: col)
         }

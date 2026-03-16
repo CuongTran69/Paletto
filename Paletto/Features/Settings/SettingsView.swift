@@ -63,7 +63,7 @@ struct SettingsView: View {
                     Toggle("", isOn: $hapticEnabled)
                         .labelsHidden()
                         .tint(SemanticColors.gradientStart)
-                        .onChange(of: hapticEnabled) { newValue in
+                        .onChangeCompat(of: hapticEnabled) { newValue in
                             SettingsManager.shared.hapticFeedbackEnabled = newValue
                         }
                 }
@@ -71,7 +71,7 @@ struct SettingsView: View {
                 settingsRow(icon: "number.circle.fill", title: L10n.settingsColorCount.localized) {
                     Stepper("\(defaultColorCount)", value: $defaultColorCount,
                             in: Constants.Palette.minColorCount...Constants.Palette.maxColorCount)
-                        .onChange(of: defaultColorCount) { newValue in
+                        .onChangeCompat(of: defaultColorCount) { newValue in
                             SettingsManager.shared.defaultColorCount = newValue
                         }
                 }
@@ -84,7 +84,7 @@ struct SettingsView: View {
                     }
                     .labelsHidden()
                     .tint(SemanticColors.gradientStart)
-                    .onChange(of: defaultExportFormat) { newValue in
+                    .onChangeCompat(of: defaultExportFormat) { newValue in
                         SettingsManager.shared.defaultExportFormat = newValue
                     }
                 }
@@ -140,6 +140,25 @@ struct SettingsView: View {
             trailing()
         }
         .padding(.vertical, 4)
+    }
+}
+
+// MARK: - Availability-safe onChange wrapper
+
+private extension View {
+    /// Uses the iOS 17 two-parameter `onChange` when available, falls back to the
+    /// deprecated single-parameter overload on iOS 16.
+    @ViewBuilder
+    func onChangeCompat<V: Equatable>(of value: V, perform action: @escaping (V) -> Void) -> some View {
+        if #available(iOS 17.0, *) {
+            self.onChange(of: value) { _, newValue in
+                action(newValue)
+            }
+        } else {
+            self.onChange(of: value) { newValue in
+                action(newValue)
+            }
+        }
     }
 }
 

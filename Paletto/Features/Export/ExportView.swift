@@ -32,6 +32,7 @@ struct ExportView: View {
                             .aspectRatio(contentMode: .fit)
                             .cornerRadius(Constants.UI.cornerRadiusLarge)
                             .shadow(color: SemanticColors.glassShadow, radius: Constants.UI.shadowRadiusMedium, y: 3)
+                            .accessibilityLabel("Exported palette image for \(palette.name)")
                     } else {
                         Text(exportedContent)
                             .font(.system(.caption, design: .monospaced))

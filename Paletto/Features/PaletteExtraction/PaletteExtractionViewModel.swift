@@ -80,6 +80,9 @@ final class PaletteExtractionViewModel: ObservableObject {
 
         let bytesPerPixel = 4
         let offset = (y * cachedImageWidth + x) * bytesPerPixel
+
+        guard offset + bytesPerPixel - 1 < cachedPixelData!.count else { return }
+
         let r = CGFloat(cachedPixelData![offset]) / 255.0
         let g = CGFloat(cachedPixelData![offset + 1]) / 255.0
         let b = CGFloat(cachedPixelData![offset + 2]) / 255.0

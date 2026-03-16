@@ -7,3 +7,4 @@ target 'Paletto' do
   # SwiftUI, PhotosUI, AVFoundation, CoreImage, Charts are all built-in
 
 end
+
