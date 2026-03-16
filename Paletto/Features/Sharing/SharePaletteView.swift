@@ -51,6 +51,7 @@ struct SharePaletteView: View {
                     RoundedRectangle(cornerRadius: Constants.UI.smallCornerRadius)
                         .fill(color.color)
                         .frame(height: 40)
+                        .accessibilityLabel(color.hex)
                 }
             }
             .cornerRadius(Constants.UI.cornerRadius)
@@ -125,6 +126,7 @@ struct SharePaletteView: View {
                     .background(Color.white)
                     .cornerRadius(Constants.UI.cornerRadius)
                     .frame(maxWidth: .infinity)
+                    .accessibilityLabel("QR code for sharing palette \(palette.name)")
             }
         }
         .padding(Constants.UI.padding)
