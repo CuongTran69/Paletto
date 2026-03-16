@@ -80,6 +80,7 @@ struct ImageAnalysisView: View {
                     RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
                         .strokeBorder(SemanticColors.glassBorder, lineWidth: 0.5)
                 )
+                .accessibilityElement(children: .combine)
             }
         }
     }
@@ -104,6 +105,7 @@ struct ImageAnalysisView: View {
                 .cornerRadius(Constants.UI.smallCornerRadius)
             }
             .frame(height: 24)
+            .accessibilityHidden(true)
 
             HStack {
                 Label(String(format: "%@ %.0f%%", L10n.analysisWarm.localized, result.warmPercentage),
@@ -205,6 +207,7 @@ struct ImageAnalysisView: View {
                 .cornerRadius(Constants.UI.smallCornerRadius)
             }
             .frame(height: 20)
+            .accessibilityHidden(true)
 
             HStack {
                 distributionLabel(labels.0, value: breakdown.low, color: colors.0)
