@@ -1,21 +1,11 @@
 import Foundation
-import Combine
 
 /// Protocol for persisting and retrieving palettes
 protocol PaletteStorageServiceProtocol {
-    /// Save a palette to storage
-    func save(_ palette: ColorPalette) -> AnyPublisher<Void, AppError>
-
-    /// Load all saved palettes
-    func loadAll() -> AnyPublisher<[ColorPalette], AppError>
-
-    /// Load a single palette by ID
-    func load(id: UUID) -> AnyPublisher<ColorPalette?, AppError>
-
-    /// Delete a palette by ID
-    func delete(id: UUID) -> AnyPublisher<Void, AppError>
-
-    /// Update an existing palette
-    func update(_ palette: ColorPalette) -> AnyPublisher<Void, AppError>
+    func save(_ palette: ColorPalette) async throws -> Void
+    func loadAll() async throws -> [ColorPalette]
+    func load(id: UUID) async throws -> ColorPalette?
+    func delete(id: UUID) async throws -> Void
+    func update(_ palette: ColorPalette) async throws -> Void
 }
 

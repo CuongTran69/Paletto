@@ -1,5 +1,4 @@
 import SwiftUI
-import Combine
 
 /// ViewModel for palette detail screen
 final class PaletteDetailViewModel: ObservableObject {
@@ -15,16 +14,18 @@ final class PaletteDetailViewModel: ObservableObject {
 
     private let contrastService: ContrastCheckerServiceProtocol
     private let storageService: PaletteStorageServiceProtocol
-    private var cancellables = Set<AnyCancellable>()
+    private let settingsManager: SettingsManagerProtocol
 
     init(
         palette: ColorPalette,
         contrastService: ContrastCheckerServiceProtocol = ContrastCheckerService(),
-        storageService: PaletteStorageServiceProtocol = PaletteStorageService()
+        storageService: PaletteStorageServiceProtocol = PaletteStorageService(),
+        settingsManager: SettingsManagerProtocol = SettingsManager.shared
     ) {
         self.palette = palette
         self.contrastService = contrastService
         self.storageService = storageService
+        self.settingsManager = settingsManager
         updateContrastMatrix()
     }
 
@@ -57,7 +58,7 @@ final class PaletteDetailViewModel: ObservableObject {
         let role = palette.colors[index].role
         palette.colors[index] = fixedColor
         palette.colors[index].role = role
-        updateContrastMatrix()
+        updateContrastForColor(at: index)
         save()
     }
 
@@ -68,7 +69,7 @@ final class PaletteDetailViewModel: ObservableObject {
 
     func copyHex(_ hex: String) {
         UIPasteboard.general.string = hex
-        if SettingsManager.shared.hapticFeedbackEnabled {
+        if settingsManager.hapticFeedbackEnabled {
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
         }
     }
@@ -81,7 +82,7 @@ final class PaletteDetailViewModel: ObservableObject {
     func setAsWidget() {
         SharedDataService.shared.setWidgetPalette(palette)
         showWidgetConfirmation = true
-        if SettingsManager.shared.hapticFeedbackEnabled {
+        if settingsManager.hapticFeedbackEnabled {
             UINotificationFeedbackGenerator().notificationOccurred(.success)
         }
     }
@@ -92,17 +93,20 @@ final class PaletteDetailViewModel: ObservableObject {
         contrastMatrix = contrastService.contrastMatrix(for: palette.colors)
     }
 
+    private func updateContrastForColor(at index: Int) {
+        contrastMatrix = contrastService.updateContrastMatrix(contrastMatrix, forColorAt: index, in: palette.colors)
+    }
+
     private func save() {
         isSaving = true
-        storageService.update(palette)
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { [weak self] _ in
-                    self?.isSaving = false
-                },
-                receiveValue: { }
-            )
-            .store(in: &cancellables)
+        Task { @MainActor in
+            do {
+                try await storageService.update(palette)
+            } catch {
+                // Silently fail — UI already shows the updated state
+            }
+            isSaving = false
+        }
     }
 }
 

@@ -208,13 +208,19 @@
     }
   },
   "error": {
-    "imageprocessing": "Xử lý ảnh thất bại: {detail}",
-    "colorextraction": "Trích xuất màu thất bại: {detail}",
-    "fileio": "Lỗi tệp: {detail}",
-    "invaliddata": "Dữ liệu không hợp lệ: {detail}",
-    "camera.unavailable": "Camera không khả dụng trên thiết bị này",
-    "camera.denied": "Quyền truy cập Camera bị từ chối. Vui lòng bật trong Cài đặt.",
-    "unknown": "Đã xảy ra lỗi không mong muốn: {detail}"
+    "error": "Lỗi",
+    "image_processing": "Xử lý ảnh thất bại: {detail}",
+    "color_extraction": "Trích xuất màu thất bại: {detail}",
+    "file_io": "Lỗi tệp: {detail}",
+    "invalid_data": "Dữ liệu không hợp lệ: {detail}",
+    "camera_unavailable": "Camera không khả dụng trên thiết bị này",
+    "camera_permission_denied": "Quyền truy cập camera bị từ chối. Vui lòng bật trong Cài đặt.",
+    "unknown": "Đã xảy ra lỗi không mong muốn: {detail}",
+    "recovery": {
+      "camera_permission": "Vào Cài đặt > Paletto > Camera để bật quyền truy cập.",
+      "camera_unavailable": "Hãy thử sử dụng bộ chọn ảnh thay thế.",
+      "default": "Vui lòng thử lại."
+    }
   },
   "settings": {
     "title": "Cài đặt",

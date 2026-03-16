@@ -17,7 +17,7 @@ final class PaletteExtractionViewModel: ObservableObject {
     private let extractionService: ColorExtractionServiceProtocol
     private let storageService: PaletteStorageServiceProtocol
     private let analysisService: ImageAnalysisServiceProtocol
-    private var cancellables = Set<AnyCancellable>()
+    private let settingsManager: SettingsManagerProtocol
 
     // Cached pixel data for fast color picking during drag
     private var cachedPixelData: [UInt8]?
@@ -27,11 +27,13 @@ final class PaletteExtractionViewModel: ObservableObject {
     init(
         extractionService: ColorExtractionServiceProtocol = ColorExtractionService(),
         storageService: PaletteStorageServiceProtocol = PaletteStorageService(),
-        analysisService: ImageAnalysisServiceProtocol = ImageAnalysisService()
+        analysisService: ImageAnalysisServiceProtocol = ImageAnalysisService(),
+        settingsManager: SettingsManagerProtocol = SettingsManager.shared
     ) {
         self.extractionService = extractionService
         self.storageService = storageService
         self.analysisService = analysisService
+        self.settingsManager = settingsManager
     }
 
     // MARK: - Actions
@@ -39,7 +41,7 @@ final class PaletteExtractionViewModel: ObservableObject {
     func onImageSelected(_ image: UIImage) {
         let downsized = image.downsampledToFit(maxDimension: Constants.Image.maxDisplayDimension)
         selectedImage = downsized
-        cachePixelData(for: downsized)
+        Task { await cachePixelData(for: downsized) }
         extractColors()
     }
 
@@ -49,24 +51,21 @@ final class PaletteExtractionViewModel: ObservableObject {
         isExtracting = true
         errorMessage = nil
 
-        extractionService.extractColors(
-            from: image,
-            count: SettingsManager.shared.defaultColorCount
-        )
-        .receive(on: DispatchQueue.main)
-        .sink(
-            receiveCompletion: { [weak self] completion in
-                self?.isExtracting = false
-                if case .failure(let error) = completion {
-                    self?.errorMessage = error.localizedDescription
-                }
-            },
-            receiveValue: { [weak self] colors in
-                self?.extractedColors = colors
-                self?.triggerHaptic(.success)
+        Task {
+            do {
+                let colors = try await extractionService.extractColors(
+                    from: image,
+                    count: settingsManager.defaultColorCount
+                )
+                self.extractedColors = colors
+                self.triggerHaptic(.success)
+            } catch let error as AppError {
+                self.errorMessage = error.localizedDescription
+            } catch {
+                self.errorMessage = error.localizedDescription
             }
-        )
-        .store(in: &cancellables)
+            self.isExtracting = false
+        }
     }
 
     func pickColor(at normalizedPoint: CGPoint) {
@@ -126,16 +125,15 @@ final class PaletteExtractionViewModel: ObservableObject {
         extractedColors.move(fromOffsets: source, toOffset: destination)
     }
 
-    func savePalette(name: String) -> AnyPublisher<ColorPalette, AppError> {
+    func savePalette(name: String) async throws -> ColorPalette {
         let palette = ColorPalette(
             name: name.isEmpty ? L10n.extractionSaveDefault.localized : name,
             colors: extractedColors,
             sourceImageData: selectedImage?.jpegData(compressionQuality: 0.5)
         )
 
-        return storageService.save(palette)
-            .map { palette }
-            .eraseToAnyPublisher()
+        try await storageService.save(palette)
+        return palette
     }
 
     func reset() {
@@ -161,13 +159,18 @@ final class PaletteExtractionViewModel: ObservableObject {
     /// Cache full pixel buffer once when image is selected — O(1) lookup during drag.
     /// Uses UIGraphicsImageRenderer to bake UIImage orientation into pixel data,
     /// so the cached buffer matches exactly what SwiftUI displays on screen.
-    private func cachePixelData(for image: UIImage) {
-        // Use the UIImage size (points, orientation-aware) — NOT cgImage dimensions
-        // which ignore orientation metadata. This ensures the pixel buffer matches
-        // the on-screen rendering by SwiftUI's Image(uiImage:).
+    private func cachePixelData(for image: UIImage) async {
+        guard let result = await Self.buildPixelData(for: image) else { return }
+        cachedPixelData = result.data
+        cachedImageWidth = result.width
+        cachedImageHeight = result.height
+    }
+
+    /// Performs heavy CGContext work off the main thread.
+    private nonisolated static func buildPixelData(for image: UIImage) async -> (data: [UInt8], width: Int, height: Int)? {
         let width = Int(image.size.width)
         let height = Int(image.size.height)
-        guard width > 0, height > 0 else { return }
+        guard width > 0, height > 0 else { return nil }
 
         let bytesPerPixel = 4
         let bytesPerRow = bytesPerPixel * width
@@ -184,7 +187,7 @@ final class PaletteExtractionViewModel: ObservableObject {
                   bytesPerRow: bytesPerRow,
                   space: colorSpace,
                   bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-              ) else { return }
+              ) else { return nil }
 
         // Flip coordinate system — CGContext is bottom-left origin, UIKit is top-left
         context.translateBy(x: 0, y: CGFloat(height))
@@ -195,23 +198,21 @@ final class PaletteExtractionViewModel: ObservableObject {
         image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
         UIGraphicsPopContext()
 
-        cachedPixelData = rawData
-        cachedImageWidth = width
-        cachedImageHeight = height
+        return (rawData, width, height)
     }
 
     private func triggerHaptic(_ type: UINotificationFeedbackGenerator.FeedbackType) {
-        guard SettingsManager.shared.hapticFeedbackEnabled else { return }
+        guard settingsManager.hapticFeedbackEnabled else { return }
         UINotificationFeedbackGenerator().notificationOccurred(type)
     }
 
     private func triggerHaptic(_ style: UIImpactFeedbackGenerator.FeedbackStyle = .light) {
-        guard SettingsManager.shared.hapticFeedbackEnabled else { return }
+        guard settingsManager.hapticFeedbackEnabled else { return }
         UIImpactFeedbackGenerator(style: style).impactOccurred()
     }
 
     private func triggerSelectionHaptic() {
-        guard SettingsManager.shared.hapticFeedbackEnabled else { return }
+        guard settingsManager.hapticFeedbackEnabled else { return }
         UISelectionFeedbackGenerator().selectionChanged()
     }
 }

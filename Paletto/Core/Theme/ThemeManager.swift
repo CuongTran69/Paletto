@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Singleton managing app theme — controls light/dark/system mode
-final class ThemeManager: ObservableObject {
+final class ThemeManager: ThemeManagerProtocol {
 
     static let shared = ThemeManager()
 

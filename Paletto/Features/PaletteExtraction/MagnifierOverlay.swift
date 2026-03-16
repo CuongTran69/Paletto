@@ -8,6 +8,13 @@ struct MagnifierOverlay: View {
     let onPick: (CGPoint) -> Void
     let onRelease: () -> Void
 
+    /// Tracks when the drag started so we can enforce a 0.3s hold before activating.
+    @State private var dragStartTime: Date?
+    /// Whether the hold threshold has been met for the current gesture.
+    @State private var isActivated = false
+
+    private let activationDuration: TimeInterval = 0.3
+
     var body: some View {
         GeometryReader { geometry in
             // NOTE: This overlay sits directly on Image.resizable().aspectRatio(.fit),
@@ -17,11 +24,19 @@ struct MagnifierOverlay: View {
             Color.clear
                 .contentShape(Rectangle())
                 .gesture(
-                    LongPressGesture(minimumDuration: 0.3)
-                        .sequenced(before: DragGesture(minimumDistance: 0))
-                        .onChanged { value in
-                            // Only activate magnifier after long press succeeds
-                            guard case .second(true, let drag?) = value else { return }
+                    DragGesture(minimumDistance: 0)
+                        .onChanged { drag in
+                            // Record start time on first callback
+                            if dragStartTime == nil {
+                                dragStartTime = Date()
+                            }
+
+                            // Only activate after holding for the required duration
+                            guard isActivated || Date().timeIntervalSince(dragStartTime!) >= activationDuration else {
+                                return
+                            }
+                            isActivated = true
+
                             let location = drag.location
 
                             // Clamp to view bounds
@@ -40,7 +55,11 @@ struct MagnifierOverlay: View {
                             onPick(CGPoint(x: normalizedX, y: normalizedY))
                         }
                         .onEnded { _ in
-                            onRelease()
+                            if isActivated {
+                                onRelease()
+                            }
+                            dragStartTime = nil
+                            isActivated = false
                         }
                 )
                 .overlay {

@@ -1,6 +1,5 @@
 import SwiftUI
 import AVFoundation
-import Combine
 
 /// ViewModel for camera-based color picking
 final class CameraColorPickerViewModel: ObservableObject {
@@ -10,8 +9,19 @@ final class CameraColorPickerViewModel: ObservableObject {
     @Published var cameraPermission: CameraPermission = .unknown
     @Published var isCameraAvailable = true
 
+    private let storageService: PaletteStorageServiceProtocol
+    private let settingsManager: SettingsManagerProtocol
+
     enum CameraPermission {
         case unknown, authorized, denied, restricted
+    }
+
+    init(
+        storageService: PaletteStorageServiceProtocol = PaletteStorageService(),
+        settingsManager: SettingsManagerProtocol = SettingsManager.shared
+    ) {
+        self.storageService = storageService
+        self.settingsManager = settingsManager
     }
 
     func checkPermission() {
@@ -42,7 +52,7 @@ final class CameraColorPickerViewModel: ObservableObject {
         guard let color = currentColor else { return }
         guard pickedColors.count < Constants.Palette.maxColorCount else { return }
         pickedColors.append(color)
-        if SettingsManager.shared.hapticFeedbackEnabled {
+        if settingsManager.hapticFeedbackEnabled {
             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         }
     }
@@ -59,6 +69,15 @@ final class CameraColorPickerViewModel: ObservableObject {
     func openSettings() {
         guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
         UIApplication.shared.open(url)
+    }
+
+    func savePalette(name: String) async throws -> ColorPalette {
+        let palette = ColorPalette(
+            name: name.isEmpty ? L10n.cameraSaveDefault.localized : name,
+            colors: pickedColors
+        )
+        try await storageService.save(palette)
+        return palette
     }
 }
 

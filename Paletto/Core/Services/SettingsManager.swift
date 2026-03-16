@@ -1,7 +1,7 @@
 import Foundation
 
 /// Manages user settings via UserDefaults
-final class SettingsManager {
+final class SettingsManager: SettingsManagerProtocol {
 
     static let shared = SettingsManager()
 

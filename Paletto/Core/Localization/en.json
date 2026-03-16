@@ -208,13 +208,19 @@
     }
   },
   "error": {
-    "imageprocessing": "Image processing failed: {detail}",
-    "colorextraction": "Color extraction failed: {detail}",
-    "fileio": "File error: {detail}",
-    "invaliddata": "Invalid data: {detail}",
-    "camera.unavailable": "Camera is not available on this device",
-    "camera.denied": "Camera access was denied. Please enable it in Settings.",
-    "unknown": "An unexpected error occurred: {detail}"
+    "error": "Error",
+    "image_processing": "Image processing failed: {detail}",
+    "color_extraction": "Color extraction failed: {detail}",
+    "file_io": "File error: {detail}",
+    "invalid_data": "Invalid data: {detail}",
+    "camera_unavailable": "Camera is not available on this device",
+    "camera_permission_denied": "Camera access was denied. Please enable it in Settings.",
+    "unknown": "An unexpected error occurred: {detail}",
+    "recovery": {
+      "camera_permission": "Go to Settings > Paletto > Camera to enable access.",
+      "camera_unavailable": "Try using the photo picker instead.",
+      "default": "Please try again."
+    }
   },
   "settings": {
     "title": "Settings",

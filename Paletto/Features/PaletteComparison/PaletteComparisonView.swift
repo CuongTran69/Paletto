@@ -144,9 +144,9 @@ struct PaletteComparisonView: View {
 
     // MARK: - Summary
 
+    @ViewBuilder
     private var summarySection: some View {
-        guard let result = viewModel.comparisonResult else { return AnyView(EmptyView()) }
-        return AnyView(
+        if let result = viewModel.comparisonResult {
             VStack(spacing: 10) {
                 HStack {
                     Image(systemName: result.overallBadge.iconName)
@@ -170,20 +170,20 @@ struct PaletteComparisonView: View {
                         .strokeBorder(badgeColor(result.overallBadge).opacity(0.3), lineWidth: 1)
                 )
             }
-        )
+        }
     }
 
     // MARK: - Comparison Pairs
 
+    @ViewBuilder
     private var comparisonPairs: some View {
-        guard let result = viewModel.comparisonResult else { return AnyView(EmptyView()) }
-        return AnyView(
+        if let result = viewModel.comparisonResult {
             VStack(spacing: 12) {
                 ForEach(result.pairs) { pair in
                     comparisonPairRow(pair)
                 }
             }
-        )
+        }
     }
 
     private func comparisonPairRow(_ pair: ColorComparisonResult) -> some View {

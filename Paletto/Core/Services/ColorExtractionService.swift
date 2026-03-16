@@ -1,5 +1,4 @@
 import UIKit
-import Combine
 
 /// Extracts dominant colors from images using k-means clustering in CIE LAB color space
 final class ColorExtractionService: ColorExtractionServiceProtocol {
@@ -11,20 +10,18 @@ final class ColorExtractionService: ColorExtractionServiceProtocol {
 
     // MARK: - Public API
 
-    func extractColors(from image: UIImage, count: Int) -> AnyPublisher<[PaletteColor], AppError> {
-        Future<[PaletteColor], AppError> { [weak self] promise in
-            guard let self else {
-                promise(.failure(.colorExtractionFailed("Service deallocated")))
-                return
-            }
-            self.processingQueue.async {
+    func extractColors(from image: UIImage, count: Int) async throws -> [PaletteColor] {
+        try await withCheckedThrowingContinuation { continuation in
+            processingQueue.async { [self] in
                 let result = self.performExtraction(from: image, count: count)
-                DispatchQueue.main.async {
-                    promise(result)
+                switch result {
+                case .success(let colors):
+                    continuation.resume(returning: colors)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
                 }
             }
         }
-        .eraseToAnyPublisher()
     }
 
     func pickColor(at point: CGPoint, in image: UIImage) -> Result<PaletteColor, AppError> {

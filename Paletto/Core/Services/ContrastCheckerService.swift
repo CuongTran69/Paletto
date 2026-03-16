@@ -32,6 +32,23 @@ final class ContrastCheckerService: ContrastCheckerServiceProtocol {
         return matrix
     }
 
+    func updateContrastMatrix(_ matrix: [[ContrastResult]], forColorAt index: Int, in colors: [PaletteColor]) -> [[ContrastResult]] {
+        guard index >= 0, index < colors.count, matrix.count == colors.count else {
+            return contrastMatrix(for: colors)
+        }
+
+        var updated = matrix
+        let changedColor = colors[index]
+
+        for i in 0..<colors.count {
+            let result = contrastRatio(between: changedColor, and: colors[i])
+            updated[index][i] = result
+            updated[i][index] = result
+        }
+
+        return updated
+    }
+
     // MARK: - Role Assignment
 
     func assignRoles(to colors: [PaletteColor]) -> [PaletteColor] {

@@ -1,5 +1,4 @@
 import SwiftUI
-import Combine
 
 @main
 struct PalettoApp: App {
@@ -11,6 +10,7 @@ struct PalettoApp: App {
     @State private var showImportError = false
 
     private let sharingService = PaletteSharingService()
+    private let storageService = PaletteStorageService()
 
     var body: some Scene {
         WindowGroup {
@@ -53,15 +53,14 @@ struct PalettoApp: App {
         // Sharing link: paletto://palette?n=NAME&c=HEX1,HEX2,...
         if let palette = sharingService.decode(url: url) {
             importedPalette = palette
-            var cancellable: AnyCancellable?
-            cancellable = PaletteStorageService().save(palette)
-                .receive(on: DispatchQueue.main)
-                .sink(
-                    receiveCompletion: { _ in cancellable?.cancel() },
-                    receiveValue: { [self] in
-                        showImportedPalette = true
-                    }
-                )
+            Task { @MainActor in
+                do {
+                    try await storageService.save(palette)
+                    showImportedPalette = true
+                } catch {
+                    showImportError = true
+                }
+            }
             return
         }
 

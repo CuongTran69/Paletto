@@ -66,10 +66,10 @@ struct ColorBlindnessView: View {
 
     // MARK: - Warning Banner
 
+    @ViewBuilder
     private var warningBanner: some View {
-        guard let message = viewModel.warningMessage else { return AnyView(EmptyView()) }
-        let hasIssues = viewModel.hasIssues
-        return AnyView(
+        if let message = viewModel.warningMessage {
+            let hasIssues = viewModel.hasIssues
             HStack(spacing: 10) {
                 Image(systemName: hasIssues ? "exclamationmark.triangle.fill" : "checkmark.circle.fill")
                     .font(.title3)
@@ -91,14 +91,14 @@ struct ColorBlindnessView: View {
                         lineWidth: 1
                     )
             )
-        )
+        }
     }
 
     // MARK: - Color Grid
 
+    @ViewBuilder
     private var colorGrid: some View {
-        guard let result = viewModel.simulationResult else { return AnyView(EmptyView()) }
-        return AnyView(
+        if let result = viewModel.simulationResult {
             VStack(spacing: 12) {
                 HStack {
                     Text(L10n.blindnessOriginal.localized)
@@ -115,7 +115,7 @@ struct ColorBlindnessView: View {
                     simulatedColorRow(item)
                 }
             }
-        )
+        }
     }
 
     private func simulatedColorRow(_ item: SimulatedColor) -> some View {
@@ -177,9 +177,9 @@ struct ColorBlindnessView: View {
 
     // MARK: - Confusable Pairs
 
+    @ViewBuilder
     private var confusablePairsSection: some View {
-        guard let result = viewModel.simulationResult else { return AnyView(EmptyView()) }
-        return AnyView(
+        if let result = viewModel.simulationResult {
             VStack(alignment: .leading, spacing: 12) {
                 HStack(spacing: 8) {
                     Image(systemName: "exclamationmark.triangle.fill")
@@ -238,6 +238,6 @@ struct ColorBlindnessView: View {
                     )
                 }
             }
-        )
+        }
     }
 }

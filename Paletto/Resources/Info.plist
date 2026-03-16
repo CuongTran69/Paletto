@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Paletto uses the camera to capture colors from real-world objects around you.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Paletto accesses your photo library to extract color palettes from your images.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Paletto saves exported palette images to your photo library.</string>
 	<key>UIApplicationSceneManifest</key>

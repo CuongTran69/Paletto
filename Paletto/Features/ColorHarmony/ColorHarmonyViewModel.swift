@@ -1,5 +1,4 @@
 import SwiftUI
-import Combine
 
 /// ViewModel for the color harmony generator
 final class ColorHarmonyViewModel: ObservableObject {
@@ -11,16 +10,18 @@ final class ColorHarmonyViewModel: ObservableObject {
 
     private let harmonyService: ColorHarmonyServiceProtocol
     private let storageService: PaletteStorageServiceProtocol
-    private var cancellables = Set<AnyCancellable>()
+    private let settingsManager: SettingsManagerProtocol
 
     init(
         sourceColor: PaletteColor,
         harmonyService: ColorHarmonyServiceProtocol = ColorHarmonyService(),
-        storageService: PaletteStorageServiceProtocol = PaletteStorageService()
+        storageService: PaletteStorageServiceProtocol = PaletteStorageService(),
+        settingsManager: SettingsManagerProtocol = SettingsManager.shared
     ) {
         self.sourceColor = sourceColor
         self.harmonyService = harmonyService
         self.storageService = storageService
+        self.settingsManager = settingsManager
         generateHarmony()
     }
 
@@ -35,19 +36,18 @@ final class ColorHarmonyViewModel: ObservableObject {
 
     func copyHex(_ hex: String) {
         UIPasteboard.general.string = hex
-        if SettingsManager.shared.hapticFeedbackEnabled {
+        if settingsManager.hapticFeedbackEnabled {
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
         }
     }
 
-    func savePalette(name: String) -> AnyPublisher<ColorPalette, AppError> {
+    func savePalette(name: String) async throws -> ColorPalette {
         let palette = ColorPalette(
             name: name.isEmpty ? L10n.harmonySaveDefault.localized : name,
             colors: harmonyColors
         )
-        return storageService.save(palette)
-            .map { palette }
-            .eraseToAnyPublisher()
+        try await storageService.save(palette)
+        return palette
     }
 }
 
