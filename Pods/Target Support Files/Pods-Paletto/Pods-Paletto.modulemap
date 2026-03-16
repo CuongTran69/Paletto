@@ -1,0 +1,6 @@
+framework module Pods_Paletto {
+  umbrella header "Pods-Paletto-umbrella.h"
+
+  export *
+  module * { export * }
+}

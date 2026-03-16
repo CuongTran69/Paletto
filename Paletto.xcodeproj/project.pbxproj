@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		015DF937F92549AEACD95397 /* ColorSwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771928A5DBEF4660A1295571 /* ColorSwatchView.swift */; };
 		01D775A6627047C0B4D003A5 /* PalettoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC586F0D6745F59BA8A4E9 /* PalettoApp.swift */; };
+		0B79A22645AD0882954D74D9 /* Pods_Paletto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5DEEC4EEC14A98D05047D7B /* Pods_Paletto.framework */; };
 		1142158C5CF04766AE29956D /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9D0F4E8AF547109E6F1C90 /* ExportService.swift */; };
 		11FF22AA33445566DD001112 /* SettingsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FF22AA33445566DD001111 /* SettingsManagerProtocol.swift */; };
 		11FF22AA33445566DD002222 /* ThemeManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FF22AA33445566DD002221 /* ThemeManagerProtocol.swift */; };
@@ -26,6 +27,7 @@
 		31AC3B2E2F56BFA800AA7472 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2C2F56BFA800AA7472 /* ThemeManager.swift */; };
 		31AC3B2F2F56BFA800AA7472 /* SemanticColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */; };
 		31AC3B302F56BFA800AA7472 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */; };
+		31AC3B342F56C00000AA7472 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */; };
 		360DD708474C4118A45DD0E5 /* CameraColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */; };
 		3BC3385CC34147B89778CD5E /* PaletteExtractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05982726EB83401D81064FAF /* PaletteExtractionView.swift */; };
 		3CB0E451D06248EEB90FCB42 /* ColorExtractionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD64A69E2394EBBA94E014D /* ColorExtractionServiceProtocol.swift */; };
@@ -85,7 +87,6 @@
 		EE11FF22AA334455BB006664 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB006663 /* SwiftUI.framework */; };
 		EE11FF22AA334455BB01000D /* PalettoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F71F86BEE26D4C3591E64999 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC9C95389B485C81EF9996 /* AppError.swift */; };
-		31AC3B342F56C00000AA7472 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		265392EB11B94C98A1190CC0 /* PaletteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDetailView.swift; sourceTree = "<group>"; };
 		27064BA2BE3D497F98909EF7 /* PreviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCardView.swift; sourceTree = "<group>"; };
 		2C8EB4D0F31D46FC890934FF /* Color+CIELAB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CIELAB.swift"; sourceTree = "<group>"; };
+		2CF480A1E7B6DF3D91925C9E /* Pods-Paletto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paletto.release.xcconfig"; path = "Target Support Files/Pods-Paletto/Pods-Paletto.release.xcconfig"; sourceTree = "<group>"; };
 		2EAC9C95389B485C81EF9996 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		316D8F882F6792B30077117D /* ExportServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportServiceProtocol.swift; sourceTree = "<group>"; };
 		31AC3B1D2F56BF9B00AA7472 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
@@ -135,6 +137,8 @@
 		31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticColors.swift; sourceTree = "<group>"; };
 		31AC3B2C2F56BFA800AA7472 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		37F97B2B5A4296B730952981 /* Pods-Paletto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paletto.debug.xcconfig"; path = "Target Support Files/Pods-Paletto/Pods-Paletto.debug.xcconfig"; sourceTree = "<group>"; };
 		417024EA71DB4822850C7BCB /* ContrastCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastCheckerService.swift; sourceTree = "<group>"; };
 		417BF25FFE2446B387ACC44B /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		4E5B596F062D429582AEEFF5 /* PaletteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteListView.swift; sourceTree = "<group>"; };
@@ -149,7 +153,6 @@
 		7B9D0F4E8AF547109E6F1C90 /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		7C54CEA725EC4BB297B51D51 /* PaletteDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDetailViewModel.swift; sourceTree = "<group>"; };
 		8377131B06554E3280015AB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8B44F79474684ADFBD077B7F /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		924FDFE7D30846E3A68FF9EF /* ColorExtractionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtractionService.swift; sourceTree = "<group>"; };
 		9459CAECB520424BAA2252FF /* ContrastCheckerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastCheckerServiceProtocol.swift; sourceTree = "<group>"; };
@@ -183,6 +186,7 @@
 		DD11EE22FF334455AA002221 /* SharePaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePaletteView.swift; sourceTree = "<group>"; };
 		DD11EE22FF334455AA003331 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
 		E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraColorPickerViewModel.swift; sourceTree = "<group>"; };
+		E5DEEC4EEC14A98D05047D7B /* Pods_Paletto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Paletto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDCC586F0D6745F59BA8A4E9 /* PalettoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoApp.swift; sourceTree = "<group>"; };
 		EE11FF22AA334455BB001111 /* PalettoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoWidget.swift; sourceTree = "<group>"; };
 		EE11FF22AA334455BB002221 /* PalettoWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettoWidgetEntryView.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B79A22645AD0882954D74D9 /* Pods_Paletto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +233,7 @@
 				EE11FF22AA334455BB010006 /* PalettoWidget */,
 				6D58E597868DF4FD6D507EC6 /* Frameworks */,
 				31AC3B3B2F58224300AA7472 /* Recovered References */,
+				ED35C5E82B37DAFFAD30032F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -328,6 +334,7 @@
 		6D58E597868DF4FD6D507EC6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5DEEC4EEC14A98D05047D7B /* Pods_Paletto.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -495,6 +502,16 @@
 			path = Sharing;
 			sourceTree = "<group>";
 		};
+		ED35C5E82B37DAFFAD30032F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				37F97B2B5A4296B730952981 /* Pods-Paletto.debug.xcconfig */,
+				2CF480A1E7B6DF3D91925C9E /* Pods-Paletto.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EE11FF22AA334455BB010006 /* PalettoWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,6 +551,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC067FFF28B3434B969FECF9 /* Build configuration list for PBXNativeTarget "Paletto" */;
 			buildPhases = (
+				F92BE0E92586BD8632D683D1 /* [CP] Check Pods Manifest.lock */,
 				29844B6ED2D544B48A957B26 /* Sources */,
 				0418CA94AB5549D7B55C62ED /* Frameworks */,
 				2152A89388FB46C59D35F99A /* Resources */,
@@ -615,7 +633,30 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-
+/* Begin PBXShellScriptBuildPhase section */
+		F92BE0E92586BD8632D683D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Paletto-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		29844B6ED2D544B48A957B26 /* Sources */ = {
@@ -718,6 +759,7 @@
 /* Begin XCBuildConfiguration section */
 		55E89EC0655143848D645FA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37F97B2B5A4296B730952981 /* Pods-Paletto.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -773,6 +815,7 @@
 		};
 		BDD69ED25D9F4CEAA67F0E19 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CF480A1E7B6DF3D91925C9E /* Pods-Paletto.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
