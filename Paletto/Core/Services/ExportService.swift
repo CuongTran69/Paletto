@@ -6,6 +6,8 @@ final class ExportService: ExportServiceProtocol {
     // MARK: - Export as Image
 
     func exportAsImage(palette: ColorPalette) -> UIImage? {
+        guard !palette.colors.isEmpty else { return nil }
+
         let width: CGFloat = 600
         let swatchHeight: CGFloat = 80
         let labelHeight: CGFloat = 30
