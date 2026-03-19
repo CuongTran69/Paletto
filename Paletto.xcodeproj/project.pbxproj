@@ -28,6 +28,7 @@
 		31AC3B2F2F56BFA800AA7472 /* SemanticColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */; };
 		31AC3B302F56BFA800AA7472 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */; };
 		31AC3B342F56C00000AA7472 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */; };
+		AAAAAA11BB22CC33DD000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6035D005A09E47519B51D49D /* Assets.xcassets */; };
 		360DD708474C4118A45DD0E5 /* CameraColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */; };
 		3BC3385CC34147B89778CD5E /* PaletteExtractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05982726EB83401D81064FAF /* PaletteExtractionView.swift */; };
 		3CB0E451D06248EEB90FCB42 /* ColorExtractionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD64A69E2394EBBA94E014D /* ColorExtractionServiceProtocol.swift */; };
@@ -621,6 +622,7 @@
 				31AC3B282F56BF9B00AA7472 /* en.json in Resources */,
 				31AC3B292F56BF9B00AA7472 /* vi.json in Resources */,
 				31AC3B342F56C00000AA7472 /* PrivacyInfo.xcprivacy in Resources */,
+				AAAAAA11BB22CC33DD000001 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
