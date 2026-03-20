@@ -4,6 +4,9 @@ import SwiftUI
 struct PaletteListView: View {
     @StateObject private var viewModel = PaletteListViewModel()
     @State private var showComparison = false
+    @Binding var deepLinkPaletteID: UUID?
+    @State private var deepLinkPalette: ColorPalette?
+    @State private var navigateToDeepLink = false
 
     var body: some View {
         NavigationStack {
@@ -11,6 +14,8 @@ struct PaletteListView: View {
                 if viewModel.isLoading {
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else if let error = viewModel.errorMessage {
+                    errorState(error)
                 } else if viewModel.filteredPalettes.isEmpty {
                     emptyState
                 } else {
@@ -33,13 +38,69 @@ struct PaletteListView: View {
             .sheet(isPresented: $showComparison) {
                 PaletteComparisonView()
             }
+            .navigationDestination(isPresented: $navigateToDeepLink) {
+                if let palette = deepLinkPalette {
+                    PaletteDetailView(palette: palette)
+                }
+            }
             .onAppear {
                 viewModel.loadPalettes()
+            }
+            .onChangeCompat(of: viewModel.isLoading) { isLoading in
+                if !isLoading {
+                    handleDeepLinkIfNeeded()
+                }
+            }
+            .onChangeCompat(of: deepLinkPaletteID) { _ in
+                if !viewModel.isLoading {
+                    handleDeepLinkIfNeeded()
+                }
             }
         }
     }
 
+    // MARK: - Deep Link
+
+    private func handleDeepLinkIfNeeded() {
+        guard let id = deepLinkPaletteID else { return }
+        deepLinkPaletteID = nil
+        if let palette = viewModel.palettes.first(where: { $0.id == id }) {
+            deepLinkPalette = palette
+            navigateToDeepLink = true
+        }
+        // If palette not found (deleted), silently stay on Library tab
+    }
+
     // MARK: - Subviews
+
+    private func errorState(_ message: String) -> some View {
+        VStack(spacing: 16) {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.system(size: 36, weight: .medium))
+                .foregroundStyle(SemanticColors.destructive)
+                .accessibilityHidden(true)
+            Text(L10n.libraryErrorTitle.localized)
+                .font(.title3.weight(.semibold))
+            Text(message)
+                .font(.subheadline)
+                .foregroundColor(SemanticColors.secondaryText)
+                .multilineTextAlignment(.center)
+            Button {
+                viewModel.errorMessage = nil
+                viewModel.loadPalettes()
+            } label: {
+                Label(L10n.libraryErrorRetry.localized, systemImage: "arrow.clockwise")
+                    .font(.body.weight(.semibold))
+                    .padding(.horizontal, Constants.UI.paddingXL)
+                    .padding(.vertical, 12)
+                    .background(SemanticColors.brandGradient)
+                    .foregroundColor(.white)
+                    .cornerRadius(Constants.UI.cornerRadiusLarge)
+            }
+        }
+        .padding(Constants.UI.paddingXL)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
 
     private var paletteList: some View {
         ScrollView {

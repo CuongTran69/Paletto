@@ -85,6 +85,10 @@
     "row": {
       "colorcount": "{count} màu",
       "accessibility": "{name}, {count} màu, tạo ngày {date}"
+    },
+    "error": {
+      "title": "Không thể tải bảng màu",
+      "retry": "Thử lại"
     }
   },
   "detail": {
@@ -95,7 +99,8 @@
     },
     "name": {
       "placeholder": "Tên bảng màu",
-      "edit.accessibility": "Sửa tên bảng màu"
+      "edit.accessibility": "Sửa tên bảng màu",
+      "confirm.accessibility": "Xác nhận tên bảng màu"
     },
     "section": {
       "colors": "Màu sắc",

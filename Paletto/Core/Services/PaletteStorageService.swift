@@ -3,6 +3,8 @@ import Foundation
 /// Persists palettes as JSON files in Application Support directory
 final class PaletteStorageService: PaletteStorageServiceProtocol {
 
+    static let shared = PaletteStorageService()
+
     private let fileQueue = DispatchQueue(label: "com.paletto.storage", qos: .utility)
     private let encoder: JSONEncoder = {
         let e = JSONEncoder()

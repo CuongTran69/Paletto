@@ -19,7 +19,7 @@ final class PaletteDetailViewModel: ObservableObject {
     init(
         palette: ColorPalette,
         contrastService: ContrastCheckerServiceProtocol = ContrastCheckerService(),
-        storageService: PaletteStorageServiceProtocol = PaletteStorageService(),
+        storageService: PaletteStorageServiceProtocol = PaletteStorageService.shared,
         settingsManager: SettingsManagerProtocol = SettingsManager.shared
     ) {
         self.palette = palette

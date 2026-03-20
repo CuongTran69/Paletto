@@ -15,7 +15,7 @@ final class ColorHarmonyViewModel: ObservableObject {
     init(
         sourceColor: PaletteColor,
         harmonyService: ColorHarmonyServiceProtocol = ColorHarmonyService(),
-        storageService: PaletteStorageServiceProtocol = PaletteStorageService(),
+        storageService: PaletteStorageServiceProtocol = PaletteStorageService.shared,
         settingsManager: SettingsManagerProtocol = SettingsManager.shared
     ) {
         self.sourceColor = sourceColor

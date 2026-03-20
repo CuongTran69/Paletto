@@ -8,6 +8,7 @@ struct PaletteDetailView: View {
     @State private var selectedPreviewStyle: PreviewStyle = .appCard
     @State private var showBlindness = false
     @FocusState private var isNameFieldFocused: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     init(palette: ColorPalette) {
         _viewModel = StateObject(wrappedValue: PaletteDetailViewModel(palette: palette))
@@ -105,11 +106,13 @@ struct PaletteDetailView: View {
                 Button {
                     isNameFieldFocused = false
                     editingName = false
+                    viewModel.updateName(viewModel.palette.name)
                 } label: {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.title3)
                         .foregroundStyle(SemanticColors.brandGradient)
                 }
+                .accessibilityLabel(L10n.detailNameConfirmA11y.localized)
             }
             .padding(Constants.UI.padding)
             .background(.ultraThinMaterial)
@@ -121,6 +124,7 @@ struct PaletteDetailView: View {
             .onSubmit {
                 isNameFieldFocused = false
                 editingName = false
+                viewModel.updateName(viewModel.palette.name)
             }
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -222,6 +226,7 @@ struct PaletteDetailView: View {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .font(.subheadline)
                         .foregroundColor(.orange)
+                        .accessibilityHidden(true)
 
                     Text(L10n.previewRoleHint.localized)
                         .font(.caption)
@@ -267,7 +272,7 @@ struct PaletteDetailView: View {
             .pickerStyle(.segmented)
 
             PreviewCardView(palette: viewModel.palette, style: selectedPreviewStyle)
-                .animation(.easeInOut(duration: Constants.UI.animationDuration), value: selectedPreviewStyle)
+                .animation(reduceMotion ? .none : .easeInOut(duration: Constants.UI.animationDuration), value: selectedPreviewStyle)
         }
     }
 

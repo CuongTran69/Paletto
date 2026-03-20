@@ -14,7 +14,7 @@ final class PaletteComparisonViewModel: ObservableObject {
 
     init(
         comparisonService: PaletteComparisonServiceProtocol = PaletteComparisonService(),
-        storageService: PaletteStorageServiceProtocol = PaletteStorageService()
+        storageService: PaletteStorageServiceProtocol = PaletteStorageService.shared
     ) {
         self.comparisonService = comparisonService
         self.storageService = storageService

@@ -26,7 +26,7 @@ final class PaletteExtractionViewModel: ObservableObject {
 
     init(
         extractionService: ColorExtractionServiceProtocol = ColorExtractionService(),
-        storageService: PaletteStorageServiceProtocol = PaletteStorageService(),
+        storageService: PaletteStorageServiceProtocol = PaletteStorageService.shared,
         analysisService: ImageAnalysisServiceProtocol = ImageAnalysisService(),
         settingsManager: SettingsManagerProtocol = SettingsManager.shared
     ) {
@@ -160,8 +160,8 @@ final class PaletteExtractionViewModel: ObservableObject {
     // MARK: - Private
 
     /// Cache full pixel buffer once when image is selected — O(1) lookup during drag.
-    /// Uses UIGraphicsImageRenderer to bake UIImage orientation into pixel data,
-    /// so the cached buffer matches exactly what SwiftUI displays on screen.
+    /// The downsized image already has orientation baked in (from UIGraphicsImageRenderer),
+    /// so CGContext.draw(cgImage) produces correctly oriented pixel data.
     private func cachePixelData(for image: UIImage) async {
         guard let result = await Self.buildPixelData(for: image) else { return }
         cachedPixelData = result.data
@@ -170,9 +170,12 @@ final class PaletteExtractionViewModel: ObservableObject {
     }
 
     /// Performs heavy CGContext work off the main thread.
+    /// Uses only thread-safe CoreGraphics APIs (no UIKit graphics context).
     private nonisolated static func buildPixelData(for image: UIImage) async -> (data: [UInt8], width: Int, height: Int)? {
-        let width = Int(image.size.width)
-        let height = Int(image.size.height)
+        // Use cgImage dimensions (pixels) — thread-safe, no UIKit dependency
+        guard let cgImage = image.cgImage else { return nil }
+        let width = cgImage.width
+        let height = cgImage.height
         guard width > 0, height > 0 else { return nil }
 
         let bytesPerPixel = 4
@@ -192,14 +195,8 @@ final class PaletteExtractionViewModel: ObservableObject {
                   bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
               ) else { return nil }
 
-        // Flip coordinate system — CGContext is bottom-left origin, UIKit is top-left
-        context.translateBy(x: 0, y: CGFloat(height))
-        context.scaleBy(x: 1, y: -1)
-
-        // Draw via UIImage (not CGImage) so orientation transforms are applied
-        UIGraphicsPushContext(context)
-        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
-        UIGraphicsPopContext()
+        // CGContext.draw is thread-safe (pure CoreGraphics, no UIKit dependency)
+        context.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
 
         return (rawData, width, height)
     }

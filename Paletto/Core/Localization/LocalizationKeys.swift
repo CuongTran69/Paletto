@@ -53,6 +53,8 @@ enum L10n {
     static let librarySearchNoResults = "library.search.noresults"
     static let libraryRowColorCount = "library.row.colorcount"
     static let libraryRowA11y = "library.row.accessibility"
+    static let libraryErrorTitle = "library.error.title"
+    static let libraryErrorRetry = "library.error.retry"
 
     // MARK: - Detail
     static let detailTitle = "detail.title"
@@ -60,6 +62,7 @@ enum L10n {
     static let detailExport = "detail.toolbar.export"
     static let detailNamePlaceholder = "detail.name.placeholder"
     static let detailNameEditA11y = "detail.name.edit.accessibility"
+    static let detailNameConfirmA11y = "detail.name.confirm.accessibility"
     static let detailSectionColors = "detail.section.colors"
     static let detailSectionContrast = "detail.section.contrast"
     static let detailSectionPreview = "detail.section.preview"

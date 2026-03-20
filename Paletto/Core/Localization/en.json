@@ -85,6 +85,10 @@
     "row": {
       "colorcount": "{count} colors",
       "accessibility": "{name}, {count} colors, created {date}"
+    },
+    "error": {
+      "title": "Failed to load palettes",
+      "retry": "Retry"
     }
   },
   "detail": {
@@ -95,7 +99,8 @@
     },
     "name": {
       "placeholder": "Palette name",
-      "edit.accessibility": "Edit palette name"
+      "edit.accessibility": "Edit palette name",
+      "confirm.accessibility": "Confirm palette name"
     },
     "section": {
       "colors": "Colors",

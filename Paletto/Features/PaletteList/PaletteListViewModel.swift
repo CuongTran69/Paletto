@@ -17,15 +17,16 @@ final class PaletteListViewModel: ObservableObject {
         }
     }
 
-    init(storageService: PaletteStorageServiceProtocol = PaletteStorageService()) {
+    init(storageService: PaletteStorageServiceProtocol = PaletteStorageService.shared) {
         self.storageService = storageService
     }
 
     func loadPalettes() {
-        isLoading = true
+        if palettes.isEmpty { isLoading = true }
         Task { @MainActor in
             do {
                 palettes = try await storageService.loadAll()
+                errorMessage = nil
             } catch {
                 errorMessage = error.localizedDescription
             }

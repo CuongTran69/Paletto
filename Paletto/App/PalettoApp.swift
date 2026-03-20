@@ -8,13 +8,14 @@ struct PalettoApp: App {
     @State private var importedPalette: ColorPalette?
     @State private var showImportedPalette = false
     @State private var showImportError = false
+    @State private var deepLinkPaletteID: UUID?
 
     private let sharingService = PaletteSharingService()
-    private let storageService = PaletteStorageService()
+    private let storageService = PaletteStorageService.shared
 
     var body: some Scene {
         WindowGroup {
-            ContentView(selectedTab: $selectedTab)
+            ContentView(selectedTab: $selectedTab, deepLinkPaletteID: $deepLinkPaletteID)
                 .preferredColorScheme(themeManager.colorScheme)
                 .environmentObject(themeManager)
                 .environmentObject(localizationManager)
@@ -42,12 +43,20 @@ struct PalettoApp: App {
     }
 
     private func handleIncomingURL(_ url: URL) {
-        // Widget deep link: paletto://palette/{UUID} → switch to Library tab
+        // Widget deep link: paletto://palette/{UUID} → navigate to specific palette
         if url.scheme == PaletteSharingService.scheme,
-           url.host == PaletteSharingService.host,
-           !url.pathComponents.filter({ $0 != "/" }).isEmpty {
-            selectedTab = 2
-            return
+           url.host == PaletteSharingService.host {
+            let pathParts = url.pathComponents.filter { $0 != "/" }
+            if let uuidString = pathParts.first, let uuid = UUID(uuidString: uuidString) {
+                deepLinkPaletteID = uuid
+                selectedTab = 2
+                return
+            }
+            // Path present but invalid UUID → fall back to Library tab silently
+            if !pathParts.isEmpty {
+                selectedTab = 2
+                return
+            }
         }
 
         // Sharing link: paletto://palette?n=NAME&c=HEX1,HEX2,...

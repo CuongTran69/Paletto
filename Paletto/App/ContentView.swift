@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Binding var selectedTab: Int
+    @Binding var deepLinkPaletteID: UUID?
     @ObservedObject private var loc = LocalizationManager.shared
 
     var body: some View {
@@ -18,7 +19,7 @@ struct ContentView: View {
                 }
                 .tag(1)
 
-            PaletteListView()
+            PaletteListView(deepLinkPaletteID: $deepLinkPaletteID)
                 .tabItem {
                     Label(L10n.tabLibrary.localized, systemImage: "books.vertical")
                 }

@@ -17,7 +17,7 @@ final class CameraColorPickerViewModel: ObservableObject {
     }
 
     init(
-        storageService: PaletteStorageServiceProtocol = PaletteStorageService(),
+        storageService: PaletteStorageServiceProtocol = PaletteStorageService.shared,
         settingsManager: SettingsManagerProtocol = SettingsManager.shared
     ) {
         self.storageService = storageService
