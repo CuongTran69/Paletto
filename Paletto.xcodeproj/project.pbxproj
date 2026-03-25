@@ -28,7 +28,6 @@
 		31AC3B2F2F56BFA800AA7472 /* SemanticColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2B2F56BFA800AA7472 /* SemanticColors.swift */; };
 		31AC3B302F56BFA800AA7472 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC3B2A2F56BFA800AA7472 /* AppTheme.swift */; };
 		31AC3B342F56C00000AA7472 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 31AC3B332F56C00000AA7472 /* PrivacyInfo.xcprivacy */; };
-		AAAAAA11BB22CC33DD000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6035D005A09E47519B51D49D /* Assets.xcassets */; };
 		360DD708474C4118A45DD0E5 /* CameraColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308AA45C2F54E56B50FEBDC /* CameraColorPickerViewModel.swift */; };
 		3BC3385CC34147B89778CD5E /* PaletteExtractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05982726EB83401D81064FAF /* PaletteExtractionView.swift */; };
 		3CB0E451D06248EEB90FCB42 /* ColorExtractionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD64A69E2394EBBA94E014D /* ColorExtractionServiceProtocol.swift */; };
@@ -58,8 +57,10 @@
 		AA11BB22CC334455DD007772 /* PaletteComparisonServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD007771 /* PaletteComparisonServiceProtocol.swift */; };
 		AA11BB22CC334455DD008882 /* PaletteComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD008881 /* PaletteComparisonView.swift */; };
 		AA11BB22CC334455DD009992 /* PaletteComparisonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC334455DD009991 /* PaletteComparisonViewModel.swift */; };
+		AAAAAA11BB22CC33DD000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6035D005A09E47519B51D49D /* Assets.xcassets */; };
 		AB12CD34EF5647890ABCDEF0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB12CD34EF5647890ABCDEF1 /* SettingsView.swift */; };
 		B82F0CF6811E42389929C4F5 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1AB97964A44470B358A722 /* Color+Hex.swift */; };
+		B82F0CF6811E42389929C4F6 /* View+OnChangeCompat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1AB97964A44470B358A723 /* View+OnChangeCompat.swift */; };
 		BB11CC22DD334455EE001112 /* ColorBlindnessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE001111 /* ColorBlindnessType.swift */; };
 		BB11CC22DD334455EE002222 /* ColorBlindnessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE002221 /* ColorBlindnessService.swift */; };
 		BB11CC22DD334455EE003332 /* ColorBlindnessServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11CC22DD334455EE003331 /* ColorBlindnessServiceProtocol.swift */; };
@@ -182,6 +183,7 @@
 		CC11DD22EE334455FF003331 /* ImageAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnalysisView.swift; sourceTree = "<group>"; };
 		CD56EF01AB1234560FEDCBA0 /* ScaleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleButtonStyle.swift; sourceTree = "<group>"; };
 		CE1AB97964A44470B358A722 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		CE1AB97964A44470B358A723 /* View+OnChangeCompat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnChangeCompat.swift"; sourceTree = "<group>"; };
 		DBE85D7E6F73477FBBC38DAF /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		DD11EE22FF334455AA001111 /* PaletteSharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteSharingService.swift; sourceTree = "<group>"; };
 		DD11EE22FF334455AA002221 /* SharePaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePaletteView.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				CE1AB97964A44470B358A722 /* Color+Hex.swift */,
 				EE5594B012EB4C04BE1F0A29 /* Color+Luminance.swift */,
 				5197500EDB164CBFA5FC73AC /* UIImage+Resize.swift */,
+				CE1AB97964A44470B358A723 /* View+OnChangeCompat.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -509,7 +512,6 @@
 				37F97B2B5A4296B730952981 /* Pods-Paletto.debug.xcconfig */,
 				2CF480A1E7B6DF3D91925C9E /* Pods-Paletto.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -671,6 +673,7 @@
 				B82F0CF6811E42389929C4F5 /* Color+Hex.swift in Sources */,
 				A13A4111DCF5428E80BC1391 /* Color+Luminance.swift in Sources */,
 				C14730BBA69849FCAADDF283 /* UIImage+Resize.swift in Sources */,
+				B82F0CF6811E42389929C4F6 /* View+OnChangeCompat.swift in Sources */,
 				2C3B0BE6C2EC48A38663F15F /* ColorPalette.swift in Sources */,
 				A0FA8F8105AB49EF818DE48F /* ColorRole.swift in Sources */,
 				4931410CC66F47F1832BA36E /* ExportFormat.swift in Sources */,
@@ -767,10 +770,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Paletto/Paletto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Paletto/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -779,7 +783,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paletto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -823,10 +827,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Paletto/Paletto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Paletto/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -835,7 +840,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paletto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -872,7 +877,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PalettoWidget/PalettoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PalettoWidget/Info.plist;
@@ -881,7 +886,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paletto.app.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -898,7 +903,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PalettoWidget/PalettoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PalettoWidget/Info.plist;
@@ -907,7 +912,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paletto.app.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
