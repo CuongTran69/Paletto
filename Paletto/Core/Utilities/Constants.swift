@@ -1,11 +1,31 @@
 import SwiftUI
 
+/// Widget size kind for independent palette slots
+enum WidgetKind: String, CaseIterable, Codable {
+    case small
+    case medium
+    case large
+}
+
+/// Stored widget configuration per size slot
+struct WidgetConfig: Codable {
+    let palette: WidgetPalette?
+    let updatedAt: Date
+}
+
 /// App-wide constants
 enum Constants {
     enum Palette {
         static let defaultColorCount = 5
         static let minColorCount = 3
         static let maxColorCount = 8
+        static let maxTagsPerPalette = 20
+        static let maxTagLength = 50
+    }
+
+    enum Folder {
+        static let maxNameLength = 100
+        static let maxCount = 50
     }
 
     enum Image {
@@ -38,13 +58,17 @@ enum Constants {
 
     enum Storage {
         static let palettesDirectoryName = "Palettes"
+        static let foldersFileName = "folders.json"
         static let settingsDefaultExportFormat = "image"
         static let settingsHapticFeedbackKey = "hapticFeedbackEnabled"
         static let settingsDefaultColorCountKey = "defaultColorCount"
         static let settingsLanguageKey = "appLanguage"
         static let settingsThemeKey = "appTheme"
         static let appGroupIdentifier = "group.com.paletto.shared"
-        static let widgetPaletteKey = "widgetPalette"
+
+        static func widgetSlotKey(for kind: WidgetKind) -> String {
+            "widget_\(kind.rawValue)"
+        }
     }
 
     enum UI {

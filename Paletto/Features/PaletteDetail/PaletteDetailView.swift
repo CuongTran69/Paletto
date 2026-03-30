@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 /// Detail view for a saved palette — roles, contrast, preview (glass card style)
 struct PaletteDetailView: View {
@@ -7,7 +8,9 @@ struct PaletteDetailView: View {
     @State private var showContrastInfo = false
     @State private var selectedPreviewStyle: PreviewStyle = .appCard
     @State private var showBlindness = false
+    @State private var selectedWidgetSize: WidgetKind?
     @FocusState private var isNameFieldFocused: Bool
+    @Environment(\.undoManager) private var undoManager: UndoManager?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     init(palette: ColorPalette) {
@@ -18,6 +21,7 @@ struct PaletteDetailView: View {
         ScrollView {
             VStack(spacing: Constants.UI.paddingLarge) {
                 nameSection
+                tagEditorSection
                 colorsSection
                 contrastMatrixSection
                 previewSection
@@ -30,6 +34,32 @@ struct PaletteDetailView: View {
         .navigationTitle(L10n.detailTitle.localized)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            // Undo/Redo on leading side
+            ToolbarItem(placement: .navigationBarLeading) {
+                HStack(spacing: 8) {
+                    Button {
+                        triggerHapticIfEnabled()
+                        undoManager?.undo()
+                    } label: {
+                        Image(systemName: "arrow.uturn.backward")
+                            .foregroundStyle(SemanticColors.brandGradient)
+                    }
+                    .disabled(undoManager?.canUndo != true)
+                    .accessibilityLabel(undoManager?.undoActionName.map { "Undo \($0)" } ?? "Undo")
+
+                    Button {
+                        triggerHapticIfEnabled()
+                        undoManager?.redo()
+                    } label: {
+                        Image(systemName: "arrow.uturn.forward")
+                            .foregroundStyle(SemanticColors.brandGradient)
+                    }
+                    .disabled(undoManager?.canRedo != true)
+                    .accessibilityLabel(undoManager?.redoActionName.map { "Redo \($0)" } ?? "Redo")
+                }
+            }
+
+            // Trailing toolbar
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(spacing: 12) {
                     Button {
@@ -57,11 +87,33 @@ struct PaletteDetailView: View {
                     .accessibilityLabel(L10n.shareTitle.localized)
 
                     Menu {
-                        Button {
-                            viewModel.setAsWidget()
+                        Menu {
+                            Button {
+                                selectedWidgetSize = .small
+                                viewModel.setAsWidget(forKind: .small)
+                            } label: {
+                                Label(L10n.widgetSizeSmall.localized, systemImage: "rectangle")
+                            }
+
+                            Button {
+                                selectedWidgetSize = .medium
+                                viewModel.setAsWidget(forKind: .medium)
+                            } label: {
+                                Label(L10n.widgetSizeMedium.localized, systemImage: "rectangle.split.2x1")
+                            }
+
+                            Button {
+                                selectedWidgetSize = .large
+                                viewModel.setAsWidget(forKind: .large)
+                            } label: {
+                                Label(L10n.widgetSizeLarge.localized, systemImage: "rectangle.split.3x1")
+                            }
                         } label: {
                             Label(L10n.widgetSetAs.localized, systemImage: "rectangle.on.rectangle")
                         }
+
+                        Divider()
+
                         Button {
                             viewModel.showExport = true
                         } label: {
@@ -74,6 +126,9 @@ struct PaletteDetailView: View {
                     .accessibilityLabel(L10n.detailExport.localized)
                 }
             }
+        }
+        .onAppear {
+            viewModel.undoManager = undoManager
         }
         .sheet(isPresented: $viewModel.showExport) {
             ExportView(palette: viewModel.palette)
@@ -89,9 +144,29 @@ struct PaletteDetailView: View {
         .sheet(isPresented: $viewModel.showShare) {
             SharePaletteView(palette: viewModel.palette)
         }
-        .alert(L10n.widgetSetConfirm.localized, isPresented: $viewModel.showWidgetConfirmation) {
+        .alert(widgetConfirmationTitle, isPresented: $viewModel.showWidgetConfirmation) {
             Button(L10n.done.localized, role: .cancel) {}
         }
+    }
+
+    private func triggerHapticIfEnabled() {
+        if let settingsManager = SettingsManager.shared as? SettingsManager,
+           settingsManager.hapticFeedbackEnabled {
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        }
+    }
+
+    private var widgetConfirmationTitle: String {
+        guard let size = selectedWidgetSize else {
+            return L10n.widgetSetConfirm.localized
+        }
+        let sizeKey: String
+        switch size {
+        case .small: sizeKey = L10n.widgetSizeSmall.localized
+        case .medium: sizeKey = L10n.widgetSizeMedium.localized
+        case .large: sizeKey = L10n.widgetSizeLarge.localized
+        }
+        return L10n.widgetSizeConfirm.localized(args: ["size": sizeKey])
     }
 
     // MARK: - Sections
@@ -154,6 +229,138 @@ struct PaletteDetailView: View {
                 RoundedRectangle(cornerRadius: Constants.UI.cornerRadiusLarge)
                     .strokeBorder(SemanticColors.glassBorder, lineWidth: 0.5)
             )
+        }
+    }
+
+    private var tagEditorSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("Tags")
+                    .font(.headline.weight(.semibold))
+                    .foregroundColor(SemanticColors.primaryText)
+
+                Spacer()
+
+                Button {
+                    viewModel.showTagEditor.toggle()
+                } label: {
+                    Image(systemName: viewModel.showTagEditor ? "checkmark.circle.fill" : "plus.circle")
+                        .font(.body)
+                        .foregroundStyle(SemanticColors.brandGradient)
+                }
+                .accessibilityLabel(viewModel.showTagEditor ? "Done editing tags" : "Add tags")
+            }
+
+            if viewModel.showTagEditor || !viewModel.palette.tags.isEmpty {
+                tagChipsView
+            }
+        }
+        .padding(Constants.UI.padding)
+        .background(.ultraThinMaterial)
+        .cornerRadius(Constants.UI.cornerRadiusLarge)
+        .overlay(
+            RoundedRectangle(cornerRadius: Constants.UI.cornerRadiusLarge)
+                .strokeBorder(SemanticColors.glassBorder, lineWidth: 0.5)
+        )
+    }
+
+    private var tagChipsView: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            // Existing tag chips
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 6) {
+                    ForEach(viewModel.palette.tags, id: \.self) { tag in
+                        HStack(spacing: 4) {
+                            Text(tag)
+                                .font(.subheadline.weight(.medium))
+                                .foregroundColor(SemanticColors.gradientStart)
+
+                            Button {
+                                viewModel.removeTag(tag)
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.caption)
+                                    .foregroundColor(SemanticColors.secondaryText)
+                            }
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(SemanticColors.gradientStart.opacity(0.1))
+                        .cornerRadius(16)
+                    }
+
+                    // "+ Add Tag" button
+                    if viewModel.showTagEditor {
+                        Button {
+                            // Show inline text field
+                            viewModel.showTagEditor = false
+                            // Toggle the tag editor to show inline field
+                        } label: {
+                            HStack(spacing: 4) {
+                                Image(systemName: "plus")
+                                    .font(.caption)
+                                Text(L10n.libraryTagAdd.localized)
+                                    .font(.subheadline.weight(.medium))
+                            }
+                            .foregroundColor(SemanticColors.gradientStart)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
+                            .background(SemanticColors.gradientStart.opacity(0.1))
+                            .cornerRadius(16)
+                        }
+                    }
+                }
+            }
+
+            // Inline add tag field (shown when tag editor is active)
+            if viewModel.showTagEditor {
+                HStack(spacing: 8) {
+                    TextField(L10n.libraryTagPlaceholder.localized, text: $viewModel.newTagText)
+                        .font(.subheadline)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .onSubmit {
+                            if viewModel.addTag(viewModel.newTagText) {
+                                viewModel.newTagText = ""
+                            }
+                        }
+                        .onChangeCompat(of: viewModel.newTagText) { _ in
+                            viewModel.clearTagError()
+                        }
+
+                    Button {
+                        if viewModel.addTag(viewModel.newTagText) {
+                            viewModel.newTagText = ""
+                        }
+                    } label: {
+                        Text(L10n.libraryTagAdd.localized)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(SemanticColors.gradientStart)
+                            .cornerRadius(8)
+                    }
+
+                    Button {
+                        viewModel.newTagText = ""
+                        viewModel.clearTagError()
+                        viewModel.showTagEditor = false
+                    } label: {
+                        Text(L10n.cancel.localized)
+                            .font(.subheadline)
+                            .foregroundColor(SemanticColors.secondaryText)
+                    }
+                }
+
+                if let error = viewModel.tagError {
+                    Text(error)
+                        .font(.caption)
+                        .foregroundColor(SemanticColors.destructive)
+                }
+            }
         }
     }
 
@@ -311,4 +518,3 @@ struct PaletteDetailView: View {
         }
     }
 }
-

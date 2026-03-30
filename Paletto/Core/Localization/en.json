@@ -89,6 +89,47 @@
     "error": {
       "title": "Failed to load palettes",
       "retry": "Retry"
+    },
+    "tag": {
+      "all": "All",
+      "new": "+ New Tag",
+      "add": "Add",
+      "cancel": "Cancel",
+      "placeholder": "Enter tag",
+      "error": {
+        "empty": "Tag cannot be empty.",
+        "slash": "Tag cannot contain '/'.",
+        "max_length": "Tag must be 50 characters or fewer.",
+        "max_count": "Maximum 20 tags allowed per palette."
+      }
+    },
+    "folder": {
+      "title": "My Folders",
+      "new": "+ New Folder",
+      "create": {
+        "title": "Create Folder",
+        "placeholder": "Folder name"
+      },
+      "rename": "Rename",
+      "delete": "Delete",
+      "delete_confirm": "Delete folder '{name}'? Palettes will become uncategorized.",
+      "empty": "This folder is empty. Assign palettes from Palette Detail.",
+      "count": "{count}",
+      "error": {
+        "max_length": "Folder name must be 100 characters or fewer.",
+        "max_count": "Maximum 50 folders allowed.",
+        "duplicate": "A folder with this name already exists."
+      },
+      "back": "← Back to Library"
+    },
+    "undo": {
+      "change_role": "Change Role",
+      "edit_name": "Edit Name",
+      "auto_assign": "Auto Assign Roles",
+      "fix_contrast": "Fix Contrast",
+      "add_color": "Add Color",
+      "remove_color": "Remove Color",
+      "reorder_colors": "Reorder Colors"
     }
   },
   "detail": {
@@ -393,7 +434,17 @@
   "widget": {
     "set_as": "Set as Widget",
     "set_confirm": "Palette set as widget! Add the Paletto widget from your Home Screen.",
-    "accessibility": "Set this palette as the Home Screen widget"
+    "accessibility": "Set this palette as the Home Screen widget",
+    "size": {
+      "small": "Small Widget",
+      "medium": "Medium Widget",
+      "large": "Large Widget",
+      "confirm": "Set as {size} Widget ✓"
+    },
+    "configure": {
+      "select": "Select Palette",
+      "title": "Choose a Palette"
+    }
   }
 }
 

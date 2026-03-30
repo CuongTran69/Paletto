@@ -14,6 +14,8 @@ final class PaletteExtractionViewModel: ObservableObject {
     @Published var showAnalysis = false
     @Published var analysisResult: ImageAnalysisResult?
 
+    var undoManager: UndoManager?
+
     private let extractionService: ColorExtractionServiceProtocol
     private let storageService: PaletteStorageServiceProtocol
     private let analysisService: ImageAnalysisServiceProtocol
@@ -23,6 +25,9 @@ final class PaletteExtractionViewModel: ObservableObject {
     private var cachedPixelData: [UInt8]?
     private var cachedImageWidth: Int = 0
     private var cachedImageHeight: Int = 0
+
+    // Track which slot to replace when at max capacity (cycles through last 3)
+    private var replaceIndex: Int = 0
 
     init(
         extractionService: ColorExtractionServiceProtocol = ColorExtractionService(),
@@ -72,7 +77,6 @@ final class PaletteExtractionViewModel: ObservableObject {
         guard cachedPixelData != nil,
               cachedImageWidth > 0, cachedImageHeight > 0 else { return }
 
-        // Clamp to valid pixel range — normalizedPoint of 1.0 would give x=width (out of bounds)
         let x = min(Int(normalizedPoint.x * CGFloat(cachedImageWidth)), cachedImageWidth - 1)
         let y = min(Int(normalizedPoint.y * CGFloat(cachedImageHeight)), cachedImageHeight - 1)
 
@@ -91,12 +95,8 @@ final class PaletteExtractionViewModel: ObservableObject {
         magnifierColor = PaletteColor(red: r, green: g, blue: b, alpha: a)
     }
 
-    // Track which slot to replace when at max capacity (cycles through last 3)
-    private var replaceIndex: Int = 0
-
     func addPickedColor() {
         defer {
-            // Always clear magnifier state on release
             magnifierColor = nil
             magnifierPosition = nil
         }
@@ -104,28 +104,58 @@ final class PaletteExtractionViewModel: ObservableObject {
         guard let color = magnifierColor else { return }
 
         let maxCount = Constants.Palette.maxColorCount
+
         if extractedColors.count < maxCount {
-            // Still have room — append normally
-            extractedColors.append(color)
+            let colorToAdd = color
+            extractedColors.append(colorToAdd)
             replaceIndex = 0
+
+            // Register undo: remove the added color
+            undoManager?.performUndoGroup(L10n.libraryUndoAddColor.localized) { [weak self] in
+                self?.extractedColors.removeLast()
+            }
         } else {
             // At max capacity — replace last 3 slots in round-robin
             let replaceRange = min(3, maxCount)
             let targetIndex = maxCount - replaceRange + (replaceIndex % replaceRange)
+            let previousColor = extractedColors[targetIndex]
             extractedColors[targetIndex] = color
             replaceIndex += 1
+
+            // Register undo: restore the previous color
+            undoManager?.performUndoGroup(L10n.libraryUndoAddColor.localized) { [weak self] in
+                guard let self, self.extractedColors.indices.contains(targetIndex) else { return }
+                self.extractedColors[targetIndex] = previousColor
+            }
         }
         triggerSelectionHaptic()
     }
 
     func removeColor(at index: Int) {
         guard extractedColors.indices.contains(index) else { return }
+        let removedColor = extractedColors[index]
         extractedColors.remove(at: index)
         triggerSelectionHaptic()
+
+        // Register undo: restore the removed color
+        undoManager?.performUndoGroup(L10n.libraryUndoRemoveColor.localized) { [weak self] in
+            guard let self else { return }
+            self.extractedColors.insert(removedColor, at: min(index, self.extractedColors.count))
+        }
     }
 
     func moveColor(from source: IndexSet, to destination: Int) {
+        guard !source.isEmpty else { return }
+
+        // Capture previous state for undo
+        let previousColors = extractedColors
+
         extractedColors.move(fromOffsets: source, toOffset: destination)
+
+        // Register undo: restore previous order
+        undoManager?.performUndoGroup(L10n.libraryUndoReorderColors.localized) { [weak self] in
+            self?.extractedColors = previousColors
+        }
     }
 
     func savePalette(name: String) async throws -> ColorPalette {
@@ -159,9 +189,6 @@ final class PaletteExtractionViewModel: ObservableObject {
 
     // MARK: - Private
 
-    /// Cache full pixel buffer once when image is selected — O(1) lookup during drag.
-    /// The downsized image already has orientation baked in (from UIGraphicsImageRenderer),
-    /// so CGContext.draw(cgImage) produces correctly oriented pixel data.
     private func cachePixelData(for image: UIImage) async {
         guard let result = await Self.buildPixelData(for: image) else { return }
         cachedPixelData = result.data
@@ -169,10 +196,7 @@ final class PaletteExtractionViewModel: ObservableObject {
         cachedImageHeight = result.height
     }
 
-    /// Performs heavy CGContext work off the main thread.
-    /// Uses only thread-safe CoreGraphics APIs (no UIKit graphics context).
     private nonisolated static func buildPixelData(for image: UIImage) async -> (data: [UInt8], width: Int, height: Int)? {
-        // Use cgImage dimensions (pixels) — thread-safe, no UIKit dependency
         guard let cgImage = image.cgImage else { return nil }
         let width = cgImage.width
         let height = cgImage.height
@@ -195,7 +219,6 @@ final class PaletteExtractionViewModel: ObservableObject {
                   bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
               ) else { return nil }
 
-        // CGContext.draw is thread-safe (pure CoreGraphics, no UIKit dependency)
         context.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
 
         return (rawData, width, height)
@@ -216,4 +239,3 @@ final class PaletteExtractionViewModel: ObservableObject {
         UISelectionFeedbackGenerator().selectionChanged()
     }
 }
-

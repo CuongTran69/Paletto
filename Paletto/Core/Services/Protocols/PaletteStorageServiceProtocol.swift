@@ -7,5 +7,12 @@ protocol PaletteStorageServiceProtocol {
     func load(id: UUID) async throws -> ColorPalette?
     func delete(id: UUID) async throws -> Void
     func update(_ palette: ColorPalette) async throws -> Void
+
+    // MARK: - Folder operations (delegated to FolderStorageService)
+
+    func loadFolders() async throws -> [Folder]
+    func saveFolder(_ folder: Folder) async throws
+    func deleteFolder(id: UUID) async throws
+    func updateFolder(_ folder: Folder) async throws
 }
 

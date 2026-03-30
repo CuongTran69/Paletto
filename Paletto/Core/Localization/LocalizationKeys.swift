@@ -245,6 +245,51 @@ enum L10n {
     static let widgetSetConfirm = "widget.set_confirm"
     static let widgetA11y = "widget.accessibility"
 
+    // MARK: - Widget Size
+    static let widgetSizeSmall = "widget.size.small"
+    static let widgetSizeMedium = "widget.size.medium"
+    static let widgetSizeLarge = "widget.size.large"
+    static let widgetSizeConfirm = "widget.size.confirm"
+
+    // MARK: - Widget Configure
+    static let widgetConfigureSelect = "widget.configure.select"
+    static let widgetConfigureTitle = "widget.configure.title"
+
+    // MARK: - Library Tag
+    static let libraryTagAll = "library.tag.all"
+    static let libraryTagNew = "library.tag.new"
+    static let libraryTagAdd = "library.tag.add"
+    static let libraryTagCancel = "library.tag.cancel"
+    static let libraryTagPlaceholder = "library.tag.placeholder"
+    static let libraryTagErrorEmpty = "library.tag.error.empty"
+    static let libraryTagErrorSlash = "library.tag.error.slash"
+    static let libraryTagErrorMaxLength = "library.tag.error.max_length"
+    static let libraryTagErrorMaxCount = "library.tag.error.max_count"
+
+    // MARK: - Library Folder
+    static let libraryFolderTitle = "library.folder.title"
+    static let libraryFolderNew = "library.folder.new"
+    static let libraryFolderCreateTitle = "library.folder.create.title"
+    static let libraryFolderCreatePlaceholder = "library.folder.create.placeholder"
+    static let libraryFolderRename = "library.folder.rename"
+    static let libraryFolderDelete = "library.folder.delete"
+    static let libraryFolderDeleteConfirm = "library.folder.delete.confirm"
+    static let libraryFolderEmpty = "library.folder.empty"
+    static let libraryFolderCount = "library.folder.count"
+    static let libraryFolderErrorMaxLength = "library.folder.error.max_length"
+    static let libraryFolderErrorMaxCount = "library.folder.error.max_count"
+    static let libraryFolderErrorDuplicate = "library.folder.error.duplicate"
+    static let libraryFolderBack = "library.folder.back"
+
+    // MARK: - Library Undo
+    static let libraryUndoChangeRole = "library.undo.change_role"
+    static let libraryUndoEditName = "library.undo.edit_name"
+    static let libraryUndoAutoAssign = "library.undo.auto_assign"
+    static let libraryUndoFixContrast = "library.undo.fix_contrast"
+    static let libraryUndoAddColor = "library.undo.add_color"
+    static let libraryUndoRemoveColor = "library.undo.remove_color"
+    static let libraryUndoReorderColors = "library.undo.reorder_colors"
+
     // MARK: - Errors
     static let error = "error"
     static let errorImageProcessing = "error.image_processing"

@@ -40,6 +40,7 @@ struct PalettoApp: App {
                     Button(L10n.done.localized, role: .cancel) {}
                 }
         }
+        .isUndoEnabled(true)
     }
 
     private func handleIncomingURL(_ url: URL) {

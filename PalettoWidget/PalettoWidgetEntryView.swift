@@ -14,6 +14,8 @@ struct PalettoWidgetEntryView: View {
                 smallWidget(palette)
             case .systemMedium:
                 mediumWidget(palette)
+            case .systemLarge:
+                largeWidget(palette)
             default:
                 smallWidget(palette)
             }
@@ -70,6 +72,56 @@ struct PalettoWidgetEntryView: View {
                     }
                 }
             }
+        }
+        .padding(12)
+        .widgetURL(URL(string: "paletto://palette/\(palette.id)"))
+    }
+
+    // MARK: - Large Widget
+
+    private func largeWidget(_ palette: WidgetPaletteData) -> some View {
+        VStack(spacing: 12) {
+            Text(palette.name)
+                .font(.headline)
+                .foregroundColor(.primary)
+                .lineLimit(2)
+
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 4), spacing: 8) {
+                ForEach(0..<8, id: \.self) { index in
+                    if index < palette.hexColors.count {
+                        let hex = palette.hexColors[index]
+                        VStack(spacing: 2) {
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(colorFromHex(hex))
+                                .frame(height: 44)
+                            Text(hex.replacingOccurrences(of: "#", with: ""))
+                                .font(.system(size: 8, design: .monospaced))
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.7)
+                            if let role = palette.colorRoles[safe: index], !role.isEmpty {
+                                Text(role)
+                                    .font(.system(size: 7))
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                            }
+                        }
+                        .accessibilityLabel("Color \(hex), \(palette.colorRoles[safe: index] ?? "no role") role")
+                    } else {
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color.clear)
+                            .frame(height: 44)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 6)
+                                    .strokeBorder(Color.gray.opacity(0.2), style: StrokeStyle(lineWidth: 1, dash: [4, 2]))
+                            )
+                    }
+                }
+            }
+
+            Text("Paletto · Tap to open")
+                .font(.caption2)
+                .foregroundColor(.secondary)
         }
         .padding(12)
         .widgetURL(URL(string: "paletto://palette/\(palette.id)"))

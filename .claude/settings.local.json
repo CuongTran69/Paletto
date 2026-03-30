@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(openspec list:*)",
+      "Bash(openspec new:*)",
+      "Bash(openspec status:*)",
+      "Bash(openspec instructions:*)",
+      "mcp__auggie__codebase-retrieval",
+      "Read(//Users/a0000/vela/**)",
+      "Read(//Users/cuongtran/vela/**)",
+      "Bash(git restore:*)",
+      "Bash(git reset:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

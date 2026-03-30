@@ -12,19 +12,24 @@ struct PalettoColorWidget: Widget {
     let kind: String = "PalettoWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: PaletteTimelineProvider()) { entry in
-            if #available(iOSApplicationExtension 17.0, *) {
+        if #available(iOSApplicationExtension 17.0, *) {
+            AppIntentConfiguration(kind: kind, intent: SelectWidgetPaletteIntent.self, provider: PaletteTimelineProvider()) { entry in
                 PalettoWidgetEntryView(entry: entry)
                     .containerBackground(.fill.tertiary, for: .widget)
-            } else {
+            }
+            .configurationDisplayName("Color Palette")
+            .description("Display your favorite color palette on the Home Screen.")
+            .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        } else {
+            StaticConfiguration(kind: kind, provider: PaletteTimelineProvider()) { entry in
                 PalettoWidgetEntryView(entry: entry)
                     .padding()
                     .background()
             }
+            .configurationDisplayName("Color Palette")
+            .description("Display your favorite color palette on the Home Screen.")
+            .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
         }
-        .configurationDisplayName("Color Palette")
-        .description("Display your favorite color palette on the Home Screen.")
-        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 

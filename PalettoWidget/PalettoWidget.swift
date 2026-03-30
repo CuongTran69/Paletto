@@ -1,16 +1,37 @@
 import WidgetKit
 import SwiftUI
 
-// MARK: - Shared Data (duplicated for widget target independence)
+// MARK: - Shared Constants (duplicated for widget target independence)
 
 private let appGroupIdentifier = "group.com.paletto.shared"
-private let widgetPaletteKey = "widgetPalette"
+
+/// Widget size kind — duplicated here because widget extension cannot import main app code
+enum WidgetKind: String, Codable, CaseIterable {
+    case small
+    case medium
+    case large
+}
 
 /// Lightweight palette data matching main app's WidgetPalette
 struct WidgetPaletteData: Codable {
     let id: String
     let name: String
     let hexColors: [String]
+    let colorRoles: [String?]
+}
+
+/// Widget-local equivalent of WidgetConfig
+struct WidgetConfigData: Codable {
+    let palette: WidgetPaletteData?
+    let updatedAt: Date
+}
+
+// MARK: - Safe subscript for optional String arrays
+
+extension Array {
+    subscript(safe index: Int) -> Element? {
+        indices.contains(index) ? self[index] : nil
+    }
 }
 
 /// Parse hex string to Color
@@ -38,7 +59,8 @@ struct PaletteTimelineProvider: TimelineProvider {
         PaletteEntry(date: .now, palette: WidgetPaletteData(
             id: "preview",
             name: "My Palette",
-            hexColors: ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7"]
+            hexColors: ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7"],
+            colorRoles: ["Background", "Primary", "Secondary", "Accent", "Text"]
         ))
     }
 
@@ -47,7 +69,14 @@ struct PaletteTimelineProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<PaletteEntry>) -> Void) {
-        let palette = loadWidgetPalette()
+        let kind: WidgetKind
+        switch context.family {
+        case .systemSmall:  kind = .small
+        case .systemMedium: kind = .medium
+        case .systemLarge:  kind = .large
+        default:            kind = .small
+        }
+        let palette = loadWidgetPaletteData(forKind: kind)
         let entry = PaletteEntry(date: .now, palette: palette)
         // Refresh every 30 minutes (in case user changes widget palette)
         let nextUpdate = Calendar.current.date(byAdding: .minute, value: 30, to: .now)!
@@ -55,17 +84,21 @@ struct PaletteTimelineProvider: TimelineProvider {
         completion(timeline)
     }
 
-    private func loadWidgetPalette() -> WidgetPaletteData? {
+    private func loadWidgetPaletteData(forKind kind: WidgetKind) -> WidgetPaletteData? {
+        let key = "widget_\(kind.rawValue)"
         let data: Data?
         if let defaults = UserDefaults(suiteName: appGroupIdentifier) {
-            data = defaults.data(forKey: widgetPaletteKey)
+            data = defaults.data(forKey: key)
         } else {
             // Fallback: try standard UserDefaults (only works if widget and app share same sandbox, unlikely)
-            data = UserDefaults.standard.data(forKey: widgetPaletteKey)
+            data = UserDefaults.standard.data(forKey: key)
             print("[PalettoWidget] ⚠️ App Group not available, tried standard UserDefaults as fallback")
         }
         guard let data else { return nil }
-        return try? JSONDecoder().decode(WidgetPaletteData.self, from: data)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let config = try? decoder.decode(WidgetConfigData.self, from: data)
+        return config?.palette
     }
 }
 

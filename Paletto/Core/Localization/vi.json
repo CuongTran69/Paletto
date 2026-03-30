@@ -89,6 +89,47 @@
     "error": {
       "title": "Không thể tải bảng màu",
       "retry": "Thử lại"
+    },
+    "tag": {
+      "all": "Tất cả",
+      "new": "+ Thẻ mới",
+      "add": "Thêm",
+      "cancel": "Hủy",
+      "placeholder": "Nhập thẻ",
+      "error": {
+        "empty": "Thẻ không được để trống.",
+        "slash": "Thẻ không được chứa '/'.",
+        "max_length": "Thẻ tối đa 50 ký tự.",
+        "max_count": "Tối đa 20 thẻ mỗi bảng màu."
+      }
+    },
+    "folder": {
+      "title": "Thư mục của tôi",
+      "new": "+ Thư mục mới",
+      "create": {
+        "title": "Tạo thư mục",
+        "placeholder": "Tên thư mục"
+      },
+      "rename": "Đổi tên",
+      "delete": "Xóa",
+      "delete_confirm": "Xóa thư mục '{name}'? Các bảng màu sẽ trở thành không phân loại.",
+      "empty": "Thư mục trống. Gán bảng màu từ Chi tiết bảng màu.",
+      "count": "{count}",
+      "error": {
+        "max_length": "Tên thư mục tối đa 100 ký tự.",
+        "max_count": "Tối đa 50 thư mục.",
+        "duplicate": "Đã có thư mục trùng tên."
+      },
+      "back": "← Quay về Thư viện"
+    },
+    "undo": {
+      "change_role": "Đổi vai trò",
+      "edit_name": "Sửa tên",
+      "auto_assign": "Tự động gán vai trò",
+      "fix_contrast": "Sửa tương phản",
+      "add_color": "Thêm màu",
+      "remove_color": "Xóa màu",
+      "reorder_colors": "Sắp xếp lại màu"
     }
   },
   "detail": {
@@ -393,7 +434,17 @@
   "widget": {
     "set_as": "Đặt làm Widget",
     "set_confirm": "Đã đặt bảng màu làm widget! Thêm widget Paletto từ Màn hình chính.",
-    "accessibility": "Đặt bảng màu này làm widget Màn hình chính"
+    "accessibility": "Đặt bảng màu này làm widget Màn hình chính",
+    "size": {
+      "small": "Widget nhỏ",
+      "medium": "Widget vừa",
+      "large": "Widget lớn",
+      "confirm": "Đã đặt làm {size} Widget ✓"
+    },
+    "configure": {
+      "select": "Chọn bảng màu",
+      "title": "Chọn bảng màu"
+    }
   }
 }
 

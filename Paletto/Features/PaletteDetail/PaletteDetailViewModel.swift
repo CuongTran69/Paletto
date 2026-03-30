@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 /// ViewModel for palette detail screen
 final class PaletteDetailViewModel: ObservableObject {
@@ -11,6 +12,13 @@ final class PaletteDetailViewModel: ObservableObject {
     @Published var showShare = false
     @Published var showWidgetConfirmation = false
     @Published var harmonySourceColor: PaletteColor?
+
+    // Tag editor state
+    @Published var showTagEditor = false
+    @Published var newTagText = ""
+    @Published var tagError: String?
+
+    var undoManager: UndoManager?
 
     private let contrastService: ContrastCheckerServiceProtocol
     private let storageService: PaletteStorageServiceProtocol
@@ -32,15 +40,42 @@ final class PaletteDetailViewModel: ObservableObject {
     // MARK: - Actions
 
     func autoAssignRoles() {
+        let previousColors = palette.colors
+        let previousRoles = palette.colors.map { $0.role }
+
+        undoManager?.performUndoGroup(L10n.libraryUndoAutoAssign.localized) { [weak self] in
+            guard let self else { return }
+            self.palette.colors = self.contrastService.assignRoles(to: self.palette.colors)
+        }
+
         palette.colors = contrastService.assignRoles(to: palette.colors)
+        // Register inverse undo: restore previous colors
+        undoManager?.registerUndo(withTarget: self) { target in
+            target.palette.colors = previousColors
+            target.updateContrastMatrix()
+            target.save()
+        }
+        undoManager?.setActionName(L10n.libraryUndoAutoAssign.localized)
+
         updateContrastMatrix()
         save()
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     func updateRole(for colorId: UUID, to role: ColorRole) {
         guard let index = palette.colors.firstIndex(where: { $0.id == colorId }) else { return }
+        let previousRole = palette.colors[index].role
+
+        undoManager?.performUndoGroup(L10n.libraryUndoChangeRole.localized) { [weak self] in
+            guard let self else { return }
+            if let idx = self.palette.colors.firstIndex(where: { $0.id == colorId }) {
+                self.palette.colors[idx].role = previousRole
+            }
+        }
+
         palette.colors[index].role = role
         save()
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     func suggestFix(foregroundIndex: Int, backgroundIndex: Int) -> PaletteColor? {
@@ -55,16 +90,36 @@ final class PaletteDetailViewModel: ObservableObject {
 
     func applyFix(_ fixedColor: PaletteColor, at index: Int) {
         guard palette.colors.indices.contains(index) else { return }
-        let role = palette.colors[index].role
-        palette.colors[index] = fixedColor
-        palette.colors[index].role = role
+        let previousColor = palette.colors[index]
+        let role = previousColor.role
+
+        undoManager?.performUndoGroup(L10n.libraryUndoFixContrast.localized) { [weak self] in
+            guard let self else { return }
+            if self.palette.colors.indices.contains(index) {
+                self.palette.colors[index] = previousColor
+            }
+        }
+
+        var updated = fixedColor
+        updated.role = role
+        palette.colors[index] = updated
         updateContrastForColor(at: index)
         save()
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     func updateName(_ name: String) {
+        let previousName = palette.name
+
+        undoManager?.performUndoGroup(L10n.libraryUndoEditName.localized) { [weak self] in
+            guard let self else { return }
+            self.palette.name = previousName
+            self.save()
+        }
+
         palette.name = name
         save()
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     func copyHex(_ hex: String) {
@@ -79,12 +134,69 @@ final class PaletteDetailViewModel: ObservableObject {
         showHarmony = true
     }
 
-    func setAsWidget() {
-        SharedDataService.shared.setWidgetPalette(palette)
+    // MARK: - Widget (multi-size)
+
+    func setAsWidget(forKind kind: WidgetKind) {
+        SharedDataService.shared.setWidgetPalette(palette, forKind: kind)
         showWidgetConfirmation = true
         if settingsManager.hapticFeedbackEnabled {
             UINotificationFeedbackGenerator().notificationOccurred(.success)
         }
+    }
+
+    // MARK: - Tag editing
+
+    func addTag(_ tag: String) -> Bool {
+        let trimmed = tag.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if trimmed.isEmpty {
+            tagError = L10n.libraryTagErrorEmpty.localized
+            return false
+        }
+
+        if trimmed.contains("/") {
+            tagError = L10n.libraryTagErrorSlash.localized
+            return false
+        }
+
+        if trimmed.count > Constants.Palette.maxTagLength {
+            tagError = L10n.libraryTagErrorMaxLength.localized
+            return false
+        }
+
+        if palette.tags.contains(trimmed) {
+            tagError = "Tag already exists."
+            return false
+        }
+
+        if palette.tags.count >= Constants.Palette.maxTagsPerPalette {
+            tagError = L10n.libraryTagErrorMaxCount.localized
+            return false
+        }
+
+        addTagToCurrentPalette(tag: trimmed)
+        return true
+    }
+
+    func addTagToCurrentPalette(tag: String) {
+        let trimmed = tag.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        guard !palette.tags.contains(trimmed) else { return }
+        guard palette.tags.count < Constants.Palette.maxTagsPerPalette else { return }
+
+        palette.tags.append(trimmed)
+        palette.updatedAt = Date()
+        save()
+    }
+
+    func removeTag(_ tag: String) {
+        palette.tags.removeAll { $0 == tag }
+        palette.updatedAt = Date()
+        save()
+    }
+
+    func clearTagError() {
+        tagError = nil
     }
 
     // MARK: - Private
@@ -109,4 +221,3 @@ final class PaletteDetailViewModel: ObservableObject {
         }
     }
 }
-

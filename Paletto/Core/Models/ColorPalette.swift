@@ -9,9 +9,10 @@ struct ColorPalette: Codable, Identifiable, Equatable {
     var updatedAt: Date
     var sourceImageData: Data?
     var version: Int
+    var tags: [String]
 
     private enum CodingKeys: String, CodingKey {
-        case id, name, colors, createdAt, updatedAt, sourceImageData, version
+        case id, name, colors, createdAt, updatedAt, sourceImageData, version, tags
     }
 
     init(
@@ -21,7 +22,8 @@ struct ColorPalette: Codable, Identifiable, Equatable {
         createdAt: Date = Date(),
         updatedAt: Date = Date(),
         sourceImageData: Data? = nil,
-        version: Int = 1
+        version: Int = 2,
+        tags: [String] = []
     ) {
         self.id = id
         self.name = name
@@ -30,6 +32,7 @@ struct ColorPalette: Codable, Identifiable, Equatable {
         self.updatedAt = updatedAt
         self.sourceImageData = sourceImageData
         self.version = version
+        self.tags = tags
     }
 
     init(from decoder: Decoder) throws {
@@ -41,6 +44,7 @@ struct ColorPalette: Codable, Identifiable, Equatable {
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
         sourceImageData = try container.decodeIfPresent(Data.self, forKey: .sourceImageData)
         version = try container.decodeIfPresent(Int.self, forKey: .version) ?? 1
+        tags = try container.decodeIfPresent([String].self, forKey: .tags) ?? []
     }
 
     /// Returns colors filtered by a specific role

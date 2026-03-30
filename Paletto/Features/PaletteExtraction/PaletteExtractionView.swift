@@ -10,6 +10,7 @@ struct PaletteExtractionView: View {
     @State private var navigateToDetail = false
     @State private var showSaveError = false
     @State private var saveErrorMessage = ""
+    @Environment(\.undoManager) private var undoManager: UndoManager?
 
     var body: some View {
         NavigationStack {
@@ -18,6 +19,7 @@ struct PaletteExtractionView: View {
                     imageSection
                     if !viewModel.extractedColors.isEmpty {
                         paletteStrip
+                        undoButton
                         analyzeButton
                         saveButton
                     }
@@ -37,6 +39,9 @@ struct PaletteExtractionView: View {
                     }
                     .accessibilityLabel(L10n.extractionChoosePhoto.localized)
                 }
+            }
+            .onAppear {
+                viewModel.undoManager = undoManager
             }
             .sheet(isPresented: $viewModel.showPhotoPicker) {
                 PhotoPickerView(isPresented: $viewModel.showPhotoPicker) { image in
@@ -172,6 +177,33 @@ struct PaletteExtractionView: View {
         )
     }
 
+    private var undoButton: some View {
+        Button {
+            triggerHapticIfEnabled()
+            undoManager?.undo()
+        } label: {
+            HStack(spacing: 6) {
+                Image(systemName: "arrow.uturn.backward")
+                    .font(.body)
+                Text("Undo")
+                    .font(.subheadline.weight(.medium))
+            }
+            .foregroundStyle(SemanticColors.brandGradient)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 12)
+            .background(.ultraThinMaterial)
+            .cornerRadius(Constants.UI.cornerRadiusLarge)
+            .overlay(
+                RoundedRectangle(cornerRadius: Constants.UI.cornerRadiusLarge)
+                    .strokeBorder(SemanticColors.glassBorder, lineWidth: 0.5)
+            )
+        }
+        .buttonStyle(.plain)
+        .disabled(undoManager?.canUndo != true)
+        .opacity(undoManager?.canUndo != true ? 0.4 : 1.0)
+        .accessibilityLabel(undoManager?.undoActionName.map { "Undo \($0)" } ?? "Undo")
+    }
+
     private var analyzeButton: some View {
         Button {
             viewModel.analyzeImage()
@@ -207,6 +239,13 @@ struct PaletteExtractionView: View {
         }
         .buttonStyle(.scale)
         .accessibilityLabel(L10n.extractionSavePaletteA11y.localized)
+    }
+
+    private func triggerHapticIfEnabled() {
+        if let settingsManager = SettingsManager.shared as? SettingsManager,
+           settingsManager.hapticFeedbackEnabled {
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        }
     }
 
     private func errorBanner(_ message: String) -> some View {

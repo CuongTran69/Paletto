@@ -98,6 +98,24 @@ final class PaletteStorageService: PaletteStorageServiceProtocol {
         try await save(updated)
     }
 
+    // MARK: - Folder operations (delegated to FolderStorageService)
+
+    func loadFolders() async throws -> [Folder] {
+        try await FolderStorageService.shared.loadFolders()
+    }
+
+    func saveFolder(_ folder: Folder) async throws {
+        try await FolderStorageService.shared.saveFolder(folder)
+    }
+
+    func deleteFolder(id: UUID) async throws {
+        try await FolderStorageService.shared.deleteFolder(id: id)
+    }
+
+    func updateFolder(_ folder: Folder) async throws {
+        try await FolderStorageService.shared.updateFolder(folder)
+    }
+
     // MARK: - Private
 
     private func fileURL(for id: UUID) -> URL {
