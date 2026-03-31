@@ -8,12 +8,8 @@ struct MagnifierOverlay: View {
     let onPick: (CGPoint) -> Void
     let onRelease: () -> Void
 
-    /// Tracks when the drag started so we can enforce a 0.3s hold before activating.
-    @State private var dragStartTime: Date?
-    /// Whether the hold threshold has been met for the current gesture.
+    /// Whether the magnifier has been activated in the current gesture.
     @State private var isActivated = false
-
-    private let activationDuration: TimeInterval = 0.3
 
     var body: some View {
         GeometryReader { geometry in
@@ -26,17 +22,6 @@ struct MagnifierOverlay: View {
                 .gesture(
                     DragGesture(minimumDistance: 0)
                         .onChanged { drag in
-                            // Record start time on first callback
-                            if dragStartTime == nil {
-                                dragStartTime = Date()
-                            }
-
-                            // Only activate after holding for the required duration
-                            guard isActivated || Date().timeIntervalSince(dragStartTime!) >= activationDuration else {
-                                return
-                            }
-                            isActivated = true
-
                             let location = drag.location
 
                             // Clamp to view bounds
@@ -47,6 +32,7 @@ struct MagnifierOverlay: View {
                             }
 
                             position = location
+                            isActivated = true
 
                             // Normalize directly — overlay size = image display size
                             let normalizedX = min(max(location.x / viewSize.width, 0), 1)
@@ -58,7 +44,6 @@ struct MagnifierOverlay: View {
                             if isActivated {
                                 onRelease()
                             }
-                            dragStartTime = nil
                             isActivated = false
                         }
                 )

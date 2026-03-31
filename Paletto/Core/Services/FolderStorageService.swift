@@ -56,7 +56,12 @@ final class FolderStorageService: FolderStorageServiceProtocol {
 
     func saveFolder(_ folder: Folder) async throws {
         try await performFileOperation {
-            var folders = (try? await self.loadFoldersInternal()) ?? []
+            var folders: [Folder] = []
+            if FileManager.default.fileExists(atPath: self.foldersURL.path) {
+                if let data = try? Data(contentsOf: self.foldersURL) {
+                    folders = (try? self.decoder.decode([Folder].self, from: data)) ?? []
+                }
+            }
             // Replace if exists, append if new
             if let idx = folders.firstIndex(where: { $0.id == folder.id }) {
                 folders[idx] = folder
@@ -70,7 +75,12 @@ final class FolderStorageService: FolderStorageServiceProtocol {
 
     func deleteFolder(id: UUID) async throws {
         try await performFileOperation {
-            var folders = (try? await self.loadFoldersInternal()) ?? []
+            var folders: [Folder] = []
+            if FileManager.default.fileExists(atPath: self.foldersURL.path) {
+                if let data = try? Data(contentsOf: self.foldersURL) {
+                    folders = (try? self.decoder.decode([Folder].self, from: data)) ?? []
+                }
+            }
             folders.removeAll { $0.id == id }
             let data = try self.encoder.encode(folders)
             try data.write(to: self.foldersURL, options: .atomic)
@@ -83,10 +93,9 @@ final class FolderStorageService: FolderStorageServiceProtocol {
 
     // MARK: - Private
 
-    private func loadFoldersInternal() throws -> [Folder] {
-        guard FileManager.default.fileExists(atPath: foldersURL.path) else { return [] }
-        let data = try Data(contentsOf: foldersURL)
-        return try decoder.decode([Folder].self, from: data)
+    private func loadFoldersInternal() {
+        guard FileManager.default.fileExists(atPath: foldersURL.path) else { return }
+        // Called synchronously within performFileOperation — file already checked by caller
     }
 
     private func ensureDirectoryExists() {

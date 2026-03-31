@@ -99,14 +99,14 @@ struct PalettoWidgetEntryView: View {
                                 .foregroundColor(.secondary)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.7)
-                            if let role = palette.colorRoles[safe: index], !role.isEmpty {
+                            if let roleOpt = palette.colorRoles[safe: index], let role = roleOpt, !role.isEmpty {
                                 Text(role)
                                     .font(.system(size: 7))
                                     .foregroundColor(.secondary)
                                     .lineLimit(1)
                             }
                         }
-                        .accessibilityLabel("Color \(hex), \(palette.colorRoles[safe: index] ?? "no role") role")
+                        .accessibilityLabel("Color \(hex), \((palette.colorRoles[safe: index] ?? nil) ?? "no role") role")
                     } else {
                         RoundedRectangle(cornerRadius: 6)
                             .fill(Color.clear)

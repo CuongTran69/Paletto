@@ -201,7 +201,7 @@ struct PaletteExtractionView: View {
         .buttonStyle(.plain)
         .disabled(undoManager?.canUndo != true)
         .opacity(undoManager?.canUndo != true ? 0.4 : 1.0)
-        .accessibilityLabel(undoManager?.undoActionName.map { "Undo \($0)" } ?? "Undo")
+        .accessibilityLabel((undoManager?.undoActionName).map { "Undo \($0)" } ?? "Undo")
     }
 
     private var analyzeButton: some View {

@@ -265,6 +265,7 @@ enum L10n {
     static let libraryTagErrorSlash = "library.tag.error.slash"
     static let libraryTagErrorMaxLength = "library.tag.error.max_length"
     static let libraryTagErrorMaxCount = "library.tag.error.max_count"
+    static let libraryTagErrorDuplicate = "library.tag.error.duplicate"
 
     // MARK: - Library Folder
     static let libraryFolderTitle = "library.folder.title"

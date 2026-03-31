@@ -16,6 +16,8 @@ struct PaletteListView: View {
     @State private var renameFolderText = ""
     @State private var showDeleteFolderConfirmation = false
     @State private var folderToDelete: Folder?
+    @State private var createFolderError: String?
+    @State private var renameFolderError: String?
 
     // Palette count per tag
     private var tagPaletteCounts: [String: Int] {
@@ -117,16 +119,35 @@ struct PaletteListView: View {
     // MARK: - Folder Detail View
 
     private var folderDetailView: some View {
-        ScrollView {
-            VStack(spacing: 12) {
-                if viewModel.filteredPalettes.isEmpty {
-                    emptyFolderState
-                } else {
-                    paletteListContent
+        VStack(spacing: 0) {
+            // Back to Library breadcrumb
+            Button {
+                viewModel.selectedFolder = nil
+            } label: {
+                HStack(spacing: 6) {
+                    Image(systemName: "chevron.left")
+                        .font(.subheadline.weight(.semibold))
+                    Text(L10n.libraryFolderBack.localized)
+                        .font(.subheadline.weight(.medium))
                 }
+                .foregroundStyle(SemanticColors.brandGradient)
+                .padding(.horizontal, Constants.UI.padding)
+                .padding(.vertical, Constants.UI.smallPadding)
             }
-            .padding(.horizontal, Constants.UI.padding)
-            .padding(.top, Constants.UI.smallPadding)
+            .buttonStyle(.plain)
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            ScrollView {
+                VStack(spacing: 12) {
+                    if viewModel.filteredPalettes.isEmpty {
+                        emptyFolderState
+                    } else {
+                        paletteListContent
+                    }
+                }
+                .padding(.horizontal, Constants.UI.padding)
+                .padding(.top, Constants.UI.smallPadding)
+            }
         }
     }
 
@@ -294,6 +315,15 @@ struct PaletteListView: View {
                 TextField(L10n.libraryFolderCreatePlaceholder.localized, text: $newFolderName)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
+                    .onChangeCompat(of: newFolderName) { _ in
+                        createFolderError = nil
+                    }
+
+                if let error = createFolderError {
+                    Text(error)
+                        .font(.caption)
+                        .foregroundColor(SemanticColors.destructive)
+                }
 
                 if viewModel.folders.count >= Constants.Folder.maxCount {
                     Text(L10n.libraryFolderErrorMaxCount.localized)
@@ -313,17 +343,22 @@ struct PaletteListView: View {
                     Button(L10n.save.localized) {
                         let trimmed = newFolderName.trimmingCharacters(in: .whitespacesAndNewlines)
                         if trimmed.count > Constants.Folder.maxNameLength {
-                            // Show error inline
+                            createFolderError = L10n.libraryFolderErrorMaxLength.localized
                             return
                         }
                         viewModel.createFolder(name: trimmed)
                         showCreateFolderSheet = false
                     }
-                    .disabled(newFolderName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .disabled(isCreateFolderSaveDisabled)
                 }
             }
         }
         .presentationDetents([.medium])
+    }
+
+    private var isCreateFolderSaveDisabled: Bool {
+        let trimmed = newFolderName.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmed.isEmpty || viewModel.folders.count >= Constants.Folder.maxCount
     }
 
     private var renameFolderSheet: some View {
@@ -332,6 +367,15 @@ struct PaletteListView: View {
                 TextField(L10n.libraryFolderCreatePlaceholder.localized, text: $renameFolderText)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
+                    .onChangeCompat(of: renameFolderText) { _ in
+                        renameFolderError = nil
+                    }
+
+                if let error = renameFolderError {
+                    Text(error)
+                        .font(.caption)
+                        .foregroundColor(SemanticColors.destructive)
+                }
             }
             .navigationTitle(L10n.libraryFolderRename.localized)
             .navigationBarTitleDisplayMode(.inline)
@@ -344,16 +388,31 @@ struct PaletteListView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(L10n.save.localized) {
                         let trimmed = renameFolderText.trimmingCharacters(in: .whitespacesAndNewlines)
+                        if trimmed.count > Constants.Folder.maxNameLength {
+                            renameFolderError = L10n.libraryFolderErrorMaxLength.localized
+                            return
+                        }
+                        if viewModel.folders.contains(where: {
+                            $0.id != renameFolderTarget?.id && $0.name == trimmed
+                        }) {
+                            renameFolderError = L10n.libraryFolderErrorDuplicate.localized
+                            return
+                        }
                         if let folder = renameFolderTarget {
                             viewModel.renameFolder(folder, to: trimmed)
                         }
                         showRenameFolderSheet = false
                     }
-                    .disabled(renameFolderText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .disabled(isRenameFolderSaveDisabled)
                 }
             }
         }
         .presentationDetents([.medium])
+    }
+
+    private var isRenameFolderSaveDisabled: Bool {
+        let trimmed = renameFolderText.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmed.isEmpty
     }
 }
 
@@ -404,11 +463,13 @@ struct PaletteRowView: View {
                                     .padding(.vertical, 3)
                                     .background(SemanticColors.gradientStart.opacity(0.1))
                                     .cornerRadius(6)
+                                    .accessibilityLabel("Tag: \(tag)")
                             }
                             if palette.tags.count > 5 {
                                 Text("+\(palette.tags.count - 5)")
                                     .font(.caption2)
                                     .foregroundColor(SemanticColors.secondaryText)
+                                    .accessibilityLabel("\(palette.tags.count - 5) more tags")
                             }
                         }
                     }

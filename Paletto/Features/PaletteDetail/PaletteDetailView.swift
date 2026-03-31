@@ -45,7 +45,7 @@ struct PaletteDetailView: View {
                             .foregroundStyle(SemanticColors.brandGradient)
                     }
                     .disabled(undoManager?.canUndo != true)
-                    .accessibilityLabel(undoManager?.undoActionName.map { "Undo \($0)" } ?? "Undo")
+                    .accessibilityLabel((undoManager?.undoActionName).map { "Undo \($0)" } ?? "Undo")
 
                     Button {
                         triggerHapticIfEnabled()
@@ -55,7 +55,7 @@ struct PaletteDetailView: View {
                             .foregroundStyle(SemanticColors.brandGradient)
                     }
                     .disabled(undoManager?.canRedo != true)
-                    .accessibilityLabel(undoManager?.redoActionName.map { "Redo \($0)" } ?? "Redo")
+                    .accessibilityLabel((undoManager?.redoActionName).map { "Redo \($0)" } ?? "Redo")
                 }
             }
 
@@ -266,43 +266,24 @@ struct PaletteDetailView: View {
 
     private var tagChipsView: some View {
         VStack(alignment: .leading, spacing: 8) {
-            // Existing tag chips
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 6) {
-                    ForEach(viewModel.palette.tags, id: \.self) { tag in
-                        HStack(spacing: 4) {
-                            Text(tag)
-                                .font(.subheadline.weight(.medium))
-                                .foregroundColor(SemanticColors.gradientStart)
-
-                            Button {
-                                viewModel.removeTag(tag)
-                            } label: {
-                                Image(systemName: "xmark.circle.fill")
-                                    .font(.caption)
-                                    .foregroundColor(SemanticColors.secondaryText)
-                            }
-                        }
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 6)
-                        .background(SemanticColors.gradientStart.opacity(0.1))
-                        .cornerRadius(16)
-                    }
-
-                    // "+ Add Tag" button
-                    if viewModel.showTagEditor {
-                        Button {
-                            // Show inline text field
-                            viewModel.showTagEditor = false
-                            // Toggle the tag editor to show inline field
-                        } label: {
+            // Tag chips with remove buttons — always visible when tags exist
+            if !viewModel.palette.tags.isEmpty {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 6) {
+                        ForEach(viewModel.palette.tags, id: \.self) { tag in
                             HStack(spacing: 4) {
-                                Image(systemName: "plus")
-                                    .font(.caption)
-                                Text(L10n.libraryTagAdd.localized)
+                                Text(tag)
                                     .font(.subheadline.weight(.medium))
+                                    .foregroundColor(SemanticColors.gradientStart)
+
+                                Button {
+                                    viewModel.removeTag(tag)
+                                } label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(.caption)
+                                        .foregroundColor(SemanticColors.secondaryText)
+                                }
                             }
-                            .foregroundColor(SemanticColors.gradientStart)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 6)
                             .background(SemanticColors.gradientStart.opacity(0.1))
@@ -312,7 +293,7 @@ struct PaletteDetailView: View {
                 }
             }
 
-            // Inline add tag field (shown when tag editor is active)
+            // Inline add tag field — shown when editing; "+ Add Tag" button otherwise
             if viewModel.showTagEditor {
                 HStack(spacing: 8) {
                     TextField(L10n.libraryTagPlaceholder.localized, text: $viewModel.newTagText)
@@ -360,6 +341,24 @@ struct PaletteDetailView: View {
                         .font(.caption)
                         .foregroundColor(SemanticColors.destructive)
                 }
+            } else {
+                // "+ Add Tag" button — enters edit mode
+                Button {
+                    viewModel.showTagEditor = true
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "plus")
+                            .font(.caption)
+                        Text(L10n.libraryTagAdd.localized)
+                            .font(.subheadline.weight(.medium))
+                    }
+                    .foregroundColor(SemanticColors.gradientStart)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(SemanticColors.gradientStart.opacity(0.1))
+                    .cornerRadius(16)
+                }
+                .buttonStyle(.plain)
             }
         }
     }

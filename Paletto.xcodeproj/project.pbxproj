@@ -32,6 +32,8 @@
 		3BC3385CC34147B89778CD5E /* PaletteExtractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05982726EB83401D81064FAF /* PaletteExtractionView.swift */; };
 		3CB0E451D06248EEB90FCB42 /* ColorExtractionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD64A69E2394EBBA94E014D /* ColorExtractionServiceProtocol.swift */; };
 		44B3CDCC584748739767F996 /* PaletteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A0C2C5F9944EF09F784558 /* PaletteListViewModel.swift */; };
+		5550000011112222BBBB0001 /* TagFilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5550000011112222AAAA0001 /* TagFilterBar.swift */; };
+		5550000011112222BBBB0002 /* FolderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5550000011112222AAAA0002 /* FolderSection.swift */; };
 		451BD3666C9147E19BE42E77 /* PaletteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5B596F062D429582AEEFF5 /* PaletteListView.swift */; };
 		47C195DB3CF94B8C9156771D /* ContrastCheckerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9459CAECB520424BAA2252FF /* ContrastCheckerServiceProtocol.swift */; };
 		4931410CC66F47F1832BA36E /* ExportFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E0123D84194584A96AA97F /* ExportFormat.swift */; };
@@ -41,7 +43,11 @@
 		6C300D98784249C19108987F /* PaletteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265392EB11B94C98A1190CC0 /* PaletteDetailView.swift */; };
 		7AFBA1C6D17946E69ADA75EB /* PaletteExtractionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693D29ECDD7844DEB665D56B /* PaletteExtractionViewModel.swift */; };
 		968A35420708441AAF3677BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF98BA01CC84686AB3C71B8 /* Constants.swift */; };
+		5550000033334444EEEE0002 /* UndoManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5550000033334444EEEE0001 /* UndoManager+Helpers.swift */; };
 		968A35420708441AAF3677C0 /* PaletteMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF98BA01CC84686AB3C71C0 /* PaletteMigration.swift */; };
+		11110000AAAA0000CCCC001 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11110000AAAA0000BBBB001 /* Folder.swift */; };
+		11100000AAAA0000CCCC002 /* FolderStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11100000AAAA0000BBBB002 /* FolderStorageService.swift */; };
+		11110000AAAA0000CCCC003 /* FolderStorageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11110000AAAA0000BBBB003 /* FolderStorageServiceProtocol.swift */; };
 		9FA5C7B194A64AB3AB07ED2F /* ContrastCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417024EA71DB4822850C7BCB /* ContrastCheckerService.swift */; };
 		A05A8E051543417B88B15634 /* Color+CIELAB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8EB4D0F31D46FC890934FF /* Color+CIELAB.swift */; };
 		A0FA8F8105AB49EF818DE48F /* ColorRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62231F65894A968C90CA1D /* ColorRole.swift */; };
@@ -87,6 +93,7 @@
 		EE11FF22AA334455BB005552 /* SharedDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB005551 /* SharedDataService.swift */; };
 		EE11FF22AA334455BB006662 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB006661 /* WidgetKit.framework */; };
 		EE11FF22AA334455BB006664 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB006663 /* SwiftUI.framework */; };
+		EE11FF22AA334455BB008882 /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB008881 /* AppIntents.framework */; };
 		EE11FF22AA334455BB01000D /* PalettoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F71F86BEE26D4C3591E64999 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC9C95389B485C81EF9996 /* AppError.swift */; };
 /* End PBXBuildFile section */
@@ -144,8 +151,14 @@
 		417024EA71DB4822850C7BCB /* ContrastCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastCheckerService.swift; sourceTree = "<group>"; };
 		417BF25FFE2446B387ACC44B /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		4E5B596F062D429582AEEFF5 /* PaletteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteListView.swift; sourceTree = "<group>"; };
+		5550000011112222AAAA0001 /* TagFilterBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFilterBar.swift; sourceTree = "<group>"; };
+		5550000011112222AAAA0002 /* FolderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSection.swift; sourceTree = "<group>"; };
 		4EF98BA01CC84686AB3C71B8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5550000033334444EEEE0001 /* UndoManager+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UndoManager+Helpers.swift"; sourceTree = "<group>"; };
 		4EF98BA01CC84686AB3C71C0 /* PaletteMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteMigration.swift; sourceTree = "<group>"; };
+		11110000AAAA0000BBBB001 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		11100000AAAA0000BBBB002 /* FolderStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderStorageService.swift; sourceTree = "<group>"; };
+		11110000AAAA0000BBBB003 /* FolderStorageServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderStorageServiceProtocol.swift; sourceTree = "<group>"; };
 		5197500EDB164CBFA5FC73AC /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		6035D005A09E47519B51D49D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		610C4D7B4F2A4E9DACCB5465 /* PaletteStorageServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteStorageServiceProtocol.swift; sourceTree = "<group>"; };
@@ -198,6 +211,7 @@
 		EE11FF22AA334455BB005551 /* SharedDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataService.swift; sourceTree = "<group>"; };
 		EE11FF22AA334455BB006661 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		EE11FF22AA334455BB006663 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		EE11FF22AA334455BB008881 /* AppIntents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppIntents.framework; path = System/Library/Frameworks/AppIntents.framework; sourceTree = SDKROOT; };
 		EE11FF22AA334455BB010005 /* PalettoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PalettoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5594B012EB4C04BE1F0A29 /* Color+Luminance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Luminance.swift"; sourceTree = "<group>"; };
 		F31F85C7E7AE4A428C3503B4 /* ColorDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDetailRow.swift; sourceTree = "<group>"; };
@@ -222,6 +236,7 @@
 			files = (
 				EE11FF22AA334455BB006662 /* WidgetKit.framework in Frameworks */,
 				EE11FF22AA334455BB006664 /* SwiftUI.framework in Frameworks */,
+				EE11FF22AA334455BB008882 /* AppIntents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +269,7 @@
 			children = (
 				2EAC9C95389B485C81EF9996 /* AppError.swift */,
 				4EF98BA01CC84686AB3C71B8 /* Constants.swift */,
+				5550000033334444EEEE0001 /* UndoManager+Helpers.swift */,
 				4EF98BA01CC84686AB3C71C0 /* PaletteMigration.swift */,
 			);
 			path = Utilities;
@@ -268,6 +284,7 @@
 				78BC350975DF42A392FEF983 /* PaletteColor.swift */,
 				AA11BB22CC334455DD001111 /* HarmonyType.swift */,
 				BB11CC22DD334455EE001111 /* ColorBlindnessType.swift */,
+				11110000AAAA0000BBBB001 /* Folder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -331,6 +348,8 @@
 			children = (
 				4E5B596F062D429582AEEFF5 /* PaletteListView.swift */,
 				14A0C2C5F9944EF09F784558 /* PaletteListViewModel.swift */,
+				5550000011112222AAAA0001 /* TagFilterBar.swift */,
+				5550000011112222AAAA0002 /* FolderSection.swift */,
 			);
 			path = PaletteList;
 			sourceTree = "<group>";
@@ -388,6 +407,7 @@
 				CC11DD22EE334455FF001111 /* ImageAnalysisServiceProtocol.swift */,
 				11FF22AA33445566DD001111 /* SettingsManagerProtocol.swift */,
 				11FF22AA33445566DD002221 /* ThemeManagerProtocol.swift */,
+				11110000AAAA0000BBBB003 /* FolderStorageServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -492,6 +512,7 @@
 				CC11DD22EE334455FF002221 /* ImageAnalysisService.swift */,
 				DD11EE22FF334455AA001111 /* PaletteSharingService.swift */,
 				EE11FF22AA334455BB005551 /* SharedDataService.swift */,
+				11100000AAAA0000BBBB002 /* FolderStorageService.swift */,
 				91D9FD3946FA4EB385ABACFE /* Protocols */,
 			);
 			path = Services;
@@ -693,7 +714,11 @@
 				DF3D8EF0E63646F4B97D4E20 /* SettingsManager.swift in Sources */,
 				F71F86BEE26D4C3591E64999 /* AppError.swift in Sources */,
 				968A35420708441AAF3677BF /* Constants.swift in Sources */,
+				5550000033334444EEEE0002 /* UndoManager+Helpers.swift in Sources */,
 				968A35420708441AAF3677C0 /* PaletteMigration.swift in Sources */,
+				11110000AAAA0000CCCC001 /* Folder.swift in Sources */,
+				11100000AAAA0000CCCC002 /* FolderStorageService.swift in Sources */,
+				11110000AAAA0000CCCC003 /* FolderStorageServiceProtocol.swift in Sources */,
 				2C387B2C628949C4885E9557 /* CameraColorPickerView.swift in Sources */,
 				360DD708474C4118A45DD0E5 /* CameraColorPickerViewModel.swift in Sources */,
 				31AC3B242F56BF9B00AA7472 /* AppLanguage.swift in Sources */,
@@ -712,6 +737,8 @@
 				3BC3385CC34147B89778CD5E /* PaletteExtractionView.swift in Sources */,
 				7AFBA1C6D17946E69ADA75EB /* PaletteExtractionViewModel.swift in Sources */,
 				62386FEE2FAC48168FFFB923 /* PhotoPickerView.swift in Sources */,
+				5550000011112222BBBB0001 /* TagFilterBar.swift in Sources */,
+				5550000011112222BBBB0002 /* FolderSection.swift in Sources */,
 				451BD3666C9147E19BE42E77 /* PaletteListView.swift in Sources */,
 				44B3CDCC584748739767F996 /* PaletteListViewModel.swift in Sources */,
 				AB12CD34EF5647890ABCDEF0 /* SettingsView.swift in Sources */,
@@ -861,7 +888,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -893,6 +920,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Debug;
 		};

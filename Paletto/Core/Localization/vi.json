@@ -100,7 +100,8 @@
         "empty": "Thẻ không được để trống.",
         "slash": "Thẻ không được chứa '/'.",
         "max_length": "Thẻ tối đa 50 ký tự.",
-        "max_count": "Tối đa 20 thẻ mỗi bảng màu."
+        "max_count": "Tối đa 20 thẻ mỗi bảng màu.",
+        "duplicate": "Thẻ này đã tồn tại."
       }
     },
     "folder": {

@@ -100,7 +100,8 @@
         "empty": "Tag cannot be empty.",
         "slash": "Tag cannot contain '/'.",
         "max_length": "Tag must be 50 characters or fewer.",
-        "max_count": "Maximum 20 tags allowed per palette."
+        "max_count": "Maximum 20 tags allowed per palette.",
+        "duplicate": "This tag already exists."
       }
     },
     "folder": {

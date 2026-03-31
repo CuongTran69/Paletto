@@ -41,15 +41,9 @@ final class PaletteDetailViewModel: ObservableObject {
 
     func autoAssignRoles() {
         let previousColors = palette.colors
-        let previousRoles = palette.colors.map { $0.role }
-
-        undoManager?.performUndoGroup(L10n.libraryUndoAutoAssign.localized) { [weak self] in
-            guard let self else { return }
-            self.palette.colors = self.contrastService.assignRoles(to: self.palette.colors)
-        }
 
         palette.colors = contrastService.assignRoles(to: palette.colors)
-        // Register inverse undo: restore previous colors
+        // Register inverse: restore previous colors
         undoManager?.registerUndo(withTarget: self) { target in
             target.palette.colors = previousColors
             target.updateContrastMatrix()
@@ -66,14 +60,16 @@ final class PaletteDetailViewModel: ObservableObject {
         guard let index = palette.colors.firstIndex(where: { $0.id == colorId }) else { return }
         let previousRole = palette.colors[index].role
 
-        undoManager?.performUndoGroup(L10n.libraryUndoChangeRole.localized) { [weak self] in
-            guard let self else { return }
-            if let idx = self.palette.colors.firstIndex(where: { $0.id == colorId }) {
-                self.palette.colors[idx].role = previousRole
+        undoManager?.beginUndoGrouping()
+        palette.colors[index].role = role
+        undoManager?.registerUndo(withTarget: self) { target in
+            if let idx = target.palette.colors.firstIndex(where: { $0.id == colorId }) {
+                target.palette.colors[idx].role = previousRole
             }
         }
+        undoManager?.endUndoGrouping()
+        undoManager?.setActionName(L10n.libraryUndoChangeRole.localized)
 
-        palette.colors[index].role = role
         save()
         WidgetCenter.shared.reloadAllTimelines()
     }
@@ -93,16 +89,18 @@ final class PaletteDetailViewModel: ObservableObject {
         let previousColor = palette.colors[index]
         let role = previousColor.role
 
-        undoManager?.performUndoGroup(L10n.libraryUndoFixContrast.localized) { [weak self] in
-            guard let self else { return }
-            if self.palette.colors.indices.contains(index) {
-                self.palette.colors[index] = previousColor
-            }
-        }
-
+        undoManager?.beginUndoGrouping()
         var updated = fixedColor
         updated.role = role
         palette.colors[index] = updated
+        undoManager?.registerUndo(withTarget: self) { target in
+            if target.palette.colors.indices.contains(index) {
+                target.palette.colors[index] = previousColor
+            }
+        }
+        undoManager?.endUndoGrouping()
+        undoManager?.setActionName(L10n.libraryUndoFixContrast.localized)
+
         updateContrastForColor(at: index)
         save()
         WidgetCenter.shared.reloadAllTimelines()
@@ -111,13 +109,15 @@ final class PaletteDetailViewModel: ObservableObject {
     func updateName(_ name: String) {
         let previousName = palette.name
 
-        undoManager?.performUndoGroup(L10n.libraryUndoEditName.localized) { [weak self] in
-            guard let self else { return }
-            self.palette.name = previousName
-            self.save()
-        }
-
+        undoManager?.beginUndoGrouping()
         palette.name = name
+        undoManager?.registerUndo(withTarget: self) { target in
+            target.palette.name = previousName
+            target.save()
+        }
+        undoManager?.endUndoGrouping()
+        undoManager?.setActionName(L10n.libraryUndoEditName.localized)
+
         save()
         WidgetCenter.shared.reloadAllTimelines()
     }
@@ -165,7 +165,7 @@ final class PaletteDetailViewModel: ObservableObject {
         }
 
         if palette.tags.contains(trimmed) {
-            tagError = "Tag already exists."
+            tagError = L10n.libraryTagErrorDuplicate.localized
             return false
         }
 

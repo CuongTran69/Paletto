@@ -66,11 +66,11 @@ struct TagFilterBar: View {
             .padding(.vertical, 6)
             .background(
                 isSelected
-                    ? LinearGradient(
+                    ? AnyShapeStyle(LinearGradient(
                         colors: [SemanticColors.gradientStart, SemanticColors.gradientEnd],
                         startPoint: .leading,
                         endPoint: .trailing
-                    )
+                    ))
                     : AnyShapeStyle(Color.clear)
             )
             .background(Color.clear)
@@ -181,7 +181,10 @@ struct TagFilterBar: View {
                     .foregroundColor(SemanticColors.destructive)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(Color(.systemBackground), cornerRadius: 6)
+                    .background(
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(Color(.systemBackground))
+            )
                     .offset(y: -28)
             }
         }

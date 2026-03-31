@@ -114,7 +114,7 @@ struct FolderRowView: View {
                     .background(
                         isSelected
                             ? SemanticColors.gradientStart
-                            : SemanticColors.glassBorder.opacity(0.3)
+                            : Color(.systemGray5)
                     )
                     .clipShape(Capsule())
             }
@@ -122,11 +122,11 @@ struct FolderRowView: View {
             .padding(.vertical, 10)
             .background(
                 isSelected
-                    ? LinearGradient(
+                    ? AnyShapeStyle(LinearGradient(
                         colors: [SemanticColors.gradientStart.opacity(0.15), SemanticColors.gradientEnd.opacity(0.15)],
                         startPoint: .leading,
                         endPoint: .trailing
-                    )
+                    ))
                     : AnyShapeStyle(.ultraThinMaterial)
             )
             .cornerRadius(Constants.UI.cornerRadius)
