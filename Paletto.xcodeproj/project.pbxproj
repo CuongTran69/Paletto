@@ -178,7 +178,7 @@
 		8B44F79474684ADFBD077B7F /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		924FDFE7D30846E3A68FF9EF /* ColorExtractionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtractionService.swift; sourceTree = "<group>"; };
 		9459CAECB520424BAA2252FF /* ContrastCheckerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastCheckerServiceProtocol.swift; sourceTree = "<group>"; };
-		98FAEDF5BDA9705E23C1C02E /* FirebaseService.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = FirebaseService.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		98FAEDF5BDA9705E23C1C02E /* FirebaseService.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		A3A92CB4B5E3418A93FD87FF /* ContrastMatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastMatrixView.swift; sourceTree = "<group>"; };
 		AA11BB22CC334455DD001111 /* HarmonyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonyType.swift; sourceTree = "<group>"; };
 		AA11BB22CC334455DD002221 /* ColorHarmonyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHarmonyService.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 		F31F85C7E7AE4A428C3503B4 /* ColorDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDetailRow.swift; sourceTree = "<group>"; };
 		F4A62FB930A14D83856D577E /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 		F91DF12A70544C41BA7F8109 /* Paletto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paletto.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA9DECC6E5C44BF7F9309AA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FA9DECC6E5C44BF7F9309AA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FF22AA33BB445566CC001111 /* Paletto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Paletto.entitlements; sourceTree = "<group>"; };
 		FF22AA33BB445566CC002221 /* PalettoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PalettoWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -332,6 +332,7 @@
 			children = (
 				EE11FF22AA334455BB006661 /* WidgetKit.framework */,
 				EE11FF22AA334455BB006663 /* SwiftUI.framework */,
+				EE11FF22AA334455BB008881 /* AppIntents.framework */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -844,7 +845,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Paletto/Paletto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -859,9 +860,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.paletto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -905,7 +904,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Paletto/Paletto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -920,9 +919,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.paletto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -959,7 +956,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PalettoWidget/PalettoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -987,7 +984,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PalettoWidget/PalettoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = QWP9AN675X;
 				GENERATE_INFOPLIST_FILE = NO;
