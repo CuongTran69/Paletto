@@ -19,6 +19,22 @@ final class PaletteStorageService: PaletteStorageServiceProtocol {
     }()
 
     private var palettesDirectory: URL {
+        // Prefer App Group container so the widget extension can read palettes
+        if let container = FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: Constants.Storage.appGroupIdentifier
+        ) {
+            return container.appendingPathComponent(Constants.Storage.palettesDirectoryName)
+        }
+        // Fallback to standard Application Support
+        let appSupport = FileManager.default.urls(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask
+        ).first!
+        return appSupport.appendingPathComponent(Constants.Storage.palettesDirectoryName)
+    }
+
+    /// Standard Application Support directory (used for one-time data migration)
+    private var legacyPalettesDirectory: URL {
         let appSupport = FileManager.default.urls(
             for: .applicationSupportDirectory,
             in: .userDomainMask
@@ -28,6 +44,33 @@ final class PaletteStorageService: PaletteStorageServiceProtocol {
 
     init() {
         ensureDirectoryExists()
+        migrateFromLegacyIfNeeded()
+    }
+
+    private func migrateFromLegacyIfNeeded() {
+        let legacyDir = legacyPalettesDirectory
+        let newDir = palettesDirectory
+        guard legacyDir != newDir else { return }
+        guard FileManager.default.fileExists(atPath: legacyDir.path) else { return }
+
+        fileQueue.async {
+            do {
+                let files = try FileManager.default.contentsOfDirectory(
+                    at: legacyDir,
+                    includingPropertiesForKeys: nil
+                ).filter { $0.pathExtension == "json" }
+
+                for fileURL in files {
+                    let destURL = newDir.appendingPathComponent(fileURL.lastPathComponent)
+                    if !FileManager.default.fileExists(atPath: destURL.path) {
+                        try FileManager.default.copyItem(at: fileURL, to: destURL)
+                    }
+                }
+                print("[PaletteStorageService] Migrated \(files.count) palettes from legacy to App Group container")
+            } catch {
+                print("[PaletteStorageService] ⚠️ Palette migration failed: \(error.localizedDescription)")
+            }
+        }
     }
 
     // MARK: - Public API
@@ -37,6 +80,9 @@ final class PaletteStorageService: PaletteStorageServiceProtocol {
             let data = try self.encoder.encode(palette)
             let url = self.fileURL(for: palette.id)
             try data.write(to: url, options: .atomic)
+        }
+        Task { @MainActor in
+            try? await FirebaseService.shared.syncPalette(palette)
         }
     }
 
@@ -89,6 +135,9 @@ final class PaletteStorageService: PaletteStorageServiceProtocol {
             if FileManager.default.fileExists(atPath: url.path) {
                 try FileManager.default.removeItem(at: url)
             }
+        }
+        Task { @MainActor in
+            try? await FirebaseService.shared.deleteCloudPalette(id: id)
         }
     }
 

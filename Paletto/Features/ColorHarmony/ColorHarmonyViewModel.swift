@@ -1,6 +1,7 @@
 import SwiftUI
 
 /// ViewModel for the color harmony generator
+@MainActor
 final class ColorHarmonyViewModel: ObservableObject {
 
     @Published var sourceColor: PaletteColor

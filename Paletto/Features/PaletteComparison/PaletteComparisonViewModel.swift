@@ -1,6 +1,7 @@
 import SwiftUI
 
 /// ViewModel for palette comparison screen
+@MainActor
 final class PaletteComparisonViewModel: ObservableObject {
 
     @Published var palettes: [ColorPalette] = []

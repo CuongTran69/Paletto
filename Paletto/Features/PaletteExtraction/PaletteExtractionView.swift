@@ -185,7 +185,7 @@ struct PaletteExtractionView: View {
             HStack(spacing: 6) {
                 Image(systemName: "arrow.uturn.backward")
                     .font(.body)
-                Text("Undo")
+                Text(L10n.undo.localized)
                     .font(.subheadline.weight(.medium))
             }
             .foregroundStyle(SemanticColors.brandGradient)
@@ -274,4 +274,3 @@ struct PaletteExtractionView: View {
         }
     }
 }
-

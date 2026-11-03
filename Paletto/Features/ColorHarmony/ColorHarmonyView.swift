@@ -92,14 +92,35 @@ struct ColorHarmonyView: View {
     // MARK: - Harmony Type Picker
 
     private var harmonyTypePicker: some View {
-        Picker("", selection: $viewModel.selectedType) {
-            ForEach(HarmonyType.allCases) { type in
-                Text(type.displayName).tag(type)
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                ForEach(HarmonyType.allCases) { type in
+                    let isSelected = viewModel.selectedType == type
+                    Button {
+                        viewModel.selectType(type)
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: type.iconName)
+                                .font(.caption.weight(.medium))
+                            Text(type.displayName)
+                                .font(.caption.weight(.semibold))
+                        }
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 8)
+                        .background(
+                            isSelected ? AnyShapeStyle(SemanticColors.brandGradient) : AnyShapeStyle(.ultraThinMaterial)
+                        )
+                        .foregroundColor(isSelected ? .white : SemanticColors.primaryText)
+                        .cornerRadius(Constants.UI.cornerRadius)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
+                                .strokeBorder(isSelected ? Color.clear : SemanticColors.glassBorder, lineWidth: 0.5)
+                        )
+                    }
+                    .buttonStyle(.plain)
+                }
             }
-        }
-        .pickerStyle(.segmented)
-        .onChange(of: viewModel.selectedType) { newType in
-            viewModel.selectType(newType)
+            .padding(.vertical, 2)
         }
     }
 

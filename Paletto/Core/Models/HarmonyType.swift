@@ -7,6 +7,8 @@ enum HarmonyType: String, CaseIterable, Identifiable {
     case triadic
     case splitComplementary
     case tetradic
+    case monochromatic
+    case square
 
     var id: String { rawValue }
 
@@ -17,6 +19,8 @@ enum HarmonyType: String, CaseIterable, Identifiable {
         case .triadic: return L10n.harmonyTriadic.localized
         case .splitComplementary: return L10n.harmonySplitComplementary.localized
         case .tetradic: return L10n.harmonyTetradic.localized
+        case .monochromatic: return L10n.harmonyMonochromatic.localized
+        case .square: return L10n.harmonySquare.localized
         }
     }
 
@@ -26,7 +30,9 @@ enum HarmonyType: String, CaseIterable, Identifiable {
         case .analogous: return "arrow.right"
         case .triadic: return "triangle"
         case .splitComplementary: return "arrow.triangle.branch"
-        case .tetradic: return "square"
+        case .tetradic: return "rectangle"
+        case .monochromatic: return "circle.lefthalf.filled"
+        case .square: return "square"
         }
     }
 
@@ -37,6 +43,8 @@ enum HarmonyType: String, CaseIterable, Identifiable {
         case .triadic: return L10n.harmonyTriadicDesc.localized
         case .splitComplementary: return L10n.harmonySplitComplementaryDesc.localized
         case .tetradic: return L10n.harmonyTetradicDesc.localized
+        case .monochromatic: return L10n.harmonyMonochromaticDesc.localized
+        case .square: return L10n.harmonySquareDesc.localized
         }
     }
 
@@ -48,7 +56,8 @@ enum HarmonyType: String, CaseIterable, Identifiable {
         case .triadic: return 3
         case .splitComplementary: return 3
         case .tetradic: return 4
+        case .monochromatic: return 4
+        case .square: return 4
         }
     }
 }
-

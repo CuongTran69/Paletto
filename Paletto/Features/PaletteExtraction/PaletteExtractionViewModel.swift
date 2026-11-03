@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 /// ViewModel for the palette extraction screen
+@MainActor
 final class PaletteExtractionViewModel: ObservableObject {
 
     @Published var selectedImage: UIImage?
@@ -26,8 +27,11 @@ final class PaletteExtractionViewModel: ObservableObject {
     private var cachedImageWidth: Int = 0
     private var cachedImageHeight: Int = 0
 
-    // Track which slot to replace when at max capacity (cycles through last 3)
+    // Track which slot to replace when at max capacity (cycles through user-pick zone)
     private var replaceIndex: Int = 0
+    // Track last deleted k-means slot so refill can restore its exact position and value
+    private var deletedKMeansSlotIndex: Int? = nil
+    private var deletedKMeansSlotColor: PaletteColor? = nil
 
     init(
         extractionService: ColorExtractionServiceProtocol = ColorExtractionService(),
@@ -46,7 +50,7 @@ final class PaletteExtractionViewModel: ObservableObject {
     func onImageSelected(_ image: UIImage) {
         let downsized = image.downsampledToFit(maxDimension: Constants.Image.maxDisplayDimension)
         selectedImage = downsized
-        Task { await cachePixelData(for: downsized) }
+        cachePixelData(for: downsized)
         extractColors()
     }
 
@@ -58,11 +62,28 @@ final class PaletteExtractionViewModel: ObservableObject {
 
         Task {
             do {
-                let colors = try await extractionService.extractColors(
+                let extracted = try await extractionService.extractColors(
                     from: image,
                     count: settingsManager.defaultColorCount
                 )
-                self.extractedColors = colors
+                // Merge: only seed from k-means if user hasn't picked any colors yet.
+                // If user already picked colors, append k-means results as suggestions
+                // (avoiding duplicates within a color-distance threshold).
+                if self.extractedColors.isEmpty {
+                    self.extractedColors = extracted
+                } else {
+                    let threshold: CGFloat = 0.05
+                    for color in extracted {
+                        let isDuplicate = self.extractedColors.contains { existing in
+                            abs(existing.red   - color.red)   < threshold &&
+                            abs(existing.green - color.green) < threshold &&
+                            abs(existing.blue  - color.blue)  < threshold
+                        }
+                        if !isDuplicate && self.extractedColors.count < Constants.Palette.maxColorCount {
+                            self.extractedColors.append(color)
+                        }
+                    }
+                }
                 self.triggerHaptic(.success)
             } catch let error as AppError {
                 self.errorMessage = error.localizedDescription
@@ -104,28 +125,65 @@ final class PaletteExtractionViewModel: ObservableObject {
         guard let color = magnifierColor else { return }
 
         let maxCount = Constants.Palette.maxColorCount
+        let seedCount = settingsManager.defaultColorCount
 
         if extractedColors.count < maxCount {
-            let colorToAdd = color
-            extractedColors.append(colorToAdd)
-            replaceIndex = 0
+            // Below max — check if a k-means slot was deleted and needs refill
+            if let refillIndex = deletedKMeansSlotIndex {
+                let previousColor = deletedKMeansSlotColor
+                extractedColors.insert(color, at: refillIndex)
+                replaceIndex = 0
+                deletedKMeansSlotIndex = nil
+                deletedKMeansSlotColor = nil
 
-            // Register undo: remove the added color
-            undoManager?.performUndoGroup(L10n.libraryUndoAddColor.localized) { [weak self] in
-                self?.extractedColors.removeLast()
+                undoManager?.performUndoGroup(L10n.libraryUndoAddColor.localized) { [weak self] in
+                    guard let self else { return }
+                    self.extractedColors.remove(at: refillIndex)
+                    self.deletedKMeansSlotIndex = refillIndex
+                    self.deletedKMeansSlotColor = previousColor
+                }
+            } else {
+                // No pending k-means refill — append
+                extractedColors.append(color)
+                replaceIndex = 0
+
+                undoManager?.performUndoGroup(L10n.libraryUndoAddColor.localized) { [weak self] in
+                    self?.extractedColors.removeLast()
+                }
             }
         } else {
-            // At max capacity — replace last 3 slots in round-robin
-            let replaceRange = min(3, maxCount)
-            let targetIndex = maxCount - replaceRange + (replaceIndex % replaceRange)
-            let previousColor = extractedColors[targetIndex]
-            extractedColors[targetIndex] = color
-            replaceIndex += 1
+            // At max capacity — check if a k-means slot was deleted and needs refill
+            if let refillIndex = deletedKMeansSlotIndex {
+                let previousColor = deletedKMeansSlotColor
+                extractedColors.insert(color, at: refillIndex)
+                // Remove the last element (now beyond k-means zone) to maintain maxCount
+                extractedColors.removeLast()
+                replaceIndex = 0
+                deletedKMeansSlotIndex = nil
+                deletedKMeansSlotColor = nil
 
-            // Register undo: restore the previous color
-            undoManager?.performUndoGroup(L10n.libraryUndoAddColor.localized) { [weak self] in
-                guard let self, self.extractedColors.indices.contains(targetIndex) else { return }
-                self.extractedColors[targetIndex] = previousColor
+                undoManager?.performUndoGroup(L10n.libraryUndoAddColor.localized) { [weak self] in
+                    guard let self else { return }
+                    self.extractedColors.remove(at: refillIndex)
+                    // Restore the removed color at end to keep count at max
+                    if let c = previousColor {
+                        self.extractedColors.append(c)
+                    }
+                    self.deletedKMeansSlotIndex = refillIndex
+                    self.deletedKMeansSlotColor = previousColor
+                }
+            } else {
+                // No pending k-means refill — round-robin replace in user-pick zone
+                let userPickSlotCount = maxCount - seedCount
+                let targetIndex = seedCount + (replaceIndex % userPickSlotCount)
+                let previousColor = extractedColors[targetIndex]
+                extractedColors[targetIndex] = color
+                replaceIndex += 1
+
+                undoManager?.performUndoGroup(L10n.libraryUndoAddColor.localized) { [weak self] in
+                    guard let self, self.extractedColors.indices.contains(targetIndex) else { return }
+                    self.extractedColors[targetIndex] = previousColor
+                }
             }
         }
         triggerSelectionHaptic()
@@ -137,10 +195,24 @@ final class PaletteExtractionViewModel: ObservableObject {
         extractedColors.remove(at: index)
         triggerSelectionHaptic()
 
+        // Track k-means slot deletion for refill logic
+        let seedCount = settingsManager.defaultColorCount
+        if index < seedCount {
+            // Map original index to current position after removal
+            deletedKMeansSlotIndex = min(index, extractedColors.count)
+            deletedKMeansSlotColor = removedColor
+        } else {
+            deletedKMeansSlotIndex = nil
+            deletedKMeansSlotColor = nil
+        }
+
         // Register undo: restore the removed color
         undoManager?.performUndoGroup(L10n.libraryUndoRemoveColor.localized) { [weak self] in
             guard let self else { return }
             self.extractedColors.insert(removedColor, at: min(index, self.extractedColors.count))
+            // Clear k-means tracking after undo restores the removed color
+            self.deletedKMeansSlotIndex = nil
+            self.deletedKMeansSlotColor = nil
         }
     }
 
@@ -179,6 +251,8 @@ final class PaletteExtractionViewModel: ObservableObject {
         cachedImageWidth = 0
         cachedImageHeight = 0
         replaceIndex = 0
+        deletedKMeansSlotIndex = nil
+        deletedKMeansSlotColor = nil
     }
 
     func analyzeImage() {
@@ -189,14 +263,14 @@ final class PaletteExtractionViewModel: ObservableObject {
 
     // MARK: - Private
 
-    private func cachePixelData(for image: UIImage) async {
-        guard let result = await Self.buildPixelData(for: image) else { return }
+    private func cachePixelData(for image: UIImage) {
+        guard let result = Self.buildPixelData(for: image) else { return }
         cachedPixelData = result.data
         cachedImageWidth = result.width
         cachedImageHeight = result.height
     }
 
-    private nonisolated static func buildPixelData(for image: UIImage) async -> (data: [UInt8], width: Int, height: Int)? {
+    private nonisolated static func buildPixelData(for image: UIImage) -> (data: [UInt8], width: Int, height: Int)? {
         guard let cgImage = image.cgImage else { return nil }
         let width = cgImage.width
         let height = cgImage.height

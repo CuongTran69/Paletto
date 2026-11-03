@@ -3,6 +3,7 @@ import SwiftUI
 /// Camera screen for picking colors from the real world
 struct CameraColorPickerView: View {
     @StateObject private var viewModel = CameraColorPickerViewModel()
+    @Environment(\.undoManager) private var undoManager: UndoManager?
     @State private var navigateToDetail = false
     @State private var savedPalette: ColorPalette?
     @State private var showSaveDialog = false
@@ -41,6 +42,7 @@ struct CameraColorPickerView: View {
                 }
             }
             .onAppear {
+                viewModel.undoManager = undoManager
                 viewModel.checkPermission()
                 isCameraActive = true
             }

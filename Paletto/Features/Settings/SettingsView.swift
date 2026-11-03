@@ -4,9 +4,11 @@ import SwiftUI
 struct SettingsView: View {
     @ObservedObject private var loc = LocalizationManager.shared
     @ObservedObject private var themeManager = ThemeManager.shared
+    @ObservedObject private var firebase = FirebaseService.shared
     @State private var hapticEnabled = SettingsManager.shared.hapticFeedbackEnabled
     @State private var defaultColorCount = SettingsManager.shared.defaultColorCount
     @State private var defaultExportFormat = SettingsManager.shared.defaultExportFormat
+    @State private var previewAnimationEnabled = SettingsManager.shared.previewAnimationEnabled
 
     var body: some View {
         NavigationStack {
@@ -14,6 +16,7 @@ struct SettingsView: View {
                 VStack(spacing: Constants.UI.padding) {
                     appearanceSection
                     languageSection
+                    cloudSection
                     generalSection
                     aboutSection
                 }
@@ -56,6 +59,31 @@ struct SettingsView: View {
         }
     }
 
+    private var cloudSection: some View {
+        glassSection(title: L10n.settingsCloud.localized, icon: "icloud.fill") {
+            VStack(spacing: 8) {
+                settingsRow(icon: "checkmark.seal.fill", title: L10n.settingsCloudStatus.localized) {
+                    HStack(spacing: 6) {
+                        Circle()
+                            .fill(firebase.isConfigured ? SemanticColors.success : SemanticColors.warning)
+                            .frame(width: 8, height: 8)
+                        Text(firebase.isConfigured ? L10n.settingsCloudConnected.localized : L10n.settingsCloudNotConnected.localized)
+                            .font(.subheadline.weight(.medium))
+                            .foregroundColor(firebase.isConfigured ? SemanticColors.success : SemanticColors.secondaryText)
+                    }
+                }
+
+                if firebase.isConfigured {
+                    settingsRow(icon: "person.crop.circle.fill", title: L10n.settingsCloudUser.localized) {
+                        Text(firebase.currentUserId?.prefix(10).appending("...") ?? "Anonymous")
+                            .font(.caption.monospaced())
+                            .foregroundColor(SemanticColors.secondaryText)
+                    }
+                }
+            }
+        }
+    }
+
     private var generalSection: some View {
         glassSection(title: L10n.settingsGeneral.localized, icon: "slider.horizontal.3") {
             VStack(spacing: 0) {
@@ -65,6 +93,15 @@ struct SettingsView: View {
                         .tint(SemanticColors.gradientStart)
                         .onChangeCompat(of: hapticEnabled) { newValue in
                             SettingsManager.shared.hapticFeedbackEnabled = newValue
+                        }
+                }
+
+                settingsRow(icon: "play.circle.fill", title: L10n.settingsPreviewAnimation.localized) {
+                    Toggle("", isOn: $previewAnimationEnabled)
+                        .labelsHidden()
+                        .tint(SemanticColors.gradientStart)
+                        .onChangeCompat(of: previewAnimationEnabled) { newValue in
+                            SettingsManager.shared.previewAnimationEnabled = newValue
                         }
                 }
 

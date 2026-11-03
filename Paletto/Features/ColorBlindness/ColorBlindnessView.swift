@@ -35,26 +35,43 @@ struct ColorBlindnessView: View {
                         .foregroundStyle(SemanticColors.brandGradient)
                 }
             }
-            .accessibilityElement(children: .contain)
-            .accessibilityLabel(L10n.blindnessA11y.localized)
         }
     }
-
-
 
     // MARK: - Type Picker
 
     private var typePicker: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Picker("", selection: Binding(
-                get: { viewModel.selectedType },
-                set: { viewModel.selectType($0) }
-            )) {
-                ForEach(ColorBlindnessType.allCases) { type in
-                    Text(type.displayName).tag(type)
+        VStack(alignment: .leading, spacing: 10) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(ColorBlindnessType.allCases) { type in
+                        let isSelected = viewModel.selectedType == type
+                        Button {
+                            viewModel.selectType(type)
+                        } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: type.iconName)
+                                    .font(.caption.weight(.medium))
+                                Text(type.displayName)
+                                    .font(.caption.weight(.semibold))
+                            }
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 8)
+                            .background(
+                                isSelected ? AnyShapeStyle(SemanticColors.brandGradient) : AnyShapeStyle(.ultraThinMaterial)
+                            )
+                            .foregroundColor(isSelected ? .white : SemanticColors.primaryText)
+                            .cornerRadius(Constants.UI.cornerRadius)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
+                                    .strokeBorder(isSelected ? Color.clear : SemanticColors.glassBorder, lineWidth: 0.5)
+                            )
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
+                .padding(.vertical, 2)
             }
-            .pickerStyle(.segmented)
 
             if viewModel.selectedType != .normal {
                 Text(viewModel.selectedType.shortDescription)

@@ -6,6 +6,7 @@ enum ColorBlindnessType: String, CaseIterable, Identifiable {
     case protanopia      // Red-blind
     case deuteranopia    // Green-blind
     case tritanopia      // Blue-blind
+    case achromatopsia   // Total color blindness (grayscale)
 
     var id: String { rawValue }
 
@@ -15,6 +16,7 @@ enum ColorBlindnessType: String, CaseIterable, Identifiable {
         case .protanopia: return L10n.blindnessProtanopia.localized
         case .deuteranopia: return L10n.blindnessDeuteranopia.localized
         case .tritanopia: return L10n.blindnessTritanopia.localized
+        case .achromatopsia: return L10n.blindnessAchromatopsia.localized
         }
     }
 
@@ -24,6 +26,7 @@ enum ColorBlindnessType: String, CaseIterable, Identifiable {
         case .protanopia: return L10n.blindnessProtanopiaDesc.localized
         case .deuteranopia: return L10n.blindnessDeuteranopiaDesc.localized
         case .tritanopia: return L10n.blindnessTritanopiaDesc.localized
+        case .achromatopsia: return L10n.blindnessAchromatopsiaDesc.localized
         }
     }
 
@@ -33,7 +36,7 @@ enum ColorBlindnessType: String, CaseIterable, Identifiable {
         case .protanopia: return "eye.trianglebadge.exclamationmark"
         case .deuteranopia: return "eye.trianglebadge.exclamationmark"
         case .tritanopia: return "eye.trianglebadge.exclamationmark"
+        case .achromatopsia: return "circle.slash"
         }
     }
 }
-

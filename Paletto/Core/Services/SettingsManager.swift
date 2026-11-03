@@ -1,7 +1,7 @@
 import Foundation
 
 /// Manages user settings via UserDefaults
-final class SettingsManager: SettingsManagerProtocol {
+final class SettingsManager: SettingsManagerProtocol, ObservableObject {
 
     static let shared = SettingsManager()
 
@@ -61,6 +61,18 @@ final class SettingsManager: SettingsManagerProtocol {
         }
         set {
             defaults.set(newValue.rawValue, forKey: Constants.Storage.settingsThemeKey)
+        }
+    }
+
+    var previewAnimationEnabled: Bool {
+        get {
+            if defaults.object(forKey: Constants.Storage.settingsPreviewAnimationKey) == nil {
+                return true // Default enabled
+            }
+            return defaults.bool(forKey: Constants.Storage.settingsPreviewAnimationKey)
+        }
+        set {
+            defaults.set(newValue, forKey: Constants.Storage.settingsPreviewAnimationKey)
         }
     }
 }

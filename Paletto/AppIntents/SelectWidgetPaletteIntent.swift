@@ -91,34 +91,23 @@ struct SelectWidgetPaletteIntent: WidgetConfigurationIntent {
         }
 
         let kind = widgetSize.toKind
-        let key = "widget_\(kind.rawValue)"
 
-        // Build WidgetConfigData-compatible JSON dict (widget extension reads WidgetConfigData directly)
-        // Widget uses JSONDecoder with dateDecodingStrategy = .iso8601
-        let isoFormatter = ISO8601DateFormatter()
+        // Use WidgetPalette (Codable) to build the widget slot data
+        // This mirrors SharedDataService.setWidgetPalette() and ensures consistent JSON encoding
+        let widgetPalette = WidgetPalette(palette: palette)
+        let config = WidgetConfig(palette: widgetPalette, updatedAt: Date())
 
-        // Build the nested palette dict
-        let paletteDict: [String: Any] = [
-            "id": palette.id.uuidString,
-            "name": palette.name,
-            "hexColors": palette.colors.map { $0.hex },
-            "colorRoles": palette.colors.map { $0.role?.rawValue as Any }
-        ]
-
-        let configDict: [String: Any] = [
-            "palette": paletteDict,
-            "updatedAt": isoFormatter.string(from: Date())
-        ]
-
-        // Serialize to JSON Data
-        guard let data = try? JSONSerialization.data(withJSONObject: configDict, options: []) else {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.outputFormatting = .sortedKeys
+        guard let data = try? encoder.encode(config) else {
             return .result()
         }
 
-        let sharedDefaults = UserDefaults(suiteName: "group.com.paletto.shared")
-        sharedDefaults?.set(data, forKey: key)
+        let sharedDefaults = UserDefaults(suiteName: Constants.Storage.appGroupIdentifier)
+        sharedDefaults?.set(data, forKey: Constants.Storage.widgetSlotKey(for: kind))
 
-        // Reload widget timeline
+        // Reload widget timeline so the change is reflected immediately
         WidgetCenter.shared.reloadTimelines(ofKind: "PalettoWidget")
 
         return .result()

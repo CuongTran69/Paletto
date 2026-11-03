@@ -7,5 +7,6 @@ protocol SettingsManagerProtocol {
     var defaultExportFormat: ExportFormat { get set }
     var language: AppLanguage { get set }
     var theme: AppTheme { get set }
+    var previewAnimationEnabled: Bool { get set }
 }
 

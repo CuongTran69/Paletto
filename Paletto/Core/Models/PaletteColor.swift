@@ -1,5 +1,15 @@
 import SwiftUI
 
+/// Animation mode for live palette preview
+enum AnimationMode: String, CaseIterable, Identifiable, Codable {
+    case off
+    case pulsing
+    case hueRotation
+    case brightnessBreathing
+
+    var id: String { rawValue }
+}
+
 /// Represents a single color in a palette with its metadata
 struct PaletteColor: Codable, Identifiable, Equatable {
     let id: UUID
@@ -89,6 +99,37 @@ struct PaletteColor: Codable, Identifiable, Equatable {
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0
         ui.getRed(&r, green: &g, blue: &b, alpha: nil)
         return PaletteColor(red: r, green: g, blue: b)
+    }
+
+    /// Returns a Color for the given role, animated according to the mode and progress.
+    /// - Parameters:
+    ///   - role: The color role (background, primary, etc.) — used to find this color in the palette.
+    ///   - mode: The animation mode. If .off, returns the static color.
+    ///   - progress: A value in 0..<1 representing animation cycle completion.
+    func animatedColor(for role: ColorRole, mode: AnimationMode, progress: Double) -> Color {
+        guard mode != .off else { return self.color }
+        let h = hue
+        let s = saturation
+        let b = brightness
+        let a = alpha
+
+        switch mode {
+        case .off:
+            return self.color
+        case .pulsing:
+            // Brightness oscillates 0.7 → 1.0 → 0.7 using sine wave
+            let animatedBrightness = 0.7 + 0.3 * sin(progress * .pi)
+            return Color(hue: h / 360.0, saturation: s, brightness: animatedBrightness, opacity: a)
+        case .hueRotation:
+            // Hue cycles 0° → 360° (progress 0..<1 maps to full rotation)
+            let animatedHue = (h + progress * 360).truncatingRemainder(dividingBy: 360)
+            return Color(hue: animatedHue / 360.0, saturation: s, brightness: b, opacity: a)
+        case .brightnessBreathing:
+            // Brightness oscillates ±20% around the original value
+            let rawBrightness = b + (b - 0.5) * 0.4 * sin(progress * 2 * .pi)
+            let clampedBrightness = max(0, min(1, rawBrightness))
+            return Color(hue: h / 360.0, saturation: s, brightness: clampedBrightness, opacity: a)
+        }
     }
 
     private static func toHex(red: CGFloat, green: CGFloat, blue: CGFloat) -> String {

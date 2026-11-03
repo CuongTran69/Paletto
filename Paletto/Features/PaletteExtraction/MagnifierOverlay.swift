@@ -24,14 +24,16 @@ struct MagnifierOverlay: View {
                         .onChanged { drag in
                             let location = drag.location
 
-                            // Clamp to view bounds
+                            // Always update position so magnifier follows the finger
+                            position = location
+
+                            // Activate when touch enters the image bounds
+                            // (works even if touch started outside, e.g. from a blank area)
                             guard location.x >= 0, location.x <= viewSize.width,
                                   location.y >= 0, location.y <= viewSize.height else {
                                 position = nil
                                 return
                             }
-
-                            position = location
                             isActivated = true
 
                             // Normalize directly — overlay size = image display size

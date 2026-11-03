@@ -7,6 +7,11 @@ struct PaletteListView: View {
     @Binding var deepLinkPaletteID: UUID?
     @State private var deepLinkPalette: ColorPalette?
     @State private var navigateToDeepLink = false
+    /// When non-nil, this binding drives the PaletteDetailView so palette changes propagate to the list.
+    @State private var selectedPaletteBinding: Binding<ColorPalette>?
+    /// Triggers navigation when a palette is selected from the list.
+    @State private var navigateToDetail = false
+    @Environment(\.undoManager) private var undoManager: UndoManager?
 
     // Folder creation/rename sheet state
     @State private var showCreateFolderSheet = false
@@ -49,6 +54,28 @@ struct PaletteListView: View {
             .navigationTitle(L10n.libraryTitle.localized)
             .searchable(text: $viewModel.searchText, prompt: Text(L10n.librarySearchPrompt.localized))
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack(spacing: 8) {
+                        Button {
+                            undoManager?.undo()
+                        } label: {
+                            Image(systemName: "arrow.uturn.backward")
+                                .foregroundStyle(SemanticColors.brandGradient)
+                        }
+                        .disabled(undoManager?.canUndo != true)
+                        .accessibilityLabel((undoManager?.undoActionName).map { "Undo \($0)" } ?? "Undo")
+
+                        Button {
+                            undoManager?.redo()
+                        } label: {
+                            Image(systemName: "arrow.uturn.forward")
+                                .foregroundStyle(SemanticColors.brandGradient)
+                        }
+                        .disabled(undoManager?.canRedo != true)
+                        .accessibilityLabel((undoManager?.redoActionName).map { "Redo \($0)" } ?? "Redo")
+                    }
+                }
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(spacing: 12) {
                         Button {
@@ -89,7 +116,13 @@ struct PaletteListView: View {
                     PaletteDetailView(palette: palette)
                 }
             }
+            .navigationDestination(isPresented: $navigateToDetail) {
+                if let binding = selectedPaletteBinding {
+                    PaletteDetailView(binding: binding)
+                }
+            }
             .onAppear {
+                viewModel.undoManager = undoManager
                 viewModel.loadPalettes()
             }
             .onChangeCompat(of: viewModel.isLoading) { isLoading in
@@ -169,18 +202,16 @@ struct PaletteListView: View {
     private var paletteList: some View {
         ScrollView {
             VStack(spacing: 12) {
-                // Tag filter bar (always visible when not inside a folder)
-                if !viewModel.allTags.isEmpty {
-                    TagFilterBar(
-                        selectedTag: $viewModel.selectedTag,
-                        allTags: viewModel.allTags,
-                        paletteCounts: tagPaletteCounts,
-                        onNewTag: { tag in
-                            // Create palette with tag — just show tag selected; actual creation happens in detail
-                            viewModel.selectedTag = tag
-                        }
-                    )
-                }
+                // Tag filter bar (always visible — includes "+ Thẻ mới" button even when no tags yet)
+                TagFilterBar(
+                    selectedTag: $viewModel.selectedTag,
+                    allTags: viewModel.allTags,
+                    paletteCounts: tagPaletteCounts,
+                    onNewTag: { tag in
+                        // Create palette with tag — just show tag selected; actual creation happens in detail
+                        viewModel.createTagFromFilter(tag)
+                    }
+                )
 
                 // Folder section
                 if !viewModel.folders.isEmpty {
@@ -206,7 +237,7 @@ struct PaletteListView: View {
 
                 // "All Palettes" header when not filtering by folder
                 if viewModel.selectedFolder == nil {
-                    Text("All Palettes")
+                    Text(L10n.libraryAllPalettes.localized)
                         .font(.headline.weight(.semibold))
                         .foregroundColor(SemanticColors.primaryText)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -224,8 +255,14 @@ struct PaletteListView: View {
     private var paletteListContent: some View {
         LazyVStack(spacing: 12) {
             ForEach(viewModel.filteredPalettes) { palette in
-                NavigationLink {
-                    PaletteDetailView(palette: palette)
+                Button {
+                    if let index = viewModel.palettes.firstIndex(where: { $0.id == palette.id }) {
+                        selectedPaletteBinding = Binding(
+                            get: { viewModel.palettes[index] },
+                            set: { viewModel.palettes[index] = $0 }
+                        )
+                        navigateToDetail = true
+                    }
                 } label: {
                     PaletteRowView(palette: palette)
                 }
@@ -291,10 +328,17 @@ struct PaletteListView: View {
                     .foregroundStyle(SemanticColors.brandGradient)
             }
 
-            if viewModel.searchText.isEmpty {
+            if viewModel.searchText.isEmpty && viewModel.selectedTag == nil {
                 Text(L10n.libraryEmptyTitle.localized)
                     .font(.title3.weight(.semibold))
                 Text(L10n.libraryEmptySubtitle.localized)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+            } else if let tag = viewModel.selectedTag {
+                Text(L10n.libraryTagNoResults.localized(args: ["tag": tag]))
+                    .font(.title3.weight(.semibold))
+                Text(L10n.libraryTagEmptyDesc.localized)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)

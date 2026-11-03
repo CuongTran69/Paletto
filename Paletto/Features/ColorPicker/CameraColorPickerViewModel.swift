@@ -2,12 +2,15 @@ import SwiftUI
 import AVFoundation
 
 /// ViewModel for camera-based color picking
+@MainActor
 final class CameraColorPickerViewModel: ObservableObject {
 
     @Published var currentColor: PaletteColor?
     @Published var pickedColors: [PaletteColor] = []
     @Published var cameraPermission: CameraPermission = .unknown
     @Published var isCameraAvailable = true
+
+    var undoManager: UndoManager?
 
     private let storageService: PaletteStorageServiceProtocol
     private let settingsManager: SettingsManagerProtocol
@@ -52,6 +55,9 @@ final class CameraColorPickerViewModel: ObservableObject {
         guard let color = currentColor else { return }
         guard pickedColors.count < Constants.Palette.maxColorCount else { return }
         pickedColors.append(color)
+        undoManager?.performUndoGroup(L10n.libraryUndoAddColor.localized) { [weak self] in
+            self?.pickedColors.removeLast()
+        }
         if settingsManager.hapticFeedbackEnabled {
             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         }
@@ -59,7 +65,12 @@ final class CameraColorPickerViewModel: ObservableObject {
 
     func removeColor(at index: Int) {
         guard pickedColors.indices.contains(index) else { return }
+        let removedColor = pickedColors[index]
         pickedColors.remove(at: index)
+        undoManager?.performUndoGroup(L10n.libraryUndoRemoveColor.localized) { [weak self] in
+            guard let self else { return }
+            self.pickedColors.insert(removedColor, at: min(index, self.pickedColors.count))
+        }
     }
 
     func updateColor(r: CGFloat, g: CGFloat, b: CGFloat) {

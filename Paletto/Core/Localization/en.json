@@ -4,7 +4,8 @@
       "save": "Save",
       "cancel": "Cancel",
       "delete": "Delete",
-      "done": "Done"
+      "done": "Done",
+      "undo": "Undo"
     },
     "label": {
       "copied": "Copied!",
@@ -92,7 +93,7 @@
     },
     "tag": {
       "all": "All",
-      "new": "+ New Tag",
+      "new": "New Tag",
       "add": "Add",
       "cancel": "Cancel",
       "placeholder": "Enter tag",
@@ -102,7 +103,9 @@
         "max_length": "Tag must be 50 characters or fewer.",
         "max_count": "Maximum 20 tags allowed per palette.",
         "duplicate": "This tag already exists."
-      }
+      },
+      "empty_description": "Create a palette and add this tag to it",
+      "no_results": "No palettes with tag \"{tag}\""
     },
     "folder": {
       "title": "My Folders",
@@ -130,8 +133,11 @@
       "fix_contrast": "Fix Contrast",
       "add_color": "Add Color",
       "remove_color": "Remove Color",
-      "reorder_colors": "Reorder Colors"
-    }
+      "reorder_colors": "Reorder Colors",
+      "add_tag": "Add Tag",
+      "remove_tag": "Remove Tag"
+    },
+    "all_palettes": "All Palettes"
   },
   "detail": {
     "title": "Palette",
@@ -147,7 +153,8 @@
     "section": {
       "colors": "Colors",
       "contrast": "Contrast Matrix",
-      "preview": "Preview"
+      "preview": "Preview",
+      "tags": "Tags"
     },
     "contrast": {
       "samecolor": "Same color",
@@ -204,7 +211,11 @@
       "swiftui": "SwiftUI Code",
       "css": "CSS Variables",
       "hexlist": "HEX List",
-      "jsontokens": "JSON Tokens"
+      "jsontokens": "JSON Tokens",
+      "tailwind": "Tailwind CSS",
+      "compose": "Android Compose",
+      "flutter": "Flutter",
+      "svg": "SVG Swatches"
     },
     "button": {
       "copy": "Copy",
@@ -234,6 +245,13 @@
     "accessibility": "Preview card showing palette colors in a sample layout",
     "rolehint": "Assign roles to each color in the Colors section above for a more accurate preview.",
     "autoassign": "Auto-assign roles",
+    "animation": {
+      "mode": "Animation",
+      "off": "Off",
+      "pulsing": "Pulsing",
+      "hue_rotation": "Hue Rotation",
+      "brightness_breathing": "Breathing"
+    },
     "style": {
       "app": "App Card",
       "dashboard": "Dashboard",
@@ -295,7 +313,17 @@
     "export": {
       "label": "Default Export Format"
     },
-    "version": "Version"
+    "preview": {
+      "animation": "Preview Animation"
+    },
+    "version": "Version",
+    "cloud": {
+      "title": "Firebase Cloud",
+      "status": "Status",
+      "connected": "Connected",
+      "not_connected": "Not Configured",
+      "user": "User UID"
+    }
   },
   "wcag": {
     "aa": "AA",
@@ -310,14 +338,18 @@
       "analogous": "Analogous",
       "triadic": "Triadic",
       "splitcomplementary": "Split-Comp.",
-      "tetradic": "Tetradic"
+      "tetradic": "Tetradic",
+      "monochromatic": "Monochromatic",
+      "square": "Square"
     },
     "desc": {
       "complementary": "Opposite on the color wheel — high contrast",
       "analogous": "Adjacent colors — harmonious and natural",
       "triadic": "Three evenly spaced — vibrant and balanced",
       "splitcomplementary": "Complement split into two — softer contrast",
-      "tetradic": "Four colors in rectangle — rich and diverse"
+      "tetradic": "Four colors in rectangle — rich and diverse",
+      "monochromatic": "Single hue with varying saturation and brightness — clean and minimal",
+      "square": "Four colors spaced 90° apart — dynamic and balanced"
     },
     "button": {
       "save": "Save as Palette",
@@ -366,13 +398,15 @@
       "normal": "Normal Vision",
       "protanopia": "Protanopia",
       "deuteranopia": "Deuteranopia",
-      "tritanopia": "Tritanopia"
+      "tritanopia": "Tritanopia",
+      "achromatopsia": "Achromatopsia"
     },
     "desc": {
       "normal": "Full color vision",
       "protanopia": "Red-blind (missing L-cones)",
       "deuteranopia": "Green-blind (missing M-cones)",
-      "tritanopia": "Blue-blind (missing S-cones)"
+      "tritanopia": "Blue-blind (missing S-cones)",
+      "achromatopsia": "Complete absence of color vision (grayscale only)"
     },
     "label": {
       "original": "Original",
@@ -448,4 +482,3 @@
     }
   }
 }
-

@@ -13,6 +13,16 @@ struct PaletteDetailView: View {
     @Environment(\.undoManager) private var undoManager: UndoManager?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
+    // Animation state
+    @State private var animationMode: AnimationMode = .off
+
+    /// Navigates from PaletteListView — palette changes propagate back to the list.
+    init(binding: Binding<ColorPalette>) {
+        _viewModel = StateObject(wrappedValue: PaletteDetailViewModel(binding: binding))
+    }
+
+    /// Creates a local copy — palette changes are persisted but NOT propagated back.
+    /// Use for new/imported palettes (PalettoApp, CameraColorPickerView, PaletteExtractionView).
     init(palette: ColorPalette) {
         _viewModel = StateObject(wrappedValue: PaletteDetailViewModel(palette: palette))
     }
@@ -235,7 +245,7 @@ struct PaletteDetailView: View {
     private var tagEditorSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text("Tags")
+                Text(L10n.detailSectionTags.localized)
                     .font(.headline.weight(.semibold))
                     .foregroundColor(SemanticColors.primaryText)
 
@@ -293,14 +303,24 @@ struct PaletteDetailView: View {
                 }
             }
 
-            // Inline add tag field — shown when editing; "+ Add Tag" button otherwise
+            // Inline add tag field — shown when editing; "Add Tag" chip otherwise
             if viewModel.showTagEditor {
                 HStack(spacing: 8) {
                     TextField(L10n.libraryTagPlaceholder.localized, text: $viewModel.newTagText)
                         .font(.subheadline)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 8)
-                        .background(Color(.systemGray6))
+                        .frame(width: 140)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(Color.clear)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(
+                                    viewModel.tagError != nil
+                                        ? SemanticColors.destructive.opacity(0.6)
+                                        : SemanticColors.glassBorder,
+                                    lineWidth: 1
+                                )
+                        )
                         .cornerRadius(8)
                         .onSubmit {
                             if viewModel.addTag(viewModel.newTagText) {
@@ -319,8 +339,8 @@ struct PaletteDetailView: View {
                         Text(L10n.libraryTagAdd.localized)
                             .font(.subheadline.weight(.semibold))
                             .foregroundColor(.white)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
                             .background(SemanticColors.gradientStart)
                             .cornerRadius(8)
                     }
@@ -333,32 +353,38 @@ struct PaletteDetailView: View {
                         Text(L10n.cancel.localized)
                             .font(.subheadline)
                             .foregroundColor(SemanticColors.secondaryText)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 6)
                     }
                 }
-
-                if let error = viewModel.tagError {
-                    Text(error)
-                        .font(.caption)
-                        .foregroundColor(SemanticColors.destructive)
-                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(Color(.systemGray6))
+                .cornerRadius(12)
             } else {
-                // "+ Add Tag" button — enters edit mode
+                // "Add Tag" chip — enters edit mode
                 Button {
                     viewModel.showTagEditor = true
                 } label: {
                     HStack(spacing: 4) {
                         Image(systemName: "plus")
-                            .font(.caption)
+                            .font(.caption.weight(.medium))
                         Text(L10n.libraryTagAdd.localized)
                             .font(.subheadline.weight(.medium))
                     }
                     .foregroundColor(SemanticColors.gradientStart)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 12)
                     .padding(.vertical, 6)
                     .background(SemanticColors.gradientStart.opacity(0.1))
                     .cornerRadius(16)
                 }
                 .buttonStyle(.plain)
+            }
+
+            if let error = viewModel.tagError {
+                Text(error)
+                    .font(.caption)
+                    .foregroundColor(SemanticColors.destructive)
             }
         }
     }
@@ -477,8 +503,37 @@ struct PaletteDetailView: View {
             }
             .pickerStyle(.segmented)
 
-            PreviewCardView(palette: viewModel.palette, style: selectedPreviewStyle)
+            // Animation mode picker
+            Picker(L10n.previewAnimationMode.localized, selection: $animationMode) {
+                Text(L10n.previewAnimationOff.localized).tag(AnimationMode.off)
+                Text(L10n.previewAnimationPulsing.localized).tag(AnimationMode.pulsing)
+                Text(L10n.previewAnimationHueRotation.localized).tag(AnimationMode.hueRotation)
+                Text(L10n.previewAnimationBrightnessBreathing.localized).tag(AnimationMode.brightnessBreathing)
+            }
+            .pickerStyle(.segmented)
+
+            if animationMode == .off || reduceMotion || !SettingsManager.shared.previewAnimationEnabled {
+                PreviewCardView(
+                    palette: viewModel.palette,
+                    style: selectedPreviewStyle,
+                    animationMode: .off,
+                    animationProgress: 0
+                )
                 .animation(reduceMotion ? .none : .easeInOut(duration: Constants.UI.animationDuration), value: selectedPreviewStyle)
+            } else {
+                TimelineView(.animation) { timeline in
+                    let cycleDuration: Double = 2.5
+                    let time = timeline.date.timeIntervalSinceReferenceDate
+                    let progress = time.truncatingRemainder(dividingBy: cycleDuration) / cycleDuration
+                    PreviewCardView(
+                        palette: viewModel.palette,
+                        style: selectedPreviewStyle,
+                        animationMode: animationMode,
+                        animationProgress: progress
+                    )
+                }
+                .animation(reduceMotion ? .none : .easeInOut(duration: Constants.UI.animationDuration), value: selectedPreviewStyle)
+            }
         }
     }
 

@@ -4,7 +4,8 @@
       "save": "Lưu",
       "cancel": "Hủy",
       "delete": "Xóa",
-      "done": "Xong"
+      "done": "Xong",
+      "undo": "Hoàn tác"
     },
     "label": {
       "copied": "Đã sao chép!",
@@ -92,7 +93,7 @@
     },
     "tag": {
       "all": "Tất cả",
-      "new": "+ Thẻ mới",
+      "new": "Thẻ mới",
       "add": "Thêm",
       "cancel": "Hủy",
       "placeholder": "Nhập thẻ",
@@ -102,7 +103,9 @@
         "max_length": "Thẻ tối đa 50 ký tự.",
         "max_count": "Tối đa 20 thẻ mỗi bảng màu.",
         "duplicate": "Thẻ này đã tồn tại."
-      }
+      },
+      "empty_description": "Tạo bảng màu và gắn thẻ này vào",
+      "no_results": "Không có bảng màu nào gắn thẻ \"{tag}\""
     },
     "folder": {
       "title": "Thư mục của tôi",
@@ -130,8 +133,11 @@
       "fix_contrast": "Sửa tương phản",
       "add_color": "Thêm màu",
       "remove_color": "Xóa màu",
-      "reorder_colors": "Sắp xếp lại màu"
-    }
+      "reorder_colors": "Sắp xếp lại màu",
+      "add_tag": "Thêm thẻ",
+      "remove_tag": "Xóa thẻ"
+    },
+    "all_palettes": "Tất cả bảng màu"
   },
   "detail": {
     "title": "Bảng màu",
@@ -147,7 +153,8 @@
     "section": {
       "colors": "Màu sắc",
       "contrast": "Ma trận tương phản",
-      "preview": "Xem trước"
+      "preview": "Xem trước",
+      "tags": "Thẻ"
     },
     "contrast": {
       "samecolor": "Cùng màu",
@@ -204,7 +211,11 @@
       "swiftui": "Mã SwiftUI",
       "css": "Biến CSS",
       "hexlist": "Danh sách HEX",
-      "jsontokens": "JSON Tokens"
+      "jsontokens": "JSON Tokens",
+      "tailwind": "Mã Tailwind CSS",
+      "compose": "Mã Jetpack Compose",
+      "flutter": "Mã Flutter",
+      "svg": "Vector SVG"
     },
     "button": {
       "copy": "Sao chép",
@@ -234,6 +245,13 @@
     "accessibility": "Thẻ xem trước hiển thị màu bảng trong bố cục mẫu",
     "rolehint": "Gán vai trò cho từng màu ở mục Màu sắc phía trên để xem trước chính xác hơn.",
     "autoassign": "Tự động gán",
+    "animation": {
+      "mode": "Hiệu ứng",
+      "off": "Tắt",
+      "pulsing": "Nhấp nháy",
+      "hue_rotation": "Xoay Hue",
+      "brightness_breathing": "Hô hấp"
+    },
     "style": {
       "app": "Ứng dụng",
       "dashboard": "Bảng điều khiển",
@@ -295,7 +313,17 @@
     "export": {
       "label": "Định dạng xuất mặc định"
     },
-    "version": "Phiên bản"
+    "preview": {
+      "animation": "Hiệu ứng xem trước"
+    },
+    "version": "Phiên bản",
+    "cloud": {
+      "title": "Đám mây Firebase",
+      "status": "Trạng thái",
+      "connected": "Đã kết nối",
+      "not_connected": "Chưa kết nối",
+      "user": "Mã người dùng"
+    }
   },
   "wcag": {
     "aa": "AA",
@@ -310,14 +338,18 @@
       "analogous": "Tương đồng",
       "triadic": "Bộ ba",
       "splitcomplementary": "Bổ sung tách",
-      "tetradic": "Bộ bốn"
+      "tetradic": "Bộ bốn",
+      "monochromatic": "Đơn sắc",
+      "square": "Hình vuông"
     },
     "desc": {
       "complementary": "Đối diện trên vòng màu — tương phản cao",
       "analogous": "Màu liền kề — hài hòa và tự nhiên",
       "triadic": "Ba màu cách đều — sống động và cân bằng",
       "splitcomplementary": "Bổ sung tách đôi — tương phản nhẹ hơn",
-      "tetradic": "Bốn màu hình chữ nhật — phong phú và đa dạng"
+      "tetradic": "Bốn màu hình chữ nhật — phong phú và đa dạng",
+      "monochromatic": "Cùng một tông màu với độ sáng và độ bão hòa khác nhau — tối giản và tinh tế",
+      "square": "Bốn màu cách nhau 90° trên vòng màu — năng động và cân bằng"
     },
     "button": {
       "save": "Lưu thành bảng màu",
@@ -366,13 +398,15 @@
       "normal": "Thị lực bình thường",
       "protanopia": "Mù đỏ",
       "deuteranopia": "Mù xanh lá",
-      "tritanopia": "Mù xanh dương"
+      "tritanopia": "Mù xanh dương",
+      "achromatopsia": "Mù màu toàn phần"
     },
     "desc": {
       "normal": "Nhìn đầy đủ màu sắc",
       "protanopia": "Thiếu tế bào nón L (đỏ)",
       "deuteranopia": "Thiếu tế bào nón M (xanh lá)",
-      "tritanopia": "Thiếu tế bào nón S (xanh dương)"
+      "tritanopia": "Thiếu tế bào nón S (xanh dương)",
+      "achromatopsia": "Mất hoàn toàn khả năng nhận biết màu sắc (chỉ thấy trắng đen/xám)"
     },
     "label": {
       "original": "Gốc",
@@ -448,4 +482,3 @@
     }
   }
 }
-

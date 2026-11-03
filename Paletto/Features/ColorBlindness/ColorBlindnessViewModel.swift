@@ -1,6 +1,7 @@
 import SwiftUI
 
 /// ViewModel for color blindness simulator
+@MainActor
 final class ColorBlindnessViewModel: ObservableObject {
 
     @Published var selectedType: ColorBlindnessType = .protanopia

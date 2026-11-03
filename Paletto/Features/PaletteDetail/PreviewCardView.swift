@@ -21,21 +21,23 @@ enum PreviewStyle: String, CaseIterable, Identifiable {
 struct PreviewCardView: View {
     let palette: ColorPalette
     var style: PreviewStyle = .appCard
+    var animationMode: AnimationMode = .off
+    var animationProgress: Double = 0
 
     private var bgColor: Color {
-        palette.color(for: .background)?.color ?? .white
+        palette.color(for: .background)?.animatedColor(for: .background, mode: animationMode, progress: animationProgress) ?? .white
     }
     private var primaryColor: Color {
-        palette.color(for: .primary)?.color ?? .blue
+        palette.color(for: .primary)?.animatedColor(for: .primary, mode: animationMode, progress: animationProgress) ?? .blue
     }
     private var secondaryColor: Color {
-        palette.color(for: .secondary)?.color ?? .gray
+        palette.color(for: .secondary)?.animatedColor(for: .secondary, mode: animationMode, progress: animationProgress) ?? .gray
     }
     private var accentColor: Color {
-        palette.color(for: .accent)?.color ?? .orange
+        palette.color(for: .accent)?.animatedColor(for: .accent, mode: animationMode, progress: animationProgress) ?? .orange
     }
     private var textColor: Color {
-        palette.color(for: .text)?.color ?? .black
+        palette.color(for: .text)?.animatedColor(for: .text, mode: animationMode, progress: animationProgress) ?? .black
     }
 
     var body: some View {

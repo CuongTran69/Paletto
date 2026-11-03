@@ -4,6 +4,7 @@ import SwiftUI
 struct PalettoApp: App {
     @StateObject private var themeManager = ThemeManager.shared
     @StateObject private var localizationManager = LocalizationManager.shared
+    @StateObject private var firebaseService = FirebaseService.shared
     @State private var selectedTab = 0
     @State private var importedPalette: ColorPalette?
     @State private var showImportedPalette = false
@@ -13,12 +14,17 @@ struct PalettoApp: App {
     private let sharingService = PaletteSharingService()
     private let storageService = PaletteStorageService.shared
 
+    init() {
+        FirebaseService.shared.configure()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView(selectedTab: $selectedTab, deepLinkPaletteID: $deepLinkPaletteID)
                 .preferredColorScheme(themeManager.colorScheme)
                 .environmentObject(themeManager)
                 .environmentObject(localizationManager)
+                .environmentObject(firebaseService)
                 .onOpenURL { url in
                     handleIncomingURL(url)
                 }
@@ -80,4 +86,3 @@ struct PalettoApp: App {
         showImportError = true
     }
 }
-

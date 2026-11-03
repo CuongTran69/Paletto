@@ -14,15 +14,8 @@ struct ExportView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: Constants.UI.padding) {
-                // Format picker
-                Picker(L10n.exportFormatLabel.localized, selection: $selectedFormat) {
-                    ForEach(ExportFormat.allCases) { format in
-                        Label(format.displayName, systemImage: format.iconName)
-                            .tag(format)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .onChange(of: selectedFormat) { _ in generateExport() }
+                // Format picker as scrollable pill bar
+                formatSelector
 
                 // Preview — glass card
                 ScrollView {
@@ -96,6 +89,42 @@ struct ExportView: View {
         }
     }
 
+    // MARK: - Subviews
+
+    private var formatSelector: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                ForEach(ExportFormat.allCases) { format in
+                    let isSelected = selectedFormat == format
+                    Button {
+                        selectedFormat = format
+                        generateExport()
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: format.iconName)
+                                .font(.caption.weight(.medium))
+                            Text(format.displayName)
+                                .font(.caption.weight(.semibold))
+                        }
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 8)
+                        .background(
+                            isSelected ? AnyShapeStyle(SemanticColors.brandGradient) : AnyShapeStyle(.ultraThinMaterial)
+                        )
+                        .foregroundColor(isSelected ? .white : SemanticColors.primaryText)
+                        .cornerRadius(Constants.UI.cornerRadius)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
+                                .strokeBorder(isSelected ? Color.clear : SemanticColors.glassBorder, lineWidth: 0.5)
+                        )
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(.vertical, 4)
+        }
+    }
+
     // MARK: - Actions
 
     private func generateExport() {
@@ -108,6 +137,18 @@ struct ExportView: View {
             exportedImage = nil
         case .css:
             exportedContent = exportService.exportAsCSS(palette: palette)
+            exportedImage = nil
+        case .tailwind:
+            exportedContent = exportService.exportAsTailwind(palette: palette)
+            exportedImage = nil
+        case .compose:
+            exportedContent = exportService.exportAsCompose(palette: palette)
+            exportedImage = nil
+        case .flutter:
+            exportedContent = exportService.exportAsFlutter(palette: palette)
+            exportedImage = nil
+        case .svg:
+            exportedContent = exportService.exportAsSVG(palette: palette)
             exportedImage = nil
         case .hexList:
             exportedContent = exportService.exportAsHexList(palette: palette)
@@ -147,4 +188,3 @@ struct ShareSheet: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
-

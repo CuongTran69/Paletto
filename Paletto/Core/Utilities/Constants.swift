@@ -18,7 +18,7 @@ enum Constants {
     enum Palette {
         static let defaultColorCount = 5
         static let minColorCount = 3
-        static let maxColorCount = 8
+        static let maxColorCount = 10
         static let maxTagsPerPalette = 20
         static let maxTagLength = 50
     }
@@ -64,6 +64,7 @@ enum Constants {
         static let settingsDefaultColorCountKey = "defaultColorCount"
         static let settingsLanguageKey = "appLanguage"
         static let settingsThemeKey = "appTheme"
+        static let settingsPreviewAnimationKey = "previewAnimationEnabled"
         static let appGroupIdentifier = "group.com.paletto.shared"
 
         static func widgetSlotKey(for kind: WidgetKind) -> String {

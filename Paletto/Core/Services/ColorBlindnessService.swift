@@ -27,6 +27,13 @@ final class ColorBlindnessService: ColorBlindnessServiceProtocol {
         [0.004733, 0.691367,  0.303900]
     ]
 
+    /// Achromatopsia (monochromacy) — complete color blindness (standard relative luminance)
+    private let achromatopsiaMatrix: [[CGFloat]] = [
+        [0.2126, 0.7152, 0.0722],
+        [0.2126, 0.7152, 0.0722],
+        [0.2126, 0.7152, 0.0722]
+    ]
+
     // MARK: - Public API
 
     func simulate(_ color: PaletteColor, type: ColorBlindnessType) -> PaletteColor {
@@ -91,6 +98,7 @@ final class ColorBlindnessService: ColorBlindnessServiceProtocol {
         case .protanopia: return protanopiaMatrix
         case .deuteranopia: return deuteranopiaMatrix
         case .tritanopia: return tritanopiaMatrix
+        case .achromatopsia: return achromatopsiaMatrix
         case .normal: return [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
         }
     }

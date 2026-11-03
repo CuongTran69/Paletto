@@ -1,6 +1,7 @@
 import SwiftUI
 
 /// ViewModel for the palette library screen
+@MainActor
 final class PaletteListViewModel: ObservableObject {
 
     @Published var palettes: [ColorPalette] = []
@@ -15,6 +16,22 @@ final class PaletteListViewModel: ObservableObject {
     // MARK: - Tag state
     @Published var selectedTag: String?
     @Published var allTags: [String] = []
+
+    var undoManager: UndoManager?
+
+    /// Adds a new tag to allTags and selects it immediately.
+    /// Called when user creates a tag from the Library filter bar.
+    func createTagFromFilter(_ tag: String) {
+        let trimmed = tag.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        guard !allTags.contains(trimmed) else {
+            selectedTag = trimmed
+            return
+        }
+        allTags.append(trimmed)
+        allTags.sort()
+        selectedTag = trimmed
+    }
 
     // MARK: - Folder mutation state
     @Published var showCreateFolder = false
@@ -198,8 +215,26 @@ final class PaletteListViewModel: ObservableObject {
 
     func removeTagFromPalette(paletteId: UUID, tag: String) {
         guard let idx = palettes.firstIndex(where: { $0.id == paletteId }) else { return }
+
+        // Capture for undo
+        let previousTags = palettes[idx].tags
+
         palettes[idx].tags.removeAll { $0 == tag }
         palettes[idx].updatedAt = Date()
+
+        // Register undo
+        undoManager?.beginUndoGrouping()
+        undoManager?.registerUndo(withTarget: self) { target in
+            if target.palettes.indices.contains(idx) {
+                target.palettes[idx].tags = previousTags
+                target.palettes[idx].updatedAt = Date()
+                Task { @MainActor in
+                    try? await target.storageService.update(target.palettes[idx])
+                }
+            }
+        }
+        undoManager?.endUndoGrouping()
+        undoManager?.setActionName(L10n.libraryUndoRemoveTag.localized)
 
         Task { @MainActor in
             do {

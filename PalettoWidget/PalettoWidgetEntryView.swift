@@ -106,7 +106,7 @@ struct PalettoWidgetEntryView: View {
                                     .lineLimit(1)
                             }
                         }
-                        .accessibilityLabel("Color \(hex), \((palette.colorRoles[safe: index] ?? nil) ?? "no role") role")
+                        .accessibilityLabel("Color \(hex), \(palette.colorRoles[safe: index] ?? "no role") role")
                     } else {
                         RoundedRectangle(cornerRadius: 6)
                             .fill(Color.clear)
